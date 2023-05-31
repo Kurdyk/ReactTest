@@ -1,0 +1,6 @@
+@import '../node_modules/mini.css/dist/mini-default.min.css';
+
+.leaflet-container {
+    width: 100%;
+    height: 50vh;
+}

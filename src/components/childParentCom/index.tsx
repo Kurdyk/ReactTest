@@ -27,7 +27,7 @@ const MorpionBoard: React.FC = () => {
     }, [playerId, grid])
 
   return (
-    <Box sx={{display:"flex", flexDirection:"row", justifyContent:"space-between"}}>
+    <Box sx={{display:"flex", flexDirection:"row", justifyContent:"space-between", margin:"2%"}}>
         <Box sx={{marginLeft:"20px", padding:"2%", display:"flex", flexDirection:"column"}}>
             <Typography sx={{visibility:displayTurn}}>Player{playerId}'s turn !</Typography>
             <Typography sx={{visibility:displayWin}}>Player{winnerId} wins !</Typography>

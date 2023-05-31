@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react'
 import { parsePosition } from './utils';
 import { MarkerContext } from '../context';
 import { MarkerInfo } from '../type';
+import { myIcon } from '../customeMarker/incon';
 
 const MapInteractionComponent: React.FC = () =>  {
 
@@ -26,6 +27,7 @@ const MapInteractionComponent: React.FC = () =>  {
 
             <Box sx={{display:"flex", flexDirection: "column", margin:"auto", justifyContent:"space-around"}}>
                 <Button variant="outlined" color="primary" onClick={() =>{
+                    console.log(myIcon)
                     const newMarker = {
                         position:position,
                         text:textMarker,

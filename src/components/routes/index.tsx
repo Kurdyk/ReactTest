@@ -9,12 +9,13 @@ import ProjectFormComponent from 'components/projectForm'
 import ProjectsListComponent from 'components/projectsList'
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
-import { mapRoute } from './const'
+import { accueilPath, mapRoute } from './const'
 import MapComponent from 'components/map'
+import AccueilComponent from 'components/accueil'
 
 const AllRoutes: React.FC = () => {
   return (
-    <Box sx={{margin:"2%", display:"flex"}}>
+    <Box id="routeBox" sx={{display:"flex", height:"100%", width:"100%"}}>
         <Routes>
             <Route path="/projects" element={<ProjectsListComponent projectsList={MOCK_PROJECTS} />} />
             <Route path="/form" element={ <ProjectFormComponent display='block'/>} />
@@ -23,7 +24,8 @@ const AllRoutes: React.FC = () => {
             <Route path="/" element={<Greeter name={"toto"} /> } />   
             <Route path="/firstComponent" element={<MyFirstComponent />} />
             <Route path="/morpion" element={<MorpionBoard />} />
-            <Route path={mapRoute} element={<MapComponent/>} />
+            <Route path={mapRoute} element={<MapComponent />} />
+            <Route path={accueilPath} element={<AccueilComponent/>} />
         </Routes>
     </Box>
   )

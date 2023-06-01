@@ -1,11 +1,11 @@
 import { Box, Typography } from '@mui/material'
 import React from 'react'
 import AccueilMapComponent from './accueilMap'
-import BottomDivComponent from './bottomDiv'
+import FooterComponent from './footer'
 
 const AccueilComponent: React.FC = () => {
   return (
-    <Box id="accueilContener" sx={{width:"100%", height:"100%", display:"flex", flexDirection:"column"}}>
+    <Box id="accueilContener" sx={{width:"100vw", height:"100vh", display:"flex", flexDirection:"column"}}>
         <Box id="accueilMapAndTitleContainer" sx={{height:"85%"}}>
             <Box id="acceuilMapConteneur" sx={{zIndex:"-1", width:"100%", height:"85%", position:"absolute"}}>
                 <AccueilMapComponent />
@@ -17,7 +17,7 @@ const AccueilComponent: React.FC = () => {
             </Box>
         </Box>
 
-        <BottomDivComponent />
+        <FooterComponent />
 
     </Box>
   )

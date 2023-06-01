@@ -6,7 +6,7 @@ const NavBar:React.FC<NavBarProps> = ({listRoutes}) => {
     const navigate = useNavigate();
     
   return (
-    <Box sx = {{backgroundColor:"secondary.main", display:"flex", flexWrap:"wrap"}}>
+    <Box id="navbar" sx={{backgroundColor:"secondary.main"}}>
         <Box sx={{margin:"auto", display:"inline-flex", height:"40px", marginLeft:"10px", marginTop:"2px"}}>
             <img src="/logo192.png" alt="react logo"/>
             <Typography color="white" sx={{margin:"auto", marginLeft:"1vw"}}>A test React project</Typography> 

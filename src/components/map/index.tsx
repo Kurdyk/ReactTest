@@ -11,7 +11,7 @@ const MapComponent: React.FC = () => {
     const [markersList, ] = state;
 
     return (
-        <Box sx={{width:"100%", display:"flex", flexDirection:"column"}}>
+        <Box id="MapWrapper">
             <MapContainer id="map" center={[51.505, -0.09]} zoom={13} scrollWheelZoom={true} >
                 <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

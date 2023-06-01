@@ -1,22 +1,17 @@
 import { NavBarProps } from './type'
-import { Box, Button, Typography } from '@mui/material'
-import { useNavigate } from 'react-router-dom';
+import { Box, Typography } from '@mui/material'
+import BurgerMenuComponent from './burgerMenu';
 
 const NavBar:React.FC<NavBarProps> = ({listRoutes}) => {
-    const navigate = useNavigate();
     
   return (
-    <Box id="navbar" sx={{backgroundColor:"secondary.main"}}>
+    <Box sx = {{backgroundColor:"secondary.main", display:"flex", flexWrap:"no-wrap"}}>
         <Box sx={{margin:"auto", display:"inline-flex", height:"40px", marginLeft:"10px", marginTop:"2px"}}>
             <img src="/logo192.png" alt="react logo"/>
             <Typography color="white" sx={{margin:"auto", marginLeft:"1vw"}}>A test React project</Typography> 
         </Box>
-        <Box sx = {{display:"flex", float:"right", justifyContent:"center", margin:"4px"}}> 
-            {listRoutes.map(({path, linkName}) => {
-                return <Button color="info" key={path} onClick={ () => {
-                    navigate(path);
-                }}> {linkName}</Button>
-            })}
+        <Box sx={{height:"40px"}}>
+            <BurgerMenuComponent listRoutes={listRoutes} />
         </Box>
     </Box>
   ) 

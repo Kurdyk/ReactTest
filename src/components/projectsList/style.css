@@ -1,0 +1,18 @@
+#ProjectsListWarpper {
+    display:flex;
+    flex-direction:column;
+}
+
+#ProjectsTitle {
+    margin-left: 20px;
+    margin-bottom:10px;
+    margin-top:10px;
+}
+
+#ProjectsList {
+    display: flex;
+    flexDirection: row;
+    alignItems: stretch;
+    flexWrap: wrap;
+    justifyContent: center;
+}

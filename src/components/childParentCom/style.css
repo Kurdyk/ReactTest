@@ -1,0 +1,25 @@
+@import "./box/style.css";
+
+#MorpionWarpper {
+    display:flex;
+    flexDirection:row;
+    justifyContent:space-between;
+    margin:2%;
+}
+
+#MorpionControl {
+    marginLeft:20px;
+    padding:2%;
+    display:flex;
+    flexDirection:column;
+}
+
+#MorpionGrid {
+    display: grid;
+    padding: 0px;
+    minWidth:200px;
+}
+
+.MorptionRow {
+    padding: 0 !important;
+}

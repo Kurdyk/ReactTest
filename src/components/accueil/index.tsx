@@ -3,10 +3,10 @@ import React from 'react'
 import AccueilMapComponent from './accueilMap'
 import FooterComponent from './footer'
 
-const AccueilComponent: React.FC = () => {
+const AccueilComponent: React.FC = () => {   
   return (
-    <Box id="accueilContener" sx={{width:"100vw", height:"100vh", display:"flex", flexDirection:"column"}}>
-        <Box id="accueilMapAndTitleContainer" sx={{height:"85%"}}>
+    <Box id="accueilContener" sx={{width:"100%", height:"100vh", display:"flex", flexDirection:"column"}}>
+        <Box id="accueilMapAndTitleContainer" sx={{height:"85%", width:"100%"}}>
             <Box id="acceuilMapConteneur" sx={{zIndex:"-1", width:"100%", height:"85%", position:"absolute"}}>
                 <AccueilMapComponent />
             </Box>

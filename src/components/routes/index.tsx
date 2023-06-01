@@ -15,7 +15,7 @@ import AccueilComponent from 'components/accueil'
 
 const AllRoutes: React.FC = () => {
   return (
-    <Box id="routeBox" sx={{display:"flex", height:"100%", width:"100%"}}>
+    <Box id="routeBox">
         <Routes>
             <Route path="/projects" element={<ProjectsListComponent projectsList={MOCK_PROJECTS} />} />
             <Route path="/form" element={ <ProjectFormComponent display='block'/>} />

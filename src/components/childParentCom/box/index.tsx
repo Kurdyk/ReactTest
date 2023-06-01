@@ -20,14 +20,14 @@ const MorpionBox: React.FC<MorpionBoxProps> = ({boardModifier, x, y, grid, playe
 
 
   return (
-    <Button onClick={() => {
+    <Button className="MorpionBox" onClick={() => {
         if (used !== 0) {
             return;
         }
         boardModifier.apply(undefined, [grid, playerId, x, y, gridDispatcher]);
         setUsed(playerId);
         playerIdDispatcher.apply(undefined, [-1 * playerId])
-        }} sx={{backgroundColor:'lightblue', height:"40px"}}>
+        }}>
             {display}
     </Button>
   )

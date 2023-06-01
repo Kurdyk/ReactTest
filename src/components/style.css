@@ -1,0 +1,13 @@
+@import "./accueil/style.css";
+@import "./routes/style.css";
+@import "./map/style.css";
+@import "./navbar/style.css";
+@import "./projectForm/style.css";
+@import "./project/style.css";
+@import "./projectsList/style.css";
+@import "./childParentCom/style.css";
+
+.leaflet-container {
+    width: 100%;
+    height: 50vh;
+}

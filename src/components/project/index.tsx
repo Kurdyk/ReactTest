@@ -8,9 +8,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({project, }) => {
 
     const {id, imageUrl, name, description, budget} = project;
     const [display, setDisplay] = useState("none");
-    const [height, setHeight] = useState("50%");
     
-    return (<Box sx={{display:"flex", flexBasis:"column", width: "30%", height:height}}>
+    return (
+
+    <div className="ProjectCard">
         <ListItemButton key={id} sx={{display: "flex", flexDirection: "column"}}>
             <img src={imageUrl} alt={name} /> 
             <Typography variant='h5'>
@@ -25,11 +26,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({project, }) => {
             <Button variant="outlined" onClick = {() => {
                 if (display === "block") {
                     setDisplay("none");
-                    setHeight("50%");
                 }
                 else {
                     setDisplay("block");
-                    setHeight("70%");
                 }}} >
                 <EditIcon />
                 Edit
@@ -38,7 +37,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({project, }) => {
                 <ProjectForm display={display} />
             </Box>
         </ListItemButton>
-        </Box>)
+    </div>
+    )
 }
 
 export default ProjectCard;

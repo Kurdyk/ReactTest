@@ -1,0 +1,10 @@
+#footerAccueil {
+    z-index:1; 
+    min-height: 15vh;
+    display: flex;
+    justify-content:space-evenly;
+    min-width:100vh !important;
+    background-color:#4287f5;
+    align-items:center;
+    margin-bottom: auto;
+}

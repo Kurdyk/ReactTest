@@ -1,9 +1,8 @@
-import { FormGroup, InputLabel, Input, FormHelperText, Box, Button } from '@mui/material';
+import { FormGroup, InputLabel, Input, Box, Button } from '@mui/material';
 import React, { useContext, useState } from 'react'
 import { parsePosition } from './utils';
 import { MarkerContext } from '../context';
 import { MarkerInfo } from '../type';
-import { myIcon } from '../customeMarker/incon';
 
 const MapInteractionComponent: React.FC = () =>  {
 
@@ -12,22 +11,24 @@ const MapInteractionComponent: React.FC = () =>  {
     const [list, dispatcher] = useContext(MarkerContext);
 
     return (
-        <Box sx={{display:"flex", marginTop:"10px", flexDirection:"row", padding:"20px", maxWidth:"30%", flexWrap:"wrap"}}>
-            <FormGroup sx={{display:"flex", margin:"auto", }}>
-                <InputLabel htmlFor="positionInput">A new marker</InputLabel>
-                <Input required placeholder="format: latitude, longitude" id="positionInput" aria-describedby="positionInput" onChange={(input) => {
+        <Box id="MapInteractionWrapper">
+            <FormGroup id="MarkerForm">
+                <InputLabel className="InputLabel" htmlFor="positionInput">A new marker</InputLabel>
+                <Input required placeholder="format: latitude, longitude" id="positionInput" aria-describedby="positionInput" 
+                onChange={(input) => {
                     setPosition(parsePosition(input.target.value));
                 }}/>
-                <FormHelperText id="positionInputHelper">Where do you want to put a marker?</FormHelperText>
-
-                <Input required placeholder='Text for your marker?' value={textMarker} id="textMarkerInput" aria-describedby='textMarkerInput' onChange={(input) => {
+                <InputLabel className="InputLabel">Where do you want to put a marker?</InputLabel>
+                
+                <Input required placeholder='Text for your marker?' value={textMarker} id="textMarkerInput" aria-describedby='textMarkerInput'
+                onChange={(input) => {
                     setTextMarker(input.target.value);
                 }}/>
             </FormGroup>
 
-            <Box sx={{display:"flex", flexDirection: "column", margin:"auto", justifyContent:"space-around"}}>
-                <Button variant="outlined" color="primary" onClick={() =>{
-                    console.log(myIcon)
+            <Box id="MapInterractionButtonWarpper">
+                <Button variant="outlined" color="primary"
+                onClick={() =>{
                     const newMarker = {
                         position:position,
                         text:textMarker,
@@ -39,7 +40,6 @@ const MapInteractionComponent: React.FC = () =>  {
                 </Button>
             </Box>
         </Box>
-
   )
 }
 

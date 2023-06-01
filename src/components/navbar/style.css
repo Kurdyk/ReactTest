@@ -1,0 +1,6 @@
+@import "./burgerMenu/style.css";
+
+#navbar {
+    display:flex;
+    flex-wrap:wrap;
+}

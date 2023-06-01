@@ -1,4 +1,4 @@
-import { Box, Button, Grid, List, Typography } from '@mui/material'
+import { Button, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import MorpionBox from './box'
 import { useModifyBoard, verifyWin } from './hook';
@@ -27,8 +27,8 @@ const MorpionBoard: React.FC = () => {
     }, [playerId, grid])
 
   return (
-    <Box sx={{display:"flex", flexDirection:"row", justifyContent:"space-between", margin:"2%"}}>
-        <Box sx={{marginLeft:"20px", padding:"2%", display:"flex", flexDirection:"column"}}>
+    <div id="MorpionWarpper">
+        <div id="MorpionControl">
             <Typography sx={{visibility:displayTurn}}>Player{playerId}'s turn !</Typography>
             <Typography sx={{visibility:displayWin}}>Player{winnerId} wins !</Typography>
             <Button onClick={() => {
@@ -39,19 +39,19 @@ const MorpionBoard: React.FC = () => {
                 setDisplayTurn("visible");
                 setReset(!reset);
             }}>Reset</Button>
-        </Box>
-        <Grid sx={{display: "flex", flexDirection:"column", padding: "0px", flexWrap:"nowrap", minWidth:"200px"}}>
+        </div>
+        <div id="MorpionGrid">
             {Array.from(Array(3).keys()).map((i) => (
-                <List sx={{padding:"0px"}} key={i}>
+                <div className="MorpionRow" key={i}>
                     {Array.from(Array(3).keys()).map((j) => (
                         <MorpionBox boardModifier={useModifyBoard} x={i} y={j} grid={grid} 
-                        playerId={playerId} gridDispatcher={setGrid} playerIdDispatcher={setPlayerId}
-                         reset={reset} resetDispatcher={setReset} />
+                            playerId={playerId} gridDispatcher={setGrid} playerIdDispatcher={setPlayerId}
+                            reset={reset} resetDispatcher={setReset} />
           ))}
-        </List>
+        </div>
       ))}
-        </Grid>
-    </Box>
+        </div>
+    </div>
   )
 }
 

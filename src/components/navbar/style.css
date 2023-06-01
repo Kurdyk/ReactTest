@@ -1,6 +1,25 @@
 @import "./burgerMenu/style.css";
 
-#navbar {
+#NavBarWrapper{
     display:flex;
-    flex-wrap:wrap;
+    height:40px;
+    align-items: center;
+}
+
+#LeftWrapper {
+    display:flex;
+    margin-left:10px;
+    height: 100%;
+    width: 98%;
+}
+
+#NavBarTitle {
+    margin:auto;
+    margin-left:1vw;
+}
+
+#BurgerWrapper {
+    align-self: flex-end;
+    height:100%;
+    margin-right: 1%;
 }

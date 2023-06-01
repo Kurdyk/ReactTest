@@ -11,7 +11,7 @@ const BurgerMenuComponent: React.FC<NavBarProps> = ({listRoutes}) => {
             {listRoutes.map(({path, linkName}) => {
                     return <Button variant="outlined" color="primary" key={path} onClick={ () => {
                         navigate(path);
-                    }} sx ={{width: "100%", margin:"3px"}}> {linkName}</Button>
+                    }} className="NavButton"> {linkName}</Button>
                 })}
         </Menu>
     );

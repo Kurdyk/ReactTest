@@ -1,0 +1,19 @@
+.FooterContentWrapper {
+    display:flex;
+    height: 100%;
+    flex-wrap:nowrap;
+    max-width:33%;
+    align-items:center;
+    overflow:hidden;
+}
+
+.FooterContentText {
+    text-overflow: ellipsis;
+    word-wrap:break-word;
+}
+
+@media all and (max-width: 1030px) {
+    .FooterContentIcon {
+        display: none !important;
+    }
+}

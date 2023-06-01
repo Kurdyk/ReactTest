@@ -9,7 +9,7 @@ const muiTheme = createTheme({
       main: '#556cd6',
     },
     secondary: {
-      main: '#4287f5',
+      main: '#1e90ff',
     },
     error: {
       main: red.A400,

@@ -6,6 +6,7 @@
 @import "./project/style.css";
 @import "./projectsList/style.css";
 @import "./childParentCom/style.css";
+@import "./button/style.css";
 
 .leaflet-container {
     width: 100%;

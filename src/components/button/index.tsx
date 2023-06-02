@@ -1,17 +1,16 @@
-import { useState } from 'react'
 import { ButtonProp } from './type';
+import { useData } from "./hook";
+import { Button } from '@mui/material';
 
 const ButtonComponent: React.FC<ButtonProp>  = ({text}) => {
 
-    const [cmpt, setCmpt] = useState<number>(0);
-
-    const handleClick = () => {
-        console.log("number of clicks: " + cmpt  + " " + text);
-        setCmpt((prev) => prev + 1);
-    }
-
+    const {
+        clickHandler,
+        cmpt,
+    } = useData(text);
+    
     return (
-        <button onClick={handleClick}> Click me for the {cmpt + 1} th time.</button>
+        <Button id="ButtonPageButton" variant="outlined" onClick={clickHandler}> Click me for the {cmpt + 1} th time.</Button>
     )
 }
 

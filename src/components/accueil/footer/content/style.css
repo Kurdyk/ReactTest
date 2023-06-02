@@ -1,16 +1,25 @@
 .FooterContentWrapper {
     display:flex;
-    height: 100%;
+    max-height: 100%;
     flex-wrap:nowrap;
-    max-width:33%;
+    max-width:20%;
     align-items:center;
-    overflow:hidden;
+    justify-content: space-evenly;
+    overflow:hidden ;
     margin: 1px;
+    margin-right: 2px;
 }
 
 .FooterContentText {
+    max-height: 90%;
     text-overflow: ellipsis;
-    word-wrap:break-word;
+    overflow-wrap: break-word;
+    text-align: center;
+    margin-bottom: 2px;
+}
+
+.FooterContentIcon {
+    color: white;
 }
 
 @media all and (max-width: 900px) {
@@ -28,5 +37,9 @@
 @media all and (max-width: 1030px) {
     .FooterContentIcon {
         display: none !important;
+    }
+
+    .FooterContentWrapper {
+        max-width: 100% !important;
     }
 }

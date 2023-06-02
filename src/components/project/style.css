@@ -1,4 +1,10 @@
 .ProjectCard{
     display:flex;
-    width:100%;
+    width:40%;
+}
+
+@media all and (max-width: 600px) {
+    .ProjectCard {
+        width: 100% !important;
+    }
 }

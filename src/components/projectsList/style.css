@@ -11,8 +11,8 @@
 
 #ProjectsList {
     display: flex;
-    flexDirection: row;
-    alignItems: stretch;
-    flexWrap: wrap;
-    justifyContent: center;
+    flex-direction: row;
+    align-items: stretch;
+    flex-wrap: wrap;
+    justify-content: center;
 }

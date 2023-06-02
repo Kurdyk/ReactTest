@@ -5,11 +5,24 @@
     max-width:33%;
     align-items:center;
     overflow:hidden;
+    margin: 1px;
 }
 
 .FooterContentText {
     text-overflow: ellipsis;
     word-wrap:break-word;
+}
+
+@media all and (max-width: 900px) {
+    .FooterContentText {
+        font-size: 0.9em !important;
+    }
+}
+
+@media all and (max-width: 600px) {
+    .FooterContentText {
+        font-size: 0.8em !important;
+    }
 }
 
 @media all and (max-width: 1030px) {

@@ -14,8 +14,7 @@ const MorpionBox: React.FC<MorpionBoxProps> = ({boardModifier, x, y, grid, playe
 
     // Update the display of the box
     useEffect(() => {
-        console.log(`used : ${used}`)
-        setDisplay(() => (used === -1)?"X" : (used === 0)? "" : "O")
+        setDisplay(() => (used === -1)? "X" : (used === 0)? "" : "O")
     }, [used])
 
 

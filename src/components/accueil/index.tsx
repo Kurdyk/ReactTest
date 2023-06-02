@@ -9,11 +9,13 @@ const AccueilComponent: React.FC = () => {
     <Box id="AccueilWrapper">
         <Box id="AccueilMapAndTitleWrapper">
             <Box id="AccueilMapWrapper">
-                <AccueilMapComponent />
+                <Box id="ColorFilter">
+                    <AccueilMapComponent />
+                </Box>
             </Box>
             <Box id="AccueilTextWrapper">
-                <Typography id="AccueilSubtiltle" variant='h6' color="black"> Mieux vaut prévenir que guérir</Typography>
-                <Typography id="AccueilTitle" variant='h1' color="black">Road life</Typography>
+                <Typography className="AccueilTitle" variant='h6' color="black"> Mieux vaut prévenir que guérir</Typography>
+                <Typography className="AccueilTitle" variant='h1' color="black">Road life</Typography>
             </Box>
         </Box>
         <FooterComponent />

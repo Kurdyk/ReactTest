@@ -7,8 +7,9 @@
 /* Burger Menu */
 /* Position and sizing of burger button */
 .bm-burger-button {
-    position: relative !important;
+    position: relative;
     float:right;
+    margin: 2px;
     width: 33px;
     height: 35px;
 }
@@ -41,6 +42,7 @@
   .bm-menu-wrap {
     position: fixed;
     max-height: 80%;
+    max-width: 65%;
   }
   
   /* General sidebar styles */

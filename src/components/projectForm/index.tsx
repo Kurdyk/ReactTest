@@ -35,7 +35,7 @@ const ProjectFormComponent: React.FC<ProjectFormProps> = ({display}) => {
             <Input required placeholder="Description" value={description} id="formDescription" aria-describedby="formDescription" onChange={(input) => {
                 setDescription(input.target.value);
             }} sx={{backgroundColor : colorDescription}}/>
-            <FormHelperText id="formBudgetHelper">Give us a budget</FormHelperText>
+            <FormHelperText id="formBudgetHelper">Give us a description</FormHelperText>
 
             <Input required placeholder="Budget" value={budget} id="formBudget" aria-describedby="formBudget" onChange={(input) => {
                 setBudget(input.target.value);

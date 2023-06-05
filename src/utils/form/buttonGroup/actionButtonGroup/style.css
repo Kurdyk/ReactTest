@@ -1,0 +1,12 @@
+.ActionButtonGroup {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.ActionButton {
+    height: 100%;
+    width: 100%;
+}

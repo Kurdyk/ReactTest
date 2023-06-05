@@ -1,5 +1,6 @@
 @import '../node_modules/mini.css/dist/mini-default.min.css';
 @import "./components/style.css";
+@import "./utils/style.css";
 
 html, body, #app, #app>div {
     height: 100%;

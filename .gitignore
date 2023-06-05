@@ -21,3 +21,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+#backend related
+/fakeBackend/.venv
+/fakeBackend/shared/users.txt
+/fakeBackend/shared/secret.txt

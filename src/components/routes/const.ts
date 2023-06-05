@@ -5,8 +5,9 @@ export const fruitsPath = "/fruits";
 export const buttonPath = "/button";
 export const firstComponentPath = "/firstComponent";
 export const morpionPath = "/morpion";
-export const mapRoute = "/map"
-export const accueilPath = "/accueil"
+export const mapRoute = "/map";
+export const accueilPath = "/accueil";
+export const authentificationPath = "/auth";
 
 export const allRoutes = [
     {linkName: "Welcome page", path: rootPath}, 
@@ -17,5 +18,6 @@ export const allRoutes = [
     {linkName: "My first component", path: firstComponentPath}, 
     {linkName: "Morpion", path: morpionPath}, 
     {linkName: "Map", path: mapRoute},
-    {linkName: "Accueil", path: accueilPath}
+    {linkName: "Accueil", path: accueilPath},
+    {linkName: "Authentification", path:authentificationPath},
 ]

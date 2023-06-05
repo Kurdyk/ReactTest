@@ -7,6 +7,7 @@
 @import "./projectsList/style.css";
 @import "./childParentCom/style.css";
 @import "./button/style.css";
+@import "./authentification/style.css";
 
 .leaflet-container {
     width: 100%;

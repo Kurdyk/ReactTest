@@ -2,6 +2,8 @@ import { useState } from "react";
 import { ActionButtonProps } from "utils/form/buttonGroup/actionButtonGroup/type";
 import { FormInputProps, InputGroupProps } from "utils/form/inputGroup/type";
 
+const url = "http://localhost:4444/login";
+
 export const useData = () => {
 
     const [mail, setMail] = useState<string>();
@@ -14,8 +16,27 @@ export const useData = () => {
         id:1,
         buttonText:"LogIn",
         clickHandler: () => {
-            // Do a register request
-            console.log(mail, password);
+            (async () => {
+
+                const rawResponse = await fetch(url, {
+                  method: 'POST',
+                  headers:{
+                    'Content-type':'application/json', 
+                  },
+                  body: JSON.stringify({
+                    "mail":mail,
+                    "password":password,
+                  })
+                });
+
+                if (await rawResponse.status !== 200) {
+                    alert("Bad credidentials");
+                    return
+                }
+
+                const content = await rawResponse.json();
+                sessionStorage.setItem("token", content["token"]);
+              })();
         },
     } as ActionButtonProps;
 

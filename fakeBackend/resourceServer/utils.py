@@ -4,6 +4,7 @@ import jwt
 
 import fakeBackend.authServer.utils as util
 
+# User related
 user_file_path = "../shared/users.txt"
 
 def find_user_from_mail(mail:str) -> util.User:
@@ -14,6 +15,16 @@ def find_user_from_mail(mail:str) -> util.User:
             return current_user
     return
 
+def json_all_users() -> str:
+    result = []
+    user_file = open(user_file_path, "r")
+    for line in user_file:
+        current_user = util.parse_user(line)
+        result.append(current_user.to_json())
+    return result 
+
+
+# Token related
 def token_required(f):
 
     def read_secret():
@@ -26,8 +37,8 @@ def token_required(f):
     def decorated(*args, **kwargs):
         token = None
         # jwt is passed in the request header
-        if 'x-access-token' in request.headers:
-            token = request.headers['x-access-token']
+        if 'token' in request.headers:
+            token = request.headers['token']
         # return 401 if token is not passed
         if not token:
             return jsonify({'message' : 'Token is missing !!'}), 401

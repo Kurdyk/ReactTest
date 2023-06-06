@@ -5,18 +5,22 @@ user_file_path = "../shared/users.txt"
 
 ### USER RELATED
 class User:
-    def __init__(self, mail:str, password:str, prenom:str = "", nom:str ="") -> None:
+    def __init__(self, mail:str, password:str, prenom:str = "", nom:str ="", role:str = "particulier") -> None:
         self.mail = mail
         self.prenom = prenom
         self.nom = nom
         self.password = password
+        self.role = role
 
     def __str__(self) -> str:
-        return f"{self.mail},{self.prenom},{self.nom},{self.password}"
+        return f"{self.mail},{self.prenom},{self.nom},{self.password},{self.role}"
+    
+    def to_json(self) -> str:
+        return "{" + f""" "mail":"{self.mail}", "prenom":"{self.prenom}", "nom":"{self.nom}", "role":"{self.role}" """ + "}"
 
 def parse_user(user_str:str) -> User:   # format : mail, prenom, nom, password
     split = user_str.strip(" ").strip("\n").split(",")
-    return User(mail=split[0], prenom=split[1], nom=split[2], password=split[3])
+    return User(mail=split[0], prenom=split[1], nom=split[2], password=split[3], role=split[4])
 
 def parse_json(user_json:str) -> User:
     try:
@@ -38,6 +42,7 @@ def find_user(user:User) -> bool:
     return False
 
 def add_new_user(new_user:User):
+    print(user_file_path)
     if find_user(new_user):
         raise ValueError("Mail already known")
     user_file = open(user_file_path, "a")
@@ -97,11 +102,11 @@ def test():
     global user_file_path
     user_file_path = "./users_test.txt"
     # testing variable
-    test_str0 = "l0@test.com, p0, n0, psw0"
-    test_str1 = "l1@test.fr, p1, n1, psw1"
-    test_str2 = "l2@test.eu, p2, n2, psw2"
-    test_str3 = "l3@google.com, p3, n3, psw3"
-    test_str4 = "l4@yahoo.fr, p4, n4, psw4"
+    test_str0 = "l0@test.com,p0,n0,psw0,particulier"
+    test_str1 = "l1@test.fr,p1,n1,psw1,collectivite"
+    test_str2 = "l2@test.eu,p2,n2,psw2,particulier"
+    test_str3 = "l3@google.com,p3,n3,psw3,collectivite"
+    test_str4 = "l4@yahoo.fr,p4,n4,psw4,particulier"
     all_test = [test_str0, test_str1, test_str2, test_str3, test_str4]
     # test parsing
     print("Test parsing")
@@ -122,9 +127,13 @@ def test():
     print("Test delete")
     for index, test in enumerate(all_test[:2]):
         print(f"test {index}: {delete_user(parse_user(test))}")
+    # test jsonify
+    for index, test in enumerate(all_test):
+        print(f"test {index}: {(parse_user(test)).to_json()}")
     # test token generation
     print("Test token generation")
-    generate_token(parse_user(test_str0))
+    print(generate_token(parse_user(test_str0)))
+    
 
 
 if __name__ == "__main__":

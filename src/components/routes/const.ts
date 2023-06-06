@@ -9,6 +9,7 @@ export const mapRoute = "/map";
 export const accueilPath = "/accueil";
 export const authentificationPath = "/auth";
 export const logoutPath = "/logout";
+export const usersPath = "/users";
 
 export const allRoutes = [
     {linkName: "Welcome page", path: rootPath}, 
@@ -22,4 +23,5 @@ export const allRoutes = [
     {linkName: "Accueil", path: accueilPath},
     {linkName: "Authentification", path:authentificationPath},
     {linkName: "Logout", path:logoutPath},
+    {linkName: "Users", path:usersPath},
 ];

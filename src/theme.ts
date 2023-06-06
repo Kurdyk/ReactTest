@@ -23,7 +23,7 @@ const muiTheme = createTheme({
     },
     info:{
         main:"#FFF",
-    }
+    },
   },
 });
 

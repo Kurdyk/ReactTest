@@ -11,14 +11,14 @@ def login():
     try:
         user = utils.parse_json(json)
     except ValueError:
-        return "Bad request", 400
+        return jsonify("Bad request"), 400
     try:
         utils.verify_login(user)
         token = utils.generate_token(user)
     except ValueError:
-        return "Invalid password", 401
+        return jsonify("Invalid password"), 401
     except KeyError:
-        return "User not found", 404
+        return jsonify("User not found"), 404
     return make_response(jsonify({"token":token}), 200)
 
 @app.route("/register", methods=["POST"])
@@ -31,5 +31,5 @@ def register():
         utils.add_new_user(user)
         token = utils.generate_token(user)
     except ValueError as err:
-        return "User already exists", 409
+        return jsonify("User already exists"), 409
     return make_response(jsonify({"token":token}), 201)

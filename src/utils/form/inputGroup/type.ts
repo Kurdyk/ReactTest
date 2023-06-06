@@ -2,7 +2,7 @@ export type FormInputProps = {
     value?: string,
     type?: string,
     error?: boolean,
-    helpetText?: string,
+    helperText?: string,
     required: boolean,
     placeholder: string,
     onChange: (input:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void,

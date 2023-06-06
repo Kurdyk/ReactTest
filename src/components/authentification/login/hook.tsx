@@ -9,6 +9,8 @@ export const useData = () => {
 
     const navigate = useNavigate();
 
+    const [mailError, setMailError] = useState<boolean>(false);
+    const [passwordError, setPasswordError] = useState<boolean>(false);
     const [mail, setMail] = useState<string>();
     const [password, setPassword] = useState<string>();
 
@@ -19,6 +21,8 @@ export const useData = () => {
         id:1,
         buttonText:"LogIn",
         clickHandler: () => {
+            setMailError(false);
+            setPasswordError(false);
             (async () => {
 
                 const rawResponse = await fetch(url, {
@@ -32,8 +36,13 @@ export const useData = () => {
                   })
                 });
 
-                if (await rawResponse.status !== 200) {
-                    alert("Bad credidentials");
+                if (rawResponse.status === 401) {
+                    setPasswordError(true);
+                    return
+                }
+
+                if (rawResponse.status === 404) {
+                    setMailError(true);
                     return
                 }
                 
@@ -59,6 +68,8 @@ export const useData = () => {
         onChange: (input:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
             setMail(input.target.value)
         },
+        error:mailError,
+        helperText:"Unregisterd user",
     } as FormInputProps;
 
     const mpdInput = {
@@ -68,6 +79,8 @@ export const useData = () => {
             setPassword(input.target.value);
         },
         type:"password",
+        error:passwordError,
+        helperText:"Invalid password"
     } as FormInputProps;
 
     const inputGroupProps = {

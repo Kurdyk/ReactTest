@@ -22,6 +22,32 @@ export const useData = () => {
         id:1,
         buttonText:"Confirm",
         clickHandler: () => {
+
+            setMailError(false);
+            setPasswordError(false);
+            
+            const verifyPassword = () => {
+                if (password === undefined) {
+                    return false;
+                }
+                const minRegex = /[a-z]/g;
+                const majRegex = /[A-Z]/g;
+                const digitRegex = /[0-9]/g;
+                const specialRegex = /[^a-zA-Z0-9]/g;
+                const allRegex = [minRegex, majRegex, digitRegex, specialRegex]
+                var isValid = true;
+                allRegex.forEach((regex) => {
+                    if (password.match(regex) === null) {
+                        setPasswordError(true);
+                        isValid = false;
+                    }
+                })
+                return isValid;
+            };
+            if (!verifyPassword()) {
+                return;
+            }
+
             (async () => {
 
                 const rawResponse = await fetch(url, {
@@ -38,7 +64,7 @@ export const useData = () => {
                 });
 
                 if (rawResponse.status !== 200) {
-                    alert("Bad credidentials");
+                    setMailError(true)
                     return
                 }
 
@@ -49,7 +75,6 @@ export const useData = () => {
                 document.getElementById("button_logout")!.style.setProperty("display", "block", "important")
 
               })();
-            console.log(mail, nom, prenom, password);
         },
     } as ActionButtonProps;
 
@@ -80,6 +105,8 @@ export const useData = () => {
         onChange: (input:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
             setMail(input.target.value)
         },
+        error:mailError,
+        helperText:"Mail already in use",
     } as FormInputProps;
 
     const mpdInput = {
@@ -89,6 +116,8 @@ export const useData = () => {
             setPassword(input.target.value);
         },
         type:"password",
+        error:passwordError,
+        helperText:"Your password isn't secure enough"
     } as FormInputProps;
 
     const inputGroupProps = {

@@ -46,7 +46,7 @@ const MorpionBoard: React.FC = () => {
                     {Array.from(Array(3).keys()).map((j) => (
                         <MorpionBox boardModifier={useModifyBoard} x={i} y={j} grid={grid} 
                             playerId={playerId} gridDispatcher={setGrid} playerIdDispatcher={setPlayerId}
-                            reset={reset} resetDispatcher={setReset} />
+                            reset={reset} resetDispatcher={setReset} key={j}/>
           ))}
         </div>
       ))}

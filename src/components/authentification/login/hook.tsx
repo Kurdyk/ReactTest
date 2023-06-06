@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ActionButtonProps } from "utils/form/buttonGroup/actionButtonGroup/type";
 import { FormInputProps, InputGroupProps } from "utils/form/inputGroup/type";
 
-const url = "http://localhost:4444/login";
+const url = "http://localhost:4444/login";  // Put url to login route of the authentification server
 
 export const useData = () => {
+
+    const navigate = useNavigate();
 
     const [mail, setMail] = useState<string>();
     const [password, setPassword] = useState<string>();
@@ -33,9 +36,14 @@ export const useData = () => {
                     alert("Bad credidentials");
                     return
                 }
-
+                
+                // success
                 const content = await rawResponse.json();
                 sessionStorage.setItem("token", content["token"]);
+                navigate("/accueil");
+                document.getElementById("button_auth")!.style.setProperty("display", "none", "important")
+                document.getElementById("button_logout")!.style.setProperty("display", "block", "important")
+
               })();
         },
     } as ActionButtonProps;
@@ -59,6 +67,7 @@ export const useData = () => {
         onChange: (input:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
             setPassword(input.target.value);
         },
+        type:"password",
     } as FormInputProps;
 
     const inputGroupProps = {

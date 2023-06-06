@@ -9,9 +9,9 @@ const BurgerMenuComponent: React.FC<NavBarProps> = ({listRoutes}) => {
     return (
         <Menu right>
             {listRoutes.map(({path, linkName}) => {
-                    return <Button variant="outlined" color="primary" key={path} onClick={ () => {
-                        navigate(path);
-                    }} className="NavButton"> {linkName}</Button>
+                    return <Button id={"button_" + path.substring(1)} variant="outlined" 
+                        color="primary" key={path} onClick={() => { navigate(path);}}
+                        className="NavButton">{linkName}</Button>
                 })}
         </Menu>
     );

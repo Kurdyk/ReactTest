@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { redirect } from "react-router-dom";
 import { ActionButtonProps } from "utils/form/buttonGroup/actionButtonGroup/type";
 import { FormInputProps, InputGroupProps } from "utils/form/inputGroup/type";
 
@@ -7,9 +8,12 @@ const url = "http://localhost:4444/register";
 export const useData = () => {
 
     const [mail, setMail] = useState<string>();
+    const [mailError, setMailError] = useState<boolean>(false);
     const [nom, setNom] = useState<string>();
     const [prenom, setPrenom] = useState<string>();
     const [password, setPassword] = useState<string>();
+    const [passwordError, setPasswordError] = useState<boolean>(false);
+
 
     // Preparing data
     
@@ -33,8 +37,17 @@ export const useData = () => {
                   })
                 });
 
+                if (rawResponse.status !== 200) {
+                    alert("Bad credidentials");
+                    return
+                }
+
                 const content = await rawResponse.json();
-                console.log(content);
+                sessionStorage.setItem("token", content["token"]);
+                redirect("/accueil");
+                document.getElementById("button_auth")!.style.setProperty("display", "none", "important")
+                document.getElementById("button_logout")!.style.setProperty("display", "block", "important")
+
               })();
             console.log(mail, nom, prenom, password);
         },
@@ -43,6 +56,7 @@ export const useData = () => {
     const actionGroupProps = {
         actionButtonPropsList: [confirmAction]
     }
+
     /// Input 
     const prenomInput = {
         required:true,
@@ -74,6 +88,7 @@ export const useData = () => {
         onChange: (input:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
             setPassword(input.target.value);
         },
+        type:"password",
     } as FormInputProps;
 
     const inputGroupProps = {

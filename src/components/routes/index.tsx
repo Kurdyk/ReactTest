@@ -9,10 +9,11 @@ import ProjectFormComponent from 'components/projectForm'
 import ProjectsListComponent from 'components/projectsList'
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
-import { accueilPath, authentificationPath, mapRoute } from './const'
+import { accueilPath, authentificationPath, logoutPath, mapRoute } from './const'
 import MapComponent from 'components/map'
 import AccueilComponent from 'components/accueil'
 import AuthentificationComponent from 'components/authentification'
+import LogOutComponent from 'components/logout'
 
 const AllRoutes: React.FC = () => {
   return (
@@ -28,9 +29,10 @@ const AllRoutes: React.FC = () => {
             <Route path={mapRoute} element={<MapComponent />} />
             <Route path={accueilPath} element={<AccueilComponent/>} />
             <Route path={authentificationPath} element={<AuthentificationComponent />} />
+            <Route path={logoutPath} element={<LogOutComponent />} />
         </Routes>
     </Box>
   )
 }
 
-export default AllRoutes
+export default AllRoutes;

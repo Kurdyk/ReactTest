@@ -11,7 +11,9 @@ const FruitItem: React.FC<Fruit> = ({name}) => {
 
 const FruitListComponent: React.FC<FruitListProps> = ({fruitList}) => {
   return (
-    <List> {fruitList.map(({name}, index) => {return <FruitItem key={index} name={name} />})}</List> // with deconstruction
+    <List> 
+        {fruitList.map(({name}, index) => {return <FruitItem key={index} name={name} />})}
+    </List> // with deconstruction
   )
 }
 

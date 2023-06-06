@@ -9,12 +9,12 @@ const AccueilMapComponent: React.FC = () => {
             <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
             {/* Set markers */}
-            {accueilMarkers?.map((position) => {
+            {accueilMarkers?.map((position, index) => {
                 if (position === undefined) {
                     return <></>
                 }
                 return (
-                    <Marker position={position} icon={greenIcon} opacity={0.7}/>
+                    <Marker position={position} icon={greenIcon} opacity={0.7} key={index}/> // The list is static so using index as key shouldn't matter
                 )
             })}
         </MapContainer>

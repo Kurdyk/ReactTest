@@ -1,0 +1,11 @@
+.SearchableTableWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90% !important;
+}
+
+.TableSearchBar {
+    width: 50%;
+    margin-bottom: 10px !important;
+}

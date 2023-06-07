@@ -2,14 +2,15 @@
 export type ColumnDefinition = {
     key:string,
     header:string,
-    comparisionFunction?:(arg0: any, arg1:any) => number,
+    width?:string,
+    // comparisionFunction?:(arg0: any, arg1:any) => number, // could be used to sort the table
 }
 export type AllColumnsDefinition = ColumnDefinition[];
 
 // Define rows
 export type RowData = { 
     key:string,
-    value:string | boolean | number,
+    value:string | boolean | number | any,
 }[];
 
 export type IdentifiedRowData = {
@@ -24,3 +25,5 @@ export type SearchableTableProps = {
     columns:AllColumnsDefinition,
     rows:FullData,
 }
+
+export type Order = 'asc' | 'desc';

@@ -92,7 +92,7 @@ def generate_token(user:User) -> str:
         return
     
     current_time = time()
-    validity = 60 # 1 minute
+    validity = 60 * 60 * 24 # 1 day
     token = jwt.encode({"exp":current_time + validity, "mail":user.mail}, read_secret(), algorithm="HS256")
     # registerToken(token, user.mail)
     return token

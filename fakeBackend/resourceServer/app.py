@@ -14,5 +14,4 @@ def accessRoute(current_user):
 @utils.token_required
 def users(current_user):
     users = utils.json_all_users()
-    print(users)
     return make_response(jsonify({"content":users}), 200)

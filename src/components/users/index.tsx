@@ -1,7 +1,7 @@
 import { Box } from '@mui/material'
 import React from 'react'
-import SearchableTableComponent from 'utils/searchableTable'
 import { useData } from './hook';
+import SearchableDataGridComponent from 'utils/SearchableDataGrid';
 
 const UsersComponent:React.FC = () => {
 
@@ -9,7 +9,7 @@ const UsersComponent:React.FC = () => {
 
     return (
         <Box id="UsersTableWrapper">
-            <SearchableTableComponent columns={columns} rows={users} />
+            <SearchableDataGridComponent columns={columns} rows={users} />
         </Box>
     )
     

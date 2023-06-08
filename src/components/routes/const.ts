@@ -1,19 +1,4 @@
-import Greeter from "components/greeter";
 import { RouteInfo } from "./type";
-import { MOCK_PROJECTS } from "components/project/mockProjects";
-import ProjectsListComponent from "components/projectsList";
-import ProjectFormComponent from "components/projectForm";
-import FruitListComponent from "components/fruitList";
-import ButtonComponent from "components/button";
-import MyFirstComponent from "components/myFirstComponent.tsx";
-import MorpionBoard from "components/childParentCom";
-import MapComponent from "components/map";
-import AccueilComponent from "components/accueil";
-import AuthentificationComponent from "components/authentification";
-import LogOutComponent from "components/logout";
-import UsersComponent from "components/users";
-import { render } from "react-dom";
-import { ReactNode } from "react";
 
 export const projectsPath = "/projects";
 export const formPath = "/form";

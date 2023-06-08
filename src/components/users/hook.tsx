@@ -1,46 +1,37 @@
+import { GridColDef } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import ActionButtonGroupComponent from "utils/form/buttonGroup/actionButtonGroup";
-import { AllColumnsDefinition, FullData, IdentifiedRowData, RowData } from "utils/searchableTable/type"
+import { ActionButtonProps } from "utils/form/buttonGroup/actionButtonGroup/type";
+import { FullData } from "utils/searchableTable/type"
 
 const url = "http://localhost:5555/users";
 
 // utils
-const castToRowData = (userString:string):RowData => {
-    const replaceRegex = /{|}| |"/g;
+const castToRowData = (userString:string) => {
+    const replaceRegex = /| |"/g;
     const filtered = userString.replaceAll(replaceRegex, "");
-    const fieldSeparated = filtered.split(",");
-    var result = [] as RowData;
-    fieldSeparated.forEach((keyValue) => {
-        const newRow = {
-            key: keyValue.split(":")[0],
-            value: keyValue.split(":")[1],
-        };
-        result.push(newRow);
-    })
-
-    const actions = {
-        key:"actions",
-        value: <ActionButtonGroupComponent actionButtonPropsList={[
-                {
-                    id:1, 
-                    buttonText:"Modification",
-                    clickHandler: () => {}
-                },
-                {
-                    id:2, 
-                    buttonText:"Suppresion",
-                    clickHandler: () => {}
-                },
-            ]} />
-    }
-
-    result.push(actions);
-    return result;
+    const asObject = JSON.parse(filtered);
+    const action = [
+        {
+            id:1, 
+            buttonText:"Modification",
+            clickHandler: () => {},
+        },
+        {
+            id:2, 
+            buttonText:"Suppresion",
+            clickHandler: () => {}
+        }
+    ] as ActionButtonProps[];
+    asObject["actions"] = action;
+    return asObject;
 }
 
-const castAll = (rawData:string[]):FullData => {
+const castAll = (rawData:string[]) => {
     return rawData.map((userString, index) => {
-        return {id:index, data:castToRowData(userString)} as IdentifiedRowData;
+        const asObject = castToRowData(userString);
+        asObject["id"] = index;
+        return asObject;
     })
 }
 
@@ -50,27 +41,32 @@ export const useData = () => {
     // Columns
     const columns = [
         {
-            key:"prenom",
-            header:"Prénom",
+            field:"prenom",
+            headerName:"Prénom",
         },
         {
-            key:"nom",
-            header:"Nom",
+            field:"nom",
+            headerName:"Nom",
         },
         {
-            key:"mail",
-            header:"Mail",
+            field:"mail",
+            headerName:"Mail",
         },
         {
-            key:"role",
-            header:"Rôle",
+            field:"role",
+            headerName:"Rôle",
         },
         {
-            key:"actions",
-            header:"Possible actions",
-            width:"20%",
+            field:"actions",
+            headerName:"Possible actions",
+            sortable:false,
+            renderCell: (param) => {
+                const props = param.value as ActionButtonProps[];
+                return <ActionButtonGroupComponent actionButtonPropsList={props} />
+            },
+            width:200,
         }
-    ] as AllColumnsDefinition;
+    ] as GridColDef[];
 
     // Rows
     const [users, setUsers] = useState<FullData>([]);

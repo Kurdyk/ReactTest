@@ -1,6 +1,6 @@
 .SearchableDataGrid {
-    height: 450px;
-    width: 100%;
+    width: 75%;
+    height: 436px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -8,6 +8,6 @@
 }
 
 .DataGrid {
-    width: 90%;
+    width: 80%;
     height: 100%;
 }

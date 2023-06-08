@@ -43,18 +43,30 @@ export const useData = () => {
         {
             field:"prenom",
             headerName:"Prénom",
+            width: 150,
+            align: "center",
+            headerAlign: "center",
         },
         {
             field:"nom",
             headerName:"Nom",
+            width: 150,
+            align: "center",
+            headerAlign: "center",
         },
         {
             field:"mail",
             headerName:"Mail",
+            width: 150,
+            align: "center",
+            headerAlign: "center",
         },
         {
             field:"role",
             headerName:"Rôle",
+            width: 150,
+            align: "center",
+            headerAlign: "center",
         },
         {
             field:"actions",
@@ -64,7 +76,9 @@ export const useData = () => {
                 const props = param.value as ActionButtonProps[];
                 return <ActionButtonGroupComponent actionButtonPropsList={props} />
             },
-            width:200,
+            width: 300,
+            align: "center",
+            headerAlign: "center",
         }
     ] as GridColDef[];
 

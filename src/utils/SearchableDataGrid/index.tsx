@@ -11,18 +11,15 @@ const SearchableDataGridComponent: React.FC<DataGridComponentProps> = ({rows, co
       <Box className="SearchableDataGrid">
         <TextField variant="outlined" className="TableSearchBar" placeholder="Recherche..." onChange={(event) => {filter(event.target.value)}}/>
         <DataGrid
-          rows={allRows}
-          columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: {
-                pageSize: 5,
-              },
-            },
-          }}
-          pageSizeOptions={[5]}
-          disableRowSelectionOnClick
-          className="DataGrid"
+            rows={allRows}
+            columns={columns}
+            initialState={{
+                pagination: {paginationModel:{pageSize:5}}
+            }}
+            pageSizeOptions={[5]}
+            // autoPageSize = {true}
+            disableRowSelectionOnClick
+            className="DataGrid"
         />
       </Box>
     );

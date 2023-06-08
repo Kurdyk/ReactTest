@@ -1,20 +1,21 @@
 import { Box } from '@mui/material'
+import AccueilComponent from 'components/accueil'
+import AuthentificationComponent from 'components/authentification'
 import ButtonComponent from 'components/button'
 import MorpionBoard from 'components/childParentCom'
 import FruitListComponent from 'components/fruitList'
 import Greeter from 'components/greeter'
+import LogOutComponent from 'components/logout'
+import MapComponent from 'components/map'
 import MyFirstComponent from 'components/myFirstComponent.tsx'
 import { MOCK_PROJECTS } from 'components/project/mockProjects'
 import ProjectFormComponent from 'components/projectForm'
 import ProjectsListComponent from 'components/projectsList'
-import React from 'react'
-import { Routes, Route } from 'react-router-dom'
-import { accueilPath, authentificationPath, logoutPath, mapRoute, usersPath } from './const'
-import MapComponent from 'components/map'
-import AccueilComponent from 'components/accueil'
-import AuthentificationComponent from 'components/authentification'
-import LogOutComponent from 'components/logout'
 import UsersComponent from 'components/users'
+import React from 'react'
+import { Route, Routes } from 'react-router-dom'
+import LoginProtectionComponent from 'utils/loginProtection'
+import { mapRoute, accueilPath, authentificationPath, logoutPath, usersPath } from './const'
 
 const AllRoutes: React.FC = () => {
   return (
@@ -31,7 +32,17 @@ const AllRoutes: React.FC = () => {
             <Route path={accueilPath} element={<AccueilComponent/>} />
             <Route path={authentificationPath} element={<AuthentificationComponent />} />
             <Route path={logoutPath} element={<LogOutComponent />} />
-            <Route path={usersPath} element={<UsersComponent />} />
+            <Route path={usersPath} element={<LoginProtectionComponent children={<UsersComponent />} />} />
+            {/* {
+                allRoutes.map(({path, requiredLogin, elememt}) => {
+                    console.log(path, requiredLogin)
+                    if (requiredLogin) {
+                        return <Route path={path} element={<LoginProtectionComponent children={elememt} />} />
+                    } else {
+                        return <Route path={path} element={elememt} />
+                    }
+                })
+            } */}
         </Routes>
     </Box>
   )

@@ -1,3 +1,4 @@
+import { accueilPath } from "components/routes/const";
 import { useState } from "react";
 import { redirect } from "react-router-dom";
 import { ActionButtonProps } from "utils/form/buttonGroup/actionButtonGroup/type";
@@ -70,9 +71,7 @@ export const useData = () => {
 
                 const content = await rawResponse.json();
                 sessionStorage.setItem("token", content["token"]);
-                redirect("/accueil");
-                document.getElementById("button_auth")!.style.setProperty("display", "none", "important")
-                document.getElementById("button_logout")!.style.setProperty("display", "block", "important")
+                redirect(accueilPath);
 
               })();
         },

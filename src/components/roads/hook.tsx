@@ -52,12 +52,14 @@ export const useData = () => {
             width: 150,
             align: "center",
             headerAlign: "center",
+            flex:1,
         },
         {
             field:"sensor",
             headerName:"Capteur",
             width: 150,
             align: "center",
+            flex:1,
             headerAlign: "center",
         },
         {
@@ -65,6 +67,7 @@ export const useData = () => {
             headerName:"Usure",
             width: 150,
             align: "center",
+            flex:1,
             headerAlign: "center",
         },
         {
@@ -72,6 +75,7 @@ export const useData = () => {
             headerName:"Nb passages/jour",
             width: 150,
             align: "center",
+            flex:1,
             headerAlign: "center",
         },
     ] as GridColDef[];

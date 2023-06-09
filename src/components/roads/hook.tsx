@@ -1,9 +1,10 @@
 import { GridColDef } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
-import { ActionButtonProps } from "utils/atoms/buttonGroup/actionButtonGroup/type";
-import { Road } from "./type";
+import { DispayableRoad, Road } from "./type";
+import { Sensor } from "components/sensor/type";
 
-const url = "http://localhost:5555/roads";
+const roadsUrl = "http://localhost:5555/roads";
+const sensorsUrl = "http://localhost:5555/sensors";
 
 // utils
 const castToRowData = (roadString:string) => {
@@ -19,6 +20,25 @@ const castAll = (rawData:string[]) => {
         asObject["id"] = index;
         return asObject;
     })
+}
+
+const join = (sensors:Sensor[], roads:Road[]):DispayableRoad[] => {
+    const result = Array<DispayableRoad>();
+    var cmpt = 0;
+    roads.forEach(({street, postalCode, city, sensorsIdList, roadId}) => {
+        sensors.forEach(({currentWear, sensorId}) => {
+            if (sensorId in sensorsIdList) {
+                result.push({
+                    road: `${street}\n${postalCode} ${city}`,
+                    id:cmpt++,
+                    sensor: `sensor${sensorId}`,
+                    wear:currentWear,
+                    usage:0
+                } as DispayableRoad) 
+            }      
+        })
+    })
+    return result;
 }
 
 // UseData
@@ -58,14 +78,41 @@ export const useData = () => {
 
     // Rows
     const [roads, setRoads] = useState<Road[]>([]);
+    const [sensors, setSensors] = useState<Sensor[]>([]);
 
     useEffect(() => {
         const requestRoads = (async () => {
-            const rawResponse = await fetch(url, {
+            const rawResponse = await fetch(roadsUrl, {
                 method: 'GET',
                 headers:{
                   'Content-type':'application/json', 
-                  "token":sessionStorage.getItem("token")!,
+                }})
+            
+            if (rawResponse.status !== 200) {
+                const error = await rawResponse.json()
+                console.log(error["message"])
+                return;
+            }
+            
+            const content = await rawResponse.json();
+            const roadData = content["content"]
+            return roadData;
+        });
+    
+        
+        requestRoads().then((response) => {
+            const castRoads = castAll(response);
+            setRoads(castRoads);
+        });
+    
+    }, []);
+
+    useEffect(() => {
+        const requestSensors = (async () => {
+            const rawResponse = await fetch(sensorsUrl, {
+                method: 'GET',
+                headers:{
+                  'Content-type':'application/json', 
                 }})
             
             if (rawResponse.status !== 200) {
@@ -80,15 +127,17 @@ export const useData = () => {
         });
     
         
-        requestRoads().then((response) => {
-            const castRoads = castAll(response);
-            setRoads(castRoads);
+        requestSensors().then((response) => {
+            const castSensors = castAll(response);
+            setSensors(castSensors);
         });
     
     }, []);
+
+    const displayableRoads = join(sensors, roads);
     
     return {
         columns,
-        roads,
+        displayableRoads,
     }
 }

@@ -1,6 +1,15 @@
-import { Sensor } from "components/sensor/type";
-
 export type Road = {
-    roadId:string,
-    sensorsList: Sensor[], 
+    roadId:number,
+    street:string,
+    postalCode: number,
+    city: string,
+    sensorsIdList: number[], 
 };
+
+export type DispayableRoad = {
+    road:string,
+    sensor:string,
+    wear:number,
+    usage: number,
+    id:number,
+}

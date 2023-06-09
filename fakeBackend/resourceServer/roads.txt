@@ -1,0 +1,20 @@
+{"roadId":0, "street":"Ruelle Sainte Barbe", "sensorsIdList":[37, 25], "postalCode":21760, "city":"Reims" }
+{"roadId":1, "street":"La place de la Fontaine", "sensorsIdList":[1, 13], "postalCode":21760, "city":"Lille" }
+{"roadId":2, "street":"Route de Lyon", "sensorsIdList":[22, 7], "postalCode":94023, "city":"Paris" }
+{"roadId":3, "street":"Avenue de la Gare", "sensorsIdList":[5, 2], "postalCode":46092, "city":"Lille" }
+{"roadId":4, "street":"Route de Lyon", "sensorsIdList":[19, 4], "postalCode":94023, "city":"Reims" }
+{"roadId":5, "street":"Avenue de la Gare", "sensorsIdList":[17, 16], "postalCode":21760, "city":"Paris" }
+{"roadId":6, "street":"Ruelle Sainte Barbe", "sensorsIdList":[39, 11], "postalCode":46092, "city":"Bordeaux" }
+{"roadId":7, "street":"Ruelle Sainte Barbe", "sensorsIdList":[21, 26], "postalCode":75008, "city":"Reims" }
+{"roadId":8, "street":"La place de la Fontaine", "sensorsIdList":[8, 24], "postalCode":46092, "city":"Lille" }
+{"roadId":9, "street":"La place de la Fontaine", "sensorsIdList":[9, 3], "postalCode":46092, "city":"Lille" }
+{"roadId":10, "street":"Ruelle Sainte Barbe", "sensorsIdList":[27, 20], "postalCode":75008, "city":"Lille" }
+{"roadId":11, "street":"Route de Lyon", "sensorsIdList":[38, 10], "postalCode":46092, "city":"Lille" }
+{"roadId":12, "street":"Avenue de la Gare", "sensorsIdList":[30, 32], "postalCode":21760, "city":"Lille" }
+{"roadId":13, "street":"Ruelle Sainte Barbe", "sensorsIdList":[23, 14], "postalCode":94023, "city":"Paris" }
+{"roadId":14, "street":"Avenue de la Gare", "sensorsIdList":[29, 34], "postalCode":94023, "city":"Bordeaux" }
+{"roadId":15, "street":"La place de la Fontaine", "sensorsIdList":[0, 31], "postalCode":46092, "city":"Lille" }
+{"roadId":16, "street":"La place de la Fontaine", "sensorsIdList":[36, 18], "postalCode":75008, "city":"Lille" }
+{"roadId":17, "street":"La place de la Fontaine", "sensorsIdList":[6, 15], "postalCode":75008, "city":"Reims" }
+{"roadId":18, "street":"La place de la Fontaine", "sensorsIdList":[28, 33], "postalCode":94023, "city":"Paris" }
+{"roadId":19, "street":"Route de Lyon", "sensorsIdList":[12, 35], "postalCode":94023, "city":"Paris" }

@@ -58,3 +58,32 @@ def token_required(f):
         return  f(current_user, *args, **kwargs)
   
     return decorated
+
+# Road related
+class Road:
+    def __init__(self, id:int, street:str, sensorList:list, postalCode:int, city:str) -> None:
+        self.id = id
+        self.street = street
+        self.sensorList = sensorList
+        self.postalCode = postalCode
+        self.city = city
+
+    def __str__(self) -> str:
+        return "{" + f""""roadId":{self.id}, "street":"{self.street}", "sensorsIdList":{self.sensorList}, "postalCode":{self.postalCode}, "city":"{self.city}" """ + "}"
+# Sensor related
+class Sensor:
+    def __init__(self, id:int, wear:int) -> None:
+        self.id = id,
+        self.wear = wear
+
+    def __str__(self) -> str:
+        return "{" + f""""sensorId":{self.id}, "currentWear":{self.wear}""" + "}"
+    
+def read_file(path:str):
+    result = list()
+    file = open(path, "r")
+    for line in file:
+        result.append(line.strip("\n"))
+    file.close()
+    return result
+    

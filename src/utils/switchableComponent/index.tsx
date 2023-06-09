@@ -9,7 +9,7 @@ const SwitchableComponent: React.FC<SwitchableComponentProps> = ({components, de
     const {chosenComponent, setChosenComponent} = useData(defaultComponent);
 
      return (
-        <Box>
+        <Box className="SwitchableComponent">
             <DoubleLabelSwitchComponent 
                 labels={[components[0].label, components[1].label]} 
                 state={chosenComponent} 

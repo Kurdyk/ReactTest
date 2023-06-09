@@ -1,4 +1,4 @@
-import { RouteInfo } from "components/routes/type";
+import { RouteInfo } from "components/shared/routes/type";
 
 export type ListRoutes = RouteInfo[];
 

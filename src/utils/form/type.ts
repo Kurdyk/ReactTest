@@ -1,6 +1,7 @@
-import { ActionButtonGroupProps } from "./buttonGroup/actionButtonGroup/type";
-import { ToggleButtonGroupProps } from "./buttonGroup/toggleButtonGroup/type"
-import { InputGroupProps } from "./inputGroup/type";
+import { ToggleButtonGroupProps } from "utils/atoms/buttonGroup/toggleButtonGroup/type";
+import { ActionButtonGroupProps } from "utils/atoms/buttonGroup/actionButtonGroup/type";
+import { InputGroupProps } from "utils/atoms/inputGroup/type";
+
 
 export type GenericFormComponentProps = {
     toggleButtonsGroupProps: ToggleButtonGroupProps;

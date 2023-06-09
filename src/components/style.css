@@ -1,14 +1,12 @@
 @import "./accueil/style.css";
-@import "./routes/style.css";
 @import "./map/style.css";
-@import "./navbar/style.css";
 @import "./projectForm/style.css";
-@import "./project/style.css";
 @import "./projectsList/style.css";
 @import "./childParentCom/style.css";
 @import "./button/style.css";
 @import "./authentification/style.css";
 @import "./users/style.css";
+@import "./shared/style.css";
 
 .leaflet-container {
     width: 100%;

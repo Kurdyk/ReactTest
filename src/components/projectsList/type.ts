@@ -1,4 +1,4 @@
-import { Project } from '../project/Project';
+import { Project } from '../shared/project/Project';
 export type ProjectsList = Project[];
 
 export type ProjectsListProps = {

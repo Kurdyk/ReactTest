@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ToggleButtonGroupProps, ToggleButtonProps } from "utils/form/buttonGroup/toggleButtonGroup/type";
+import { ToggleButtonGroupProps, ToggleButtonProps } from "utils/atoms/buttonGroup/toggleButtonGroup/type";
 import { GenericFormComponentProps } from "utils/form/type";
 
 export const useData = () => {

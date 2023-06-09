@@ -1,6 +1,6 @@
 import { ProjectsListProps } from './type'
 import { Box, List, Typography } from '@mui/material'
-import ProjectCard from 'components/project';
+import ProjectCard from 'components/shared/project';
 
 
 const ProjectsListComponent: React.FC<ProjectsListProps> = ({projectsList}) => {

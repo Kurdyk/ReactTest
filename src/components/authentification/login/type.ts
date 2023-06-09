@@ -1,4 +1,4 @@
-import { ToggleButtonGroupProps } from "utils/form/buttonGroup/toggleButtonGroup/type";
+import { ToggleButtonGroupProps } from "utils/atoms/buttonGroup/toggleButtonGroup/type";
 
 export type loginFormProps = {
     loginDisplay: string;

@@ -1,9 +1,9 @@
 import React from 'react'
 import { GenericFormComponentProps } from './type';
 import { Box } from '@mui/material';
-import ToggleButtonGroupComponent from './buttonGroup/toggleButtonGroup';
-import InputGroupComponent from './inputGroup';
-import ActionButtonGroupComponent from './buttonGroup/actionButtonGroup';
+import ActionButtonGroupComponent from 'utils/atoms/buttonGroup/actionButtonGroup';
+import ToggleButtonGroupComponent from 'utils/atoms/buttonGroup/toggleButtonGroup';
+import InputGroupComponent from 'utils/atoms/inputGroup';
 
 const GenericFormComponent: React.FC<GenericFormComponentProps> = ({toggleButtonsGroupProps, actionButtonGroupProps, inputGroupProps}) => {
   

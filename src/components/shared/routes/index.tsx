@@ -8,14 +8,15 @@ import Greeter from 'components/greeter'
 import LogOutComponent from 'components/logout'
 import MapComponent from 'components/map'
 import MyFirstComponent from 'components/myFirstComponent.tsx'
-import { MOCK_PROJECTS } from 'components/project/mockProjects'
+import { MOCK_PROJECTS } from 'components/shared/project/mockProjects'
 import ProjectFormComponent from 'components/projectForm'
 import ProjectsListComponent from 'components/projectsList'
 import UsersComponent from 'components/users'
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import LoginProtectionComponent from 'utils/loginProtection'
-import { mapRoute, accueilPath, authentificationPath, logoutPath, usersPath } from './const'
+import { mapRoute, accueilPath, authentificationPath, logoutPath, usersPath, roadsPath } from './const'
+import RoadComponent from 'components/roads'
 
 const AllRoutes: React.FC = () => {
   return (
@@ -33,6 +34,7 @@ const AllRoutes: React.FC = () => {
             <Route path={authentificationPath} element={<AuthentificationComponent />} />
             <Route path={logoutPath} element={<LogOutComponent />} />
             <Route path={usersPath} element={<LoginProtectionComponent children={<UsersComponent />} />} />
+            <Route path={roadsPath} element={<RoadComponent />} /> 
             {/* {
                 allRoutes.map(({path, requiredLogin, elememt}) => {
                     console.log(path, requiredLogin)

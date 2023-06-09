@@ -1,30 +1,16 @@
 import { GridColDef } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
-import ActionButtonGroupComponent from "utils/atoms/buttonGroup/actionButtonGroup";
 import { ActionButtonProps } from "utils/atoms/buttonGroup/actionButtonGroup/type";
-import { FullData } from "utils/searchableTable/type"
+import { Road } from "./type";
 
-const url = "http://localhost:5555/users";
+const url = "http://localhost:5555/roads";
 
 // utils
-const castToRowData = (userString:string) => {
+const castToRowData = (roadString:string) => {
     const replaceRegex = /| |"/g;
-    const filtered = userString.replaceAll(replaceRegex, "");
-    const asObject = JSON.parse(filtered);
-    const action = [
-        {
-            id:1, 
-            buttonText:"Modification",
-            clickHandler: () => {},
-        },
-        {
-            id:2, 
-            buttonText:"Suppresion",
-            clickHandler: () => {}
-        }
-    ] as ActionButtonProps[];
-    asObject["actions"] = action;
-    return asObject;
+    const filtered = roadString.replaceAll(replaceRegex, "");
+    const roadObject = JSON.parse(filtered);
+    return roadObject;
 }
 
 const castAll = (rawData:string[]) => {
@@ -41,52 +27,40 @@ export const useData = () => {
     // Columns
     const columns = [
         {
-            field:"prenom",
-            headerName:"Prénom",
+            field:"road",
+            headerName:"Route",
             width: 150,
             align: "center",
             headerAlign: "center",
         },
         {
-            field:"nom",
-            headerName:"Nom",
+            field:"sensor",
+            headerName:"Capteur",
             width: 150,
             align: "center",
             headerAlign: "center",
         },
         {
-            field:"mail",
-            headerName:"Mail",
+            field:"wear",
+            headerName:"Usure",
             width: 150,
             align: "center",
             headerAlign: "center",
         },
         {
-            field:"role",
-            headerName:"Rôle",
+            field:"usage",
+            headerName:"Nb passages/jour",
             width: 150,
             align: "center",
             headerAlign: "center",
         },
-        {
-            field:"actions",
-            headerName:"Possible actions",
-            sortable:false,
-            renderCell: (param) => {
-                const props = param.value as ActionButtonProps[];
-                return <ActionButtonGroupComponent actionButtonPropsList={props} />
-            },
-            width: 300,
-            align: "center",
-            headerAlign: "center",
-        }
     ] as GridColDef[];
 
     // Rows
-    const [users, setUsers] = useState<FullData>([]);
+    const [roads, setRoads] = useState<Road[]>([]);
 
     useEffect(() => {
-        const requestUsers = (async () => {
+        const requestRoads = (async () => {
             const rawResponse = await fetch(url, {
                 method: 'GET',
                 headers:{
@@ -106,15 +80,15 @@ export const useData = () => {
         });
     
         
-        requestUsers().then((response) => {
-            const castUsers = castAll(response);
-            setUsers(castUsers);
+        requestRoads().then((response) => {
+            const castRoads = castAll(response);
+            setRoads(castRoads);
         });
     
     }, []);
     
     return {
         columns,
-        users,
+        roads,
     }
 }

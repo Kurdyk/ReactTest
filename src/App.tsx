@@ -2,9 +2,9 @@ import './App.css';
 import muiTheme from 'theme';
 import { ThemeProvider } from '@mui/material';
 import { BrowserRouter } from 'react-router-dom';
-import NavBar from 'components/navbar';
-import { allRoutes } from 'components/routes/const';
-import AllRoutes from 'components/routes';
+import NavBar from 'components/shared/navbar';
+import { allRoutes } from 'components/shared/routes/const';
+import AllRoutes from 'components/shared/routes';
 
 const App = () => {
   return (

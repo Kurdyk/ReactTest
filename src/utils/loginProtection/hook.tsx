@@ -1,4 +1,4 @@
-import { accueilPath } from "components/routes/const";
+import { accueilPath } from "components/shared/routes/const";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom"
 

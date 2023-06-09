@@ -12,6 +12,7 @@ export const accueilPath = "/accueil";
 export const authentificationPath = "/auth";
 export const logoutPath = "/logout";
 export const usersPath = "/users";
+export const roadsPath = "/roads";
 
 
 export const allRoutes = [
@@ -27,4 +28,5 @@ export const allRoutes = [
     {linkName: "Authentification", path:authentificationPath, requiredLogin:false,},
     {linkName: "Logout", path:logoutPath, requiredLogin:true,},
     {linkName: "Users", path:usersPath, requiredLogin:true,},
+    {linkName: "Roads", path:roadsPath},
 ] as RouteInfo[];

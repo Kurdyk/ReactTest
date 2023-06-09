@@ -1,8 +1,8 @@
-import { accueilPath } from "components/routes/const";
+import { accueilPath } from "components/shared/routes/const";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ActionButtonProps } from "utils/form/buttonGroup/actionButtonGroup/type";
-import { FormInputProps, InputGroupProps } from "utils/form/inputGroup/type";
+import { ActionButtonProps } from "utils/atoms/buttonGroup/actionButtonGroup/type";
+import { FormInputProps, InputGroupProps } from "utils/atoms/inputGroup/type";
 
 const url = "http://localhost:4444/login";  // Put url to login route of the authentification server
 

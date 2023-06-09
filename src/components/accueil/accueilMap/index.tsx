@@ -14,7 +14,7 @@ const AccueilMapComponent: React.FC = () => {
                     return <></>
                 }
                 return (
-                    <Marker position={position} icon={greenIcon} opacity={0.7} key={index}/> // The list is static so using index as key shouldn't matter
+                    <Marker position={position} icon={greenIcon} key={index}/> // The list is static so using index as key shouldn't matter
                 )
             })}
         </MapContainer>

@@ -2,6 +2,8 @@ import { GridColDef } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
 import { DispayableRoad, Road } from "./type";
 import { Sensor } from "components/sensor/type";
+import { LinesInfo, MarkerInfo } from "utils/markedMap/type";
+import { greenIcon } from "components/accueil/accueilMap/const";
 
 const roadsUrl = "http://localhost:5555/roads";
 const sensorsUrl = "http://localhost:5555/sensors";
@@ -22,6 +24,7 @@ const castAll = (rawData:string[]) => {
     })
 }
 
+// utils for table
 const join = (sensors:Sensor[], roads:Road[]):DispayableRoad[] => {
     const result = Array<DispayableRoad>();
     var cmpt = 0;
@@ -39,6 +42,25 @@ const join = (sensors:Sensor[], roads:Road[]):DispayableRoad[] => {
         })
     })
     return result;
+}
+
+// utils for map
+const toDisplayableMarkers = (sensors:Sensor[]):MarkerInfo[] => {
+    return sensors.map(({position, sensorId}, index) => {
+        return {position: position,
+            text:`CAP_75008_${sensorId}`,
+            icon: greenIcon,
+            id:index}
+    });
+}
+
+const toDisplayableRoads = (roads:Road[]):LinesInfo[] => {
+    return roads.map(({startPosition, endPosition, roadId}) => {
+        return {startPosition : startPosition,
+            endPosition : endPosition,
+            color : "red",
+            id: roadId,
+    }})
 }
 
 // UseData
@@ -138,10 +160,14 @@ export const useData = () => {
     
     }, []);
 
-    const displayableRoads = join(sensors, roads);
+    const gridDisplayableRoads = join(sensors, roads);
+    const visualRoads = toDisplayableRoads(roads);
+    const visualSensors = toDisplayableMarkers(sensors);
     
     return {
         columns,
-        displayableRoads,
+        gridDisplayableRoads,
+        visualRoads,
+        visualSensors,
     }
 }

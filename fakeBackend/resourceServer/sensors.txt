@@ -1,40 +1,40 @@
-{"sensorId":0, "currentWear":49}
-{"sensorId":1, "currentWear":59}
-{"sensorId":2, "currentWear":49}
-{"sensorId":3, "currentWear":25}
-{"sensorId":4, "currentWear":95}
-{"sensorId":5, "currentWear":12}
-{"sensorId":6, "currentWear":62}
-{"sensorId":7, "currentWear":93}
-{"sensorId":8, "currentWear":90}
-{"sensorId":9, "currentWear":29}
-{"sensorId":10, "currentWear":100}
-{"sensorId":11, "currentWear":89}
-{"sensorId":12, "currentWear":66}
-{"sensorId":13, "currentWear":84}
-{"sensorId":14, "currentWear":92}
-{"sensorId":15, "currentWear":40}
-{"sensorId":16, "currentWear":59}
-{"sensorId":17, "currentWear":68}
-{"sensorId":18, "currentWear":26}
-{"sensorId":19, "currentWear":35}
-{"sensorId":20, "currentWear":63}
-{"sensorId":21, "currentWear":66}
-{"sensorId":22, "currentWear":17}
-{"sensorId":23, "currentWear":81}
-{"sensorId":24, "currentWear":14}
-{"sensorId":25, "currentWear":50}
-{"sensorId":26, "currentWear":82}
-{"sensorId":27, "currentWear":30}
-{"sensorId":28, "currentWear":83}
-{"sensorId":29, "currentWear":61}
-{"sensorId":30, "currentWear":32}
-{"sensorId":31, "currentWear":33}
-{"sensorId":32, "currentWear":28}
-{"sensorId":33, "currentWear":46}
-{"sensorId":34, "currentWear":53}
-{"sensorId":35, "currentWear":66}
-{"sensorId":36, "currentWear":84}
-{"sensorId":37, "currentWear":96}
-{"sensorId":38, "currentWear":25}
-{"sensorId":39, "currentWear":98}
+{"sensorId":0, "currentWear":20, "position":[48.86633887773583, 2.3261290116217763]}
+{"sensorId":1, "currentWear":68, "position":[48.8738973080714, 2.340168604140188]}
+{"sensorId":2, "currentWear":30, "position":[48.87542348320164, 2.330916746547377]}
+{"sensorId":3, "currentWear":33, "position":[48.87253074970186, 2.325062680008384]}
+{"sensorId":4, "currentWear":91, "position":[48.87219865713474, 2.3386108140402087]}
+{"sensorId":5, "currentWear":37, "position":[48.86994928594662, 2.329308001056316]}
+{"sensorId":6, "currentWear":13, "position":[48.87093146393201, 2.3374906453703184]}
+{"sensorId":7, "currentWear":95, "position":[48.87376311923052, 2.3296305590725614]}
+{"sensorId":8, "currentWear":10, "position":[48.86949446298001, 2.337257871390673]}
+{"sensorId":9, "currentWear":38, "position":[48.87577068890112, 2.325779225880892]}
+{"sensorId":10, "currentWear":41, "position":[48.86625976582002, 2.329733330368504]}
+{"sensorId":11, "currentWear":13, "position":[48.87171143146261, 2.3287109077893167]}
+{"sensorId":12, "currentWear":27, "position":[48.85938400890632, 2.326078671174354]}
+{"sensorId":13, "currentWear":41, "position":[48.86109531976234, 2.323434416684288]}
+{"sensorId":14, "currentWear":76, "position":[48.86708524373988, 2.334510051589856]}
+{"sensorId":15, "currentWear":64, "position":[48.87476361927694, 2.3388130028115115]}
+{"sensorId":16, "currentWear":76, "position":[48.86056945639446, 2.3351136101449295]}
+{"sensorId":17, "currentWear":52, "position":[48.85645374518083, 2.3427665285780477]}
+{"sensorId":18, "currentWear":39, "position":[48.87147762878525, 2.3350965371819132]}
+{"sensorId":19, "currentWear":25, "position":[48.87173345966983, 2.3263350028967054]}
+{"sensorId":20, "currentWear":22, "position":[48.864546392970986, 2.330963648353313]}
+{"sensorId":21, "currentWear":16, "position":[48.868989223828144, 2.3403386822791776]}
+{"sensorId":22, "currentWear":44, "position":[48.872059407219226, 2.3397514488515005]}
+{"sensorId":23, "currentWear":67, "position":[48.871158380975686, 2.3348273896123986]}
+{"sensorId":24, "currentWear":88, "position":[48.875107003663196, 2.325738596026875]}
+{"sensorId":25, "currentWear":12, "position":[48.866136172849735, 2.339549744942888]}
+{"sensorId":26, "currentWear":61, "position":[48.87034428645703, 2.3343434581025835]}
+{"sensorId":27, "currentWear":82, "position":[48.866408280784626, 2.3344737396921973]}
+{"sensorId":28, "currentWear":10, "position":[48.86446683018862, 2.330636030900756]}
+{"sensorId":29, "currentWear":100, "position":[48.86337305905349, 2.3354076059241544]}
+{"sensorId":30, "currentWear":17, "position":[48.864195781952766, 2.3378097537653786]}
+{"sensorId":31, "currentWear":11, "position":[48.87473880196249, 2.329802755440247]}
+{"sensorId":32, "currentWear":79, "position":[48.863920878636435, 2.3396418802659413]}
+{"sensorId":33, "currentWear":92, "position":[48.8739238725021, 2.325310502962491]}
+{"sensorId":34, "currentWear":98, "position":[48.866396453747484, 2.3405169385426356]}
+{"sensorId":35, "currentWear":74, "position":[48.86852090990412, 2.333318083108742]}
+{"sensorId":36, "currentWear":60, "position":[48.86070045296357, 2.3307456637227877]}
+{"sensorId":37, "currentWear":88, "position":[48.87574201334431, 2.323098688985495]}
+{"sensorId":38, "currentWear":67, "position":[48.872258383382885, 2.3337103461218813]}
+{"sensorId":39, "currentWear":46, "position":[48.86311582618523, 2.3400133355869035]}

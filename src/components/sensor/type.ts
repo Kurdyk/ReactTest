@@ -4,4 +4,5 @@ export type Sensor = {
     currentUsage: number,
     wearGraph: any,
     usageGraph: any,
+    position: [number, number],
 }

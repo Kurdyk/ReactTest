@@ -1,20 +1,20 @@
-{"roadId":0, "street":"Ruelle Sainte Barbe", "sensorsIdList":[37, 25], "postalCode":21760, "city":"Reims" }
-{"roadId":1, "street":"La place de la Fontaine", "sensorsIdList":[1, 13], "postalCode":21760, "city":"Lille" }
-{"roadId":2, "street":"Route de Lyon", "sensorsIdList":[22, 7], "postalCode":94023, "city":"Paris" }
-{"roadId":3, "street":"Avenue de la Gare", "sensorsIdList":[5, 2], "postalCode":46092, "city":"Lille" }
-{"roadId":4, "street":"Route de Lyon", "sensorsIdList":[19, 4], "postalCode":94023, "city":"Reims" }
-{"roadId":5, "street":"Avenue de la Gare", "sensorsIdList":[17, 16], "postalCode":21760, "city":"Paris" }
-{"roadId":6, "street":"Ruelle Sainte Barbe", "sensorsIdList":[39, 11], "postalCode":46092, "city":"Bordeaux" }
-{"roadId":7, "street":"Ruelle Sainte Barbe", "sensorsIdList":[21, 26], "postalCode":75008, "city":"Reims" }
-{"roadId":8, "street":"La place de la Fontaine", "sensorsIdList":[8, 24], "postalCode":46092, "city":"Lille" }
-{"roadId":9, "street":"La place de la Fontaine", "sensorsIdList":[9, 3], "postalCode":46092, "city":"Lille" }
-{"roadId":10, "street":"Ruelle Sainte Barbe", "sensorsIdList":[27, 20], "postalCode":75008, "city":"Lille" }
-{"roadId":11, "street":"Route de Lyon", "sensorsIdList":[38, 10], "postalCode":46092, "city":"Lille" }
-{"roadId":12, "street":"Avenue de la Gare", "sensorsIdList":[30, 32], "postalCode":21760, "city":"Lille" }
-{"roadId":13, "street":"Ruelle Sainte Barbe", "sensorsIdList":[23, 14], "postalCode":94023, "city":"Paris" }
-{"roadId":14, "street":"Avenue de la Gare", "sensorsIdList":[29, 34], "postalCode":94023, "city":"Bordeaux" }
-{"roadId":15, "street":"La place de la Fontaine", "sensorsIdList":[0, 31], "postalCode":46092, "city":"Lille" }
-{"roadId":16, "street":"La place de la Fontaine", "sensorsIdList":[36, 18], "postalCode":75008, "city":"Lille" }
-{"roadId":17, "street":"La place de la Fontaine", "sensorsIdList":[6, 15], "postalCode":75008, "city":"Reims" }
-{"roadId":18, "street":"La place de la Fontaine", "sensorsIdList":[28, 33], "postalCode":94023, "city":"Paris" }
-{"roadId":19, "street":"Route de Lyon", "sensorsIdList":[12, 35], "postalCode":94023, "city":"Paris" }
+{"roadId":0, "street":"Avenue de la Gare", "sensorsIdList":[5, 14], "postalCode":94023, "city":"Bordeaux", "startPosition":[48.87026792081469, 2.3423046876548703], "endPosition":[48.85721706347691, 2.3307908662608696]}
+{"roadId":1, "street":"La place de la Fontaine", "sensorsIdList":[6, 19], "postalCode":94023, "city":"Paris", "startPosition":[48.85721706347691, 2.3307908662608696], "endPosition":[48.85802424609778, 2.3322419456632266]}
+{"roadId":2, "street":"Route de Lyon", "sensorsIdList":[18, 28], "postalCode":75008, "city":"Reims", "startPosition":[48.85802424609778, 2.3322419456632266], "endPosition":[48.86872035777676, 2.3426613260361724]}
+{"roadId":3, "street":"Avenue de la Gare", "sensorsIdList":[16, 13], "postalCode":46092, "city":"Reims", "startPosition":[48.86872035777676, 2.3426613260361724], "endPosition":[48.86613599854718, 2.3368706318348256]}
+{"roadId":4, "street":"Route de Lyon", "sensorsIdList":[2, 33], "postalCode":75008, "city":"Paris", "startPosition":[48.86613599854718, 2.3368706318348256], "endPosition":[48.86235876745706, 2.3345355477317913]}
+{"roadId":5, "street":"Avenue de la Gare", "sensorsIdList":[10, 4], "postalCode":21760, "city":"Reims", "startPosition":[48.86235876745706, 2.3345355477317913], "endPosition":[48.86496985865881, 2.3390513717916623]}
+{"roadId":6, "street":"Ruelle Sainte Barbe", "sensorsIdList":[8, 37], "postalCode":75008, "city":"Lille", "startPosition":[48.86496985865881, 2.3390513717916623], "endPosition":[48.86446361058861, 2.3383227796288324]}
+{"roadId":7, "street":"Route de Lyon", "sensorsIdList":[34, 30], "postalCode":94023, "city":"Reims", "startPosition":[48.86446361058861, 2.3383227796288324], "endPosition":[48.86711762473854, 2.3308874326213864]}
+{"roadId":8, "street":"La place de la Fontaine", "sensorsIdList":[24, 17], "postalCode":46092, "city":"Lille", "startPosition":[48.86711762473854, 2.3308874326213864], "endPosition":[48.86819754398252, 2.3247340025687317]}
+{"roadId":9, "street":"La place de la Fontaine", "sensorsIdList":[39, 26], "postalCode":94023, "city":"Lille", "startPosition":[48.86819754398252, 2.3247340025687317], "endPosition":[48.86858410469699, 2.3323602830116132]}
+{"roadId":10, "street":"Route de Lyon", "sensorsIdList":[38, 35], "postalCode":46092, "city":"Lille", "startPosition":[48.86858410469699, 2.3323602830116132], "endPosition":[48.85819359535384, 2.3258046029996606]}
+{"roadId":11, "street":"La place de la Fontaine", "sensorsIdList":[31, 12], "postalCode":21760, "city":"Lille", "startPosition":[48.85819359535384, 2.3258046029996606], "endPosition":[48.86828212528356, 2.3331745870427247]}
+{"roadId":12, "street":"Avenue de la Gare", "sensorsIdList":[9, 15], "postalCode":46092, "city":"Reims", "startPosition":[48.86828212528356, 2.3331745870427247], "endPosition":[48.87410157588986, 2.3239706472472776]}
+{"roadId":13, "street":"Ruelle Sainte Barbe", "sensorsIdList":[20, 22], "postalCode":21760, "city":"Reims", "startPosition":[48.87410157588986, 2.3239706472472776], "endPosition":[48.869627702876905, 2.3324710799499577]}
+{"roadId":14, "street":"Avenue de la Gare", "sensorsIdList":[3, 27], "postalCode":46092, "city":"Reims", "startPosition":[48.869627702876905, 2.3324710799499577], "endPosition":[48.87234209374071, 2.3356452549932754]}
+{"roadId":15, "street":"La place de la Fontaine", "sensorsIdList":[1, 11], "postalCode":46092, "city":"Lille", "startPosition":[48.87234209374071, 2.3356452549932754], "endPosition":[48.85963111178515, 2.3383364890154783]}
+{"roadId":16, "street":"Avenue de la Gare", "sensorsIdList":[36, 0], "postalCode":75008, "city":"Bordeaux", "startPosition":[48.85963111178515, 2.3383364890154783], "endPosition":[48.86220120692555, 2.3230104886578014]}
+{"roadId":17, "street":"La place de la Fontaine", "sensorsIdList":[23, 7], "postalCode":46092, "city":"Reims", "startPosition":[48.86220120692555, 2.3230104886578014], "endPosition":[48.866653381214896, 2.3362783098516187]}
+{"roadId":18, "street":"La place de la Fontaine", "sensorsIdList":[21, 25], "postalCode":46092, "city":"Bordeaux", "startPosition":[48.866653381214896, 2.3362783098516187], "endPosition":[48.8627923356162, 2.33859525247864]}
+{"roadId":19, "street":"La place de la Fontaine", "sensorsIdList":[29, 32], "postalCode":94023, "city":"Reims", "startPosition":[48.8627923356162, 2.33859525247864], "endPosition":[48.86244613866024, 2.339291826538888]}

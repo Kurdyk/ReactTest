@@ -1,4 +1,8 @@
 #routeBox {
     height: 100%;
     width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: -1;
+    margin-top: 40px;
 }

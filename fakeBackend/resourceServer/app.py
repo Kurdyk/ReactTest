@@ -25,3 +25,11 @@ def roads():
 def sensors():
     sensors = utils.read_file("./sensors.txt")
     return make_response(jsonify({"content":sensors}), 200)
+
+@app.route("/sensor/<sensor_id>/<data_type>/<scale>", methods=["GET"])
+def sensors_info(sensor_id, data_type, scale):
+    try:
+        return make_response(jsonify({"content":utils.read_sensor_info(int(sensor_id), data_type, scale)}), 200)
+    except ValueError as e:
+        print(e)
+        return make_response(jsonify({"message":"Sensor not found"}), 404)

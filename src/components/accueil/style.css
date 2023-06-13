@@ -9,7 +9,7 @@
 }
 
 #AccueilMapAndTitleWrapper {
-    height:85%;
+    height: calc(85% - 40px);
     width:100%;
 }
 
@@ -24,9 +24,9 @@
 }
 
 #AccueilMapWrapper {
-    z-index:-1;
+    z-index:0;
     width:100%;
-    height:82%;
+    height:81%;
     position:absolute;
 }
 

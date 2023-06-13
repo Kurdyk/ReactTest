@@ -1,6 +1,9 @@
 from functools import wraps
 from flask import request, jsonify
 import jwt
+import fill_data
+import json
+from statistics import mean
 
 import fakeBackend.authServer.utils as util
 
@@ -86,4 +89,79 @@ def read_file(path:str):
         result.append(line.strip("\n"))
     file.close()
     return result
+
+# usage/wear
+def read_sensor_info(sensor_id:int, data_type:str, scale:str):
     
+    def find_sensor(sensor_id:int, data_type:str):
+        if data_type == "wear":
+            file = open(fill_data.wears_path, "r")
+        else:
+            file = open(fill_data.usages_path, "r")
+        for line in file:
+            current_data = json.loads(line)
+            if current_data["sensorId"] == sensor_id:
+                file.close()
+                return current_data
+        raise ValueError("Sensor not found")
+
+    def week_aggregation():
+        weeks = list()
+        i = 0
+        while True:
+            current = data[i*7:(i+1)*7:]
+            if len(current) != 7: 
+                if len(current) > 0:
+                    weeks.append(current)
+                break
+            weeks.append(current)
+            i += 1
+        return weeks
+    
+    def month_aggregation():
+        months = list()
+        i = 0
+        current_month = 0
+        while True:
+            if i < len(data):
+                if current_month in {0, 2, 4, 6, 7, 9, 11}: # 31 days months
+                    current = data[i:i+31:]
+                    i += 31
+                elif current_month == 1: # febuary
+                    current = data[i:i + 28:]
+                    i += 28
+                else: # the rest
+                    current = data[i:i+30]
+                    i += 30
+                months.append(current)
+                current_month = (current_month + 1) % 12
+            else:
+                if len(data[i::]) > 0:
+                    months.append(data[i::])
+                break
+        return months
+        
+    def year_aggregation():
+        years = list()
+        i = 0
+        while True:
+            current = data[i*365:(i+1)*365:]
+            if len(current) != 365:
+                if len(current) > 0: 
+                    years.append(current)
+                break
+            years.append(current)
+            i += 1
+        return years
+    
+    data = find_sensor(sensor_id, data_type)["usagesList" if data_type == "usage" else "wearsList"]
+
+    if scale == "Jour": # we'll return the last week
+        return data[-7:]
+    elif scale == "Semaine": # we'll return the three last weeks and the prediction for this one
+        return [sum(week) for week in week_aggregation()[-3::]] if data_type == "usage" else [mean(week) for week in week_aggregation()[-3::]]
+    elif scale == "Mois": # we'll return the 11 last months and the prediction for this one
+        return [sum(month) for month in month_aggregation()[-11::]] if data_type == "usage" else [mean(month) for month in month_aggregation()[-11::]]
+    elif scale == "Année": # we'll return every years and the prediction for this one
+        return [sum(year) for year in year_aggregation()[::]] if data_type == "usage" else [mean(year) for year in year_aggregation()[::]]
+        

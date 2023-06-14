@@ -94,7 +94,7 @@ def read_file(path:str):
 def read_sensor_info(sensor_id:int, data_type:str, scale:str):
     
     def find_sensor(sensor_id:int, data_type:str):
-        if data_type == "wear":
+        if data_type == "Wear":
             file = open(fill_data.wears_path, "r")
         else:
             file = open(fill_data.usages_path, "r")
@@ -154,14 +154,14 @@ def read_sensor_info(sensor_id:int, data_type:str, scale:str):
             i += 1
         return years
     
-    data = find_sensor(sensor_id, data_type)["usagesList" if data_type == "usage" else "wearsList"]
+    data = find_sensor(sensor_id, data_type)["usagesList" if data_type == "Usage" else "wearsList"]
 
     if scale == "Jour": # we'll return the last week
         return data[-7:]
     elif scale == "Semaine": # we'll return the three last weeks and the prediction for this one
-        return [sum(week) for week in week_aggregation()[-3::]] if data_type == "usage" else [mean(week) for week in week_aggregation()[-3::]]
+        return [sum(week) for week in week_aggregation()[-3::]] if data_type == "Usage" else [mean(week) for week in week_aggregation()[-3::]]
     elif scale == "Mois": # we'll return the 11 last months and the prediction for this one
-        return [sum(month) for month in month_aggregation()[-11::]] if data_type == "usage" else [mean(month) for month in month_aggregation()[-11::]]
-    elif scale == "Année": # we'll return every years and the prediction for this one
-        return [sum(year) for year in year_aggregation()[::]] if data_type == "usage" else [mean(year) for year in year_aggregation()[::]]
+        return [sum(month) for month in month_aggregation()[-11::]] if data_type == "Usage" else [mean(month) for month in month_aggregation()[-11::]]
+    elif scale == "Années": # we'll return every years and the prediction for this one
+        return [sum(year) for year in year_aggregation()[::]] if data_type == "Usage" else [mean(year) for year in year_aggregation()[::]]
         

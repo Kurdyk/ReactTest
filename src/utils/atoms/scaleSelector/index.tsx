@@ -3,14 +3,14 @@ import { ScaleSelectorComponentProps } from './type'
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material'
 import { useData } from './hook';
 
-const ScaleSelectorComponent: React.FC<ScaleSelectorComponentProps> = ({value, authorizedValues, id, valueDispatcher, label}) => {
+const ScaleSelectorComponent: React.FC<ScaleSelectorComponentProps> = ({value, authorizedValues, id, valueDispatcher, label, onChange}) => {
 
-    const onChange = useData(valueDispatcher);
+    const changeHandler = useData(valueDispatcher, onChange);
 
     return (
-        <FormControl className='ScaleSelectorWrapper'>
+        <FormControl className='ScaleSelectorWrapper' id={id}>
             <InputLabel className="ScaleSelectorInputLabel">{label}</InputLabel>
-            <Select className="ScaleSelector" id={id} onChange={onChange} label="scale" value={value}>
+            <Select className="ScaleSelector" onChange={changeHandler} label="scale" value={value}>
                 {
                     authorizedValues.map((value, index) => {
                         return <MenuItem value={value} key={index}>{value}</MenuItem> // the index should be constant

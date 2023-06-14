@@ -5,6 +5,7 @@ export type ToggleButtonProps = {
 };
 
 export type ToggleButtonGroupProps = {
+    id?: string,
     toggleButtonPropsList: ToggleButtonProps[],
     changeHandler: () => void,
     selectedValue: string,

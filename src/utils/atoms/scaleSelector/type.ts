@@ -4,4 +4,5 @@ export type ScaleSelectorComponentProps = {
     authorizedValues: string[],
     id: string, 
     label: string,
+    onChange?: () => void;
 }

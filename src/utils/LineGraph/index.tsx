@@ -3,13 +3,12 @@ import { ResponsiveContainer, LineChart, CartesianGrid, XAxis, YAxis, Legend, Re
 import { LineGraphComponenentProps } from './type';
 
 const LineGraphComponent: React.FC<LineGraphComponenentProps> = ({lines, referenceLines, id}) => {
-    console.log(lines, referenceLines, id)
     return (
         <ResponsiveContainer id={id} className="LineGraphWrapper" width="95%" height="30%">
             <LineChart
             >
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
+                <XAxis dataKey="key" />
                 <YAxis />
                 <Tooltip />
                 <Legend />

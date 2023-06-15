@@ -1,9 +1,9 @@
 import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet'
-import { MarkedMapComponenentProps } from './type'
+import { MarkedMapComponentProps } from './type'
 import { Box } from '@mui/material'
 import { Link } from 'react-router-dom'
 
-const MarkedMapCompoenent: React.FC<MarkedMapComponenentProps> = ({id, markers, lines, center, canInteract, defaultZoom}) => {
+const MarkedMapComponent: React.FC<MarkedMapComponentProps> = ({id, markers, lines, center, canInteract, defaultZoom}) => {
   return (
     <MapContainer id={id} className="MapContainer" center={center} zoom={defaultZoom} scrollWheelZoom={canInteract} zoomControl={canInteract} 
         attributionControl = {true}>
@@ -31,4 +31,4 @@ const MarkedMapCompoenent: React.FC<MarkedMapComponenentProps> = ({id, markers, 
   )
 }
 
-export default MarkedMapCompoenent
+export default MarkedMapComponent

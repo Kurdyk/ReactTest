@@ -77,6 +77,14 @@ export const useData = () => {
     const [timeScale, setTimeScale] = useState<TimeScale>("Jour");
     const [dataType, setDataType] = useState<SensorChartDataType>("Wear");
     const [chartData, setChartData] = useState<SensorChartData>([]);
+    const toogleButtons = [{id:1, value:"Wear", buttonText:"Wear"}, {id:2, value:"Usage", buttonText:"Usage"}]
+    const changeHandler = () => {
+        if (dataType === "Wear") {
+            setDataType("Usage")
+        } else {
+            setDataType("Wear")
+        }
+    };
 
     const display = () => {
         if (dataType === "Wear") {
@@ -91,8 +99,9 @@ export const useData = () => {
         setTimeScale,
         dataType,
         setDataType,
-        chartData,
         setChartData,
         display,
+        toogleButtons,
+        changeHandler,
     })
 }

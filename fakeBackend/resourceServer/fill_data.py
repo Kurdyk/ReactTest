@@ -83,7 +83,7 @@ def fill_sensors(n:int):
     coordinates = generate_random_coordinates([48.866, 2.333], 0.01, n)
     sensors_file = open(sensor_path, "w") # put a to append, w to overwrite current data
     for i in range(n):
-        current_sensor = Sensor(id=i, wear=randint(10, 100), position=coordinates[i])
+        current_sensor = Sensor(id=i, wear=randint(10, 60), position=coordinates[i])
         sensors_file.write(f"{current_sensor}\n")
     sensors_file.close()
 

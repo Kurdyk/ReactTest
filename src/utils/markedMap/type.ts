@@ -15,7 +15,7 @@ export type LinesInfo = {
     id: number, 
 };
 
-export type MarkedMapComponenentProps = {
+export type MarkedMapComponentProps = {
     id: string
     markers? : MarkerInfo[],
     lines? : LinesInfo[],

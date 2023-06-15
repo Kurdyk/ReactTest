@@ -63,6 +63,8 @@ def token_required(f):
     return decorated
 
 # Road related
+road_path = "./roads.txt"
+
 class Road:
     def __init__(self, id:int, street:str, sensorList:list, postalCode:int, city:str) -> None:
         self.id = id
@@ -73,7 +75,10 @@ class Road:
 
     def __str__(self) -> str:
         return "{" + f""""roadId":{self.id}, "street":"{self.street}", "sensorsIdList":{self.sensorList}, "postalCode":{self.postalCode}, "city":"{self.city}" """ + "}"
+
 # Sensor related
+sensor_path = "./sensors.txt"
+
 class Sensor:
     def __init__(self, id:int, wear:int) -> None:
         self.id = id,
@@ -82,6 +87,25 @@ class Sensor:
     def __str__(self) -> str:
         return "{" + f""""sensorId":{self.id}, "currentWear":{self.wear}""" + "}"
     
+def get_sensor_presentation(sensor_id:int):
+    result = {"currentWear": None, "sensorCoordinates": None, "roadName": None, "roadCoordinates": None}
+    sensor_list = map(json.loads, read_file(sensor_path))
+    wanted_sensor = None
+    for sensor in sensor_list:
+        if sensor["sensorId"] == int(sensor_id):
+            wanted_sensor = sensor
+    if wanted_sensor is None:
+        raise ValueError("Sensor not found")
+    result['currentWear'] = sensor["currentWear"]
+    result["sensorCoordinates"] = sensor["position"]
+    road_list = map(json.loads, read_file(road_path))
+    for road in road_list:
+        if int(sensor_id) in road["sensorsIdList"]:
+            result["roadName"] = f"""{road["street"]} {road["postalCode"]}"""
+            result["roadCoordinates"] = [road["startPosition"], road["endPosition"]]
+    print(result)
+    return result
+
 def read_file(path:str):
     result = list()
     file = open(path, "r")

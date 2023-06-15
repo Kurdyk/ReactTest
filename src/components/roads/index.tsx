@@ -3,7 +3,7 @@ import SwitchableComponent from 'utils/switchableComponent'
 import { useData } from './hook'
 import SearchableDataGridComponent from 'utils/SearchableDataGrid'
 import { Box } from '@mui/material'
-import MarkedMapCompoenent from 'utils/markedMap'
+import MarkedMapComponent from 'utils/markedMap'
 
 const RoadComponent: React.FC = () => {
 
@@ -14,7 +14,7 @@ const RoadComponent: React.FC = () => {
             <SwitchableComponent
                 components={[
                     {element:<SearchableDataGridComponent rows={gridDisplayableRoads} columns={columns} />, label:"Liste"},
-                    {element: <MarkedMapCompoenent center={[48.866, 2.333]} canInteract={true} defaultZoom={15} 
+                    {element: <MarkedMapComponent center={[48.866, 2.333]} canInteract={true} defaultZoom={15} 
                         id={'RoadsMap'} markers={visualSensors} lines={visualRoads}/>, label:"Carte"}]} 
                 defaultComponent={0} 
             />

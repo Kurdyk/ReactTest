@@ -29,7 +29,8 @@ def sensors():
 @app.route("/sensor/<sensor_id>/<data_type>/<scale>", methods=["GET"])
 def sensors_info(sensor_id, data_type, scale):
     try:
-        return make_response(jsonify({"content":utils.read_sensor_info(int(sensor_id), data_type, scale)}), 200)
+        return make_response(jsonify({"content":utils.read_sensor_info(int(sensor_id), data_type, scale),
+                                      "sensorInfo":utils.get_sensor_presentation(sensor_id)}), 200)
     except ValueError as e:
         print(e)
         return make_response(jsonify({"message":"Sensor not found"}), 404)

@@ -13,7 +13,7 @@ export const authentificationPath = "/auth";
 export const logoutPath = "/logout";
 export const usersPath = "/users";
 export const roadsPath = "/roads";
-export const sensorPath = "/sensor";
+export const sensorPath = "/sensor/:sensorId";
 
 
 export const allRoutes = [

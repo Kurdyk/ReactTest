@@ -11,8 +11,6 @@ export const useData = () => {
             }
 
             await sleep(10000);
-            // this will log 'Hello Word' to the console
-            console.log('Hello World');
             setLoading(false);
           };
         

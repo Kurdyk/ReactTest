@@ -88,7 +88,13 @@ class Sensor:
         return "{" + f""""sensorId":{self.id}, "currentWear":{self.wear}""" + "}"
     
 def get_sensor_presentation(sensor_id:int):
-    result = {"currentWear": None, "sensorCoordinates": None, "roadName": None, "roadCoordinates": None}
+    result = {
+            "currentWear": None, 
+            "sensorCoordinates": None, 
+            "roadName": None, 
+            "roadCoordinates": None,
+            "postalCode": None
+            }
     sensor_list = map(json.loads, read_file(sensor_path))
     wanted_sensor = None
     for sensor in sensor_list:
@@ -101,9 +107,9 @@ def get_sensor_presentation(sensor_id:int):
     road_list = map(json.loads, read_file(road_path))
     for road in road_list:
         if int(sensor_id) in road["sensorsIdList"]:
-            result["roadName"] = f"""{road["street"]} {road["postalCode"]}"""
+            result["roadName"] = road["street"]
+            result["postalCode"] = road["postalCode"]
             result["roadCoordinates"] = [road["startPosition"], road["endPosition"]]
-    print(result)
     return result
 
 def read_file(path:str):

@@ -49,6 +49,7 @@ const toDisplayableMarkers = (sensors:Sensor[]):MarkerInfo[] => {
     return sensors.map(({position, sensorId}, index) => {
         return {position: position,
             text:`CAP_75008_${sensorId}`,
+            link:`/sensor/${sensorId}`,
             icon: greenIcon,
             id:index}
     });

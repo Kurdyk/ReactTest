@@ -13,6 +13,7 @@ export type SensorPresentationInfo = {
     postalCode : number,
     sensorId : number,
     currentWear : number,
+    city : string,
     roadCoordinates : [[number, number], [number, number]],
     sensorCoordinates : [number, number],
 }

@@ -93,7 +93,8 @@ def get_sensor_presentation(sensor_id:int):
             "sensorCoordinates": None, 
             "roadName": None, 
             "roadCoordinates": None,
-            "postalCode": None
+            "postalCode": None,
+            "city" : None,
             }
     sensor_list = map(json.loads, read_file(sensor_path))
     wanted_sensor = None
@@ -110,6 +111,7 @@ def get_sensor_presentation(sensor_id:int):
             result["roadName"] = road["street"]
             result["postalCode"] = road["postalCode"]
             result["roadCoordinates"] = [road["startPosition"], road["endPosition"]]
+            result['city'] = road["city"]
     return result
 
 def read_file(path:str):

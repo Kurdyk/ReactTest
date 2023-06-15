@@ -1,36 +1,31 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import ScaleSelectorComponent from 'utils/atoms/scaleSelector'
-import { useData, fetchData } from './hook';
+import { useData } from './hook';
 import Box from '@mui/material/Box';
 import ToggleButtonGroupComponent from 'utils/atoms/buttonGroup/toggleButtonGroup';
 import MarkedMapComponent from 'utils/markedMap';
 import { greenIcon } from 'components/accueil/accueilMap/const';
 import { useParams } from 'react-router-dom';
+import { Typography } from '@mui/material';
 
 const SensorComponent: React.FC = () => {
-
-    const {sensorId} = useParams();
-    console.log(sensorId);
 
     const{
         timeScale, 
         setTimeScale,
         dataType,
-        setChartData,
         display,
         toogleButtons,
         changeHandler,
-        setPresentationInfo,
         displayPresentation,
         presentationInfo,
-    } = useData();
+        isLoading,
+    } = useData(useParams());
 
-    useEffect(() => {
-        fetchData(timeScale, 2, dataType, setChartData, setPresentationInfo);
-    }, [timeScale, dataType, setChartData, setPresentationInfo])
-
-    
-    return (
+    if (isLoading || presentationInfo === undefined) { // before first load
+        return <Typography>Is loading...</Typography>
+    } 
+    else return (
         <Box id="SensorWrapper">
             <Box id="SensorPresentation">
                 {displayPresentation()}

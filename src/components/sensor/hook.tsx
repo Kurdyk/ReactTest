@@ -1,13 +1,14 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { SensorChartData, SensorChartDataType, SensorPresentationInfo, TimeScale } from "./type";
 import LineGraphComponent from "utils/LineGraph";
 import BarGraphComponent from "utils/barGraph";
 import { Box, Typography } from "@mui/material";
+import { Params } from "react-router-dom";
 
 export const fetchData = (timeScale:TimeScale, sensorId:number,
                          dataType:SensorChartDataType, 
                          setChartData:React.Dispatch<React.SetStateAction<SensorChartData>>,
-                         setPresentationInfo: React.Dispatch<React.SetStateAction<SensorPresentationInfo>>) => {
+                         setPresentationInfo: React.Dispatch<React.SetStateAction<SensorPresentationInfo | undefined>>) => {
 
     const url = `http://localhost:5555/sensor/${sensorId}/${dataType}/${timeScale}`;
     const requestData = (async () => {
@@ -20,13 +21,13 @@ export const fetchData = (timeScale:TimeScale, sensorId:number,
         if (rawResponse.status !== 200) {
             const error = await rawResponse.json()
             console.log(error["message"])
+            window.location.replace("/roads"); 
             return;
         }
         
         const content = await rawResponse.json();
         // presentation data
         const presentationData = content["sensorInfo"] as SensorPresentationInfo;
-        console.log(presentationData);
         setPresentationInfo(presentationData);
 
         // graph data
@@ -35,8 +36,8 @@ export const fetchData = (timeScale:TimeScale, sensorId:number,
     });
 
     requestData().then((data) => {
+        console.log("ndzma")
         const len = [...data].length; // .lenght doesn't directly work for some reason
-        // console.log(`len : ${len}, data : ${data}, ${typeof data}`)
         switch (timeScale) {
             case "Jour" as TimeScale:
                 setChartData([{name:dataType, stroke:"orange", 
@@ -79,20 +80,15 @@ export const fetchData = (timeScale:TimeScale, sensorId:number,
     
 }
 
-export const useData = () => {
+export const useData = (params:Readonly<Params<string>>) => {
 
     // Init
+    const sensorId = parseInt(params["sensorId"]!)
     const [timeScale, setTimeScale] = useState<TimeScale>("Jour");
     const [dataType, setDataType] = useState<SensorChartDataType>("Wear");
     const [chartData, setChartData] = useState<SensorChartData>([]);
-    const [presentationInfo, setPresentationInfo] = useState<SensorPresentationInfo>({
-        roadName : "default",
-        postalCode : -1,
-        sensorId : -1,
-        currentWear : -1,
-        roadCoordinates : [[-1, -1], [1, 1]],
-        sensorCoordinates : [0, 0],
-    });
+    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [presentationInfo, setPresentationInfo] = useState<SensorPresentationInfo>();
     const toogleButtons = [{id:1, value:"Wear", buttonText:"Wear"}, {id:2, value:"Usage", buttonText:"Usage"}]
 
     const changeHandler = () => {
@@ -115,12 +111,20 @@ export const useData = () => {
     const displayPresentation = () => {
         return (
             <Box id="SensorInfo">
-                <Typography variant="h3">{`${presentationInfo?.roadName}\n${presentationInfo?.postalCode}`}</Typography>
-                <Typography variant="h5">{`CAP_${presentationInfo?.postalCode}_${presentationInfo?.sensorId}`}</Typography>
+                <Typography variant="h3">
+                {presentationInfo?.roadName}<br/>
+                {presentationInfo?.postalCode} {presentationInfo?.city}
+                </Typography>
+                <Typography variant="h5">{`CAP_${presentationInfo?.postalCode}_${sensorId}`}</Typography>
                 <Typography variant="h5">{`Taux d'usure actuel : ${presentationInfo?.currentWear}%`}</Typography>
             </Box>
         )
     }
+
+    useEffect(() => {
+        fetchData(timeScale, sensorId, dataType, setChartData, setPresentationInfo);
+        setIsLoading(false);
+    }, [timeScale, dataType, setChartData, setPresentationInfo, sensorId])
 
     return ({
         timeScale, 
@@ -133,5 +137,7 @@ export const useData = () => {
         setPresentationInfo,
         displayPresentation,
         presentationInfo,
+        sensorId,
+        isLoading,
     })
 }

@@ -30,5 +30,4 @@ export const allRoutes = [
     {linkName: "Logout", path:logoutPath, requiredLogin:true,},
     {linkName: "Users", path:usersPath, requiredLogin:true,},
     {linkName: "Roads", path:roadsPath},
-    {linkName: "Sensor", path:sensorPath},
 ] as RouteInfo[];

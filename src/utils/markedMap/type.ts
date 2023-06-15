@@ -6,6 +6,7 @@ export type MarkerInfo = {
     link? : string,
     icon? : Icon,
     id : number,
+    interactive : boolean,
 };
 
 export type LinesInfo = {

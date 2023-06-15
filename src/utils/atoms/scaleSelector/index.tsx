@@ -10,7 +10,7 @@ const ScaleSelectorComponent: React.FC<ScaleSelectorComponentProps> = ({value, a
     return (
         <FormControl className='ScaleSelectorWrapper' id={id}>
             <InputLabel className="ScaleSelectorInputLabel">{label}</InputLabel>
-            <Select className="ScaleSelector" onChange={changeHandler} label="scale" value={value}>
+            <Select className="ScaleSelector" onChange={changeHandler} label={label} value={value}>
                 {
                     authorizedValues.map((value, index) => {
                         return <MenuItem value={value} key={index}>{value}</MenuItem> // the index should be constant

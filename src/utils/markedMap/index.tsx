@@ -13,9 +13,9 @@ const MarkedMapComponent: React.FC<MarkedMapComponentProps> = ({id, markers, lin
 
             {/* Set markers */}
             <Box className="MapMarkers">
-                {markers?.map(({position, text, id, icon, link}) => {
+                {markers?.map(({position, text, id, icon, link, interactive}) => {
                     return (
-                        <Marker position={position} icon={icon} key={id}>
+                        <Marker position={position} icon={icon} key={id} interactive={interactive}>
                             <Popup closeButton={false}>
                                 <Link to={link!}>{text}</Link>
                             </Popup>

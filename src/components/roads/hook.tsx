@@ -51,7 +51,8 @@ const toDisplayableMarkers = (sensors:Sensor[]):MarkerInfo[] => {
             text:`CAP_75008_${sensorId}`,
             link:`/sensor/${sensorId}`,
             icon: greenIcon,
-            id:index}
+            id:index,
+            interactive:true}
     });
 }
 

@@ -30,7 +30,7 @@ const SensorComponent: React.FC = () => {
             <Box id="SensorPresentation">
                 {displayPresentation()}
                 <MarkedMapComponent id={'SensorMap'} center={presentationInfo.sensorCoordinates} canInteract={false} defaultZoom={13}
-                markers={[{position: presentationInfo.sensorCoordinates, text:"", id:0, icon:greenIcon}]}
+                markers={[{position: presentationInfo.sensorCoordinates, text:"", id:0, icon:greenIcon, interactive:false}]}
                 lines={[{startPosition: presentationInfo.roadCoordinates[0], 
                         endPosition: presentationInfo.roadCoordinates[1],
                         color:"red",

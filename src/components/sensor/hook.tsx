@@ -36,7 +36,6 @@ export const fetchData = (timeScale:TimeScale, sensorId:number,
     });
 
     requestData().then((data) => {
-        console.log("ndzma")
         const len = [...data].length; // .lenght doesn't directly work for some reason
         switch (timeScale) {
             case "Jour" as TimeScale:
@@ -102,7 +101,7 @@ export const useData = (params:Readonly<Params<string>>) => {
     // diplay functions
     const displayGraph = () => {
         if (dataType === "Wear") {
-            return <LineGraphComponent lines={chartData} id={'WearGraph'} />
+            return <LineGraphComponent lines={chartData} id={'WearGraph'} xLabel={"Temps"} yLabel={"Usure en %"} />
         } else {
             return <BarGraphComponent bars={chartData} id={"UsageGraph"} />
         }
@@ -111,12 +110,12 @@ export const useData = (params:Readonly<Params<string>>) => {
     const displayPresentation = () => {
         return (
             <Box id="SensorInfo">
-                <Typography variant="h3">
+                <Typography variant="h4" id="Adress">
                 {presentationInfo?.roadName}<br/>
                 {presentationInfo?.postalCode} {presentationInfo?.city}
                 </Typography>
-                <Typography variant="h5">{`CAP_${presentationInfo?.postalCode}_${sensorId}`}</Typography>
-                <Typography variant="h5">{`Taux d'usure actuel : ${presentationInfo?.currentWear}%`}</Typography>
+                <Typography variant="h6" className="SubInfo">{`CAP_${presentationInfo?.postalCode}_${sensorId}`}</Typography>
+                <Typography variant="h6" className="SubInfo">{`Taux d'usure actuel : ${presentationInfo?.currentWear}%`}</Typography>
             </Box>
         )
     }
@@ -131,7 +130,7 @@ export const useData = (params:Readonly<Params<string>>) => {
         setTimeScale,
         dataType,
         setChartData,
-        display: displayGraph,
+        displayGraph,
         toogleButtons,
         changeHandler,
         setPresentationInfo,

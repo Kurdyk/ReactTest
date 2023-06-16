@@ -189,9 +189,9 @@ def read_sensor_info(sensor_id:int, data_type:str, scale:str):
     data = find_sensor(sensor_id, data_type)["usagesList" if data_type == "Usage" else "wearsList"]
 
     if scale == "Jour": # we'll return the last week
-        return data[-7:]
+        return data[-30:]
     elif scale == "Semaine": # we'll return the three last weeks and the prediction for this one
-        return [sum(week) for week in week_aggregation()[-3::]] if data_type == "Usage" else [mean(week) for week in week_aggregation()[-3::]]
+        return [sum(week) for week in week_aggregation()[-9::]] if data_type == "Usage" else [mean(week) for week in week_aggregation()[-9::]]
     elif scale == "Mois": # we'll return the 11 last months and the prediction for this one
         return [sum(month) for month in month_aggregation()[-11::]] if data_type == "Usage" else [mean(month) for month in month_aggregation()[-11::]]
     elif scale == "Années": # we'll return every years and the prediction for this one

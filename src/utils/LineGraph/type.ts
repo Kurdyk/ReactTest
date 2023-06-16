@@ -19,4 +19,6 @@ export type LineGraphComponenentProps = {
     lines: Line[],
     referenceLines? : ReferenceLine[], 
     id : string,
+    xLabel : string,
+    yLabel : string,
 } 

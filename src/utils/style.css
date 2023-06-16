@@ -5,3 +5,5 @@
 @import "./atoms/style.css";
 @import "./switchableComponent/style.css";
 @import "./markedMap/style.css";
+@import "./LineGraph/style.css";
+@import "./barGraph/style.css";

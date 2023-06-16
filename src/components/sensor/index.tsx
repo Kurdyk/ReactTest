@@ -14,7 +14,7 @@ const SensorComponent: React.FC = () => {
         timeScale, 
         setTimeScale,
         dataType,
-        display,
+        displayGraph,
         toogleButtons,
         changeHandler,
         displayPresentation,
@@ -37,18 +37,20 @@ const SensorComponent: React.FC = () => {
                         id:0}]} />
             </Box>
 
-            <Box id="SensorGraphWrapper">
+            <Box id="SensorGraphAndSelectorWrapper">
                 <ToggleButtonGroupComponent toggleButtonPropsList={toogleButtons} changeHandler={changeHandler}
-                                                                    selectedValue={dataType}
-                                                                    id="DataTypeSelection" />
-                <ScaleSelectorComponent
-                    value={timeScale}
-                    valueDispatcher={setTimeScale as React.Dispatch<React.SetStateAction<string>>} 
-                    authorizedValues={["Jour", "Semaine", "Mois", "Années"]}
-                    id={'TimeScaleSelector'}
-                    label="Choix d'échelle"
-                    />
-                {display()}
+                                                                        selectedValue={dataType}
+                                                                        id="DataTypeSelection" />
+                <Box id="SensorGraphAndScale">
+                    <ScaleSelectorComponent
+                        value={timeScale}
+                        valueDispatcher={setTimeScale as React.Dispatch<React.SetStateAction<string>>} 
+                        authorizedValues={["Jour", "Semaine", "Mois", "Années"]}
+                        id={'TimeScaleSelector'}
+                        label="Choix d'échelle"
+                        />
+                {displayGraph()}
+                </Box>
             </Box>
         </Box>)
 

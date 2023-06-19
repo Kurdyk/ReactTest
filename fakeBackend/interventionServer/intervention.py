@@ -6,20 +6,22 @@ bp = Blueprint('intervertion', __name__, url_prefix='/intervention')
 
 @bp.route("/new_intervention", methods=["POST"])
 def add_new_intervention():
-    id = int(uuid4())
-    road_name = request.form["roadName"]
-    description = request.form["description"]
-    first_name = request.form["firstName"]
-    last_name = request.form["lastName"]
-    mail = request.form["mail"]
+    json = request.get_json()
+    road_name = json["roadName"]
+    description = json["description"]
+    first_name = json["firstName"]
+    last_name = json["lastName"]
+    mail = json["mail"]
 
-    new_intervention = Intervention(id, road_name, description, first_name, last_name, mail)
+    new_intervention = Intervention(road_name=road_name, description=description, 
+                                    first_name=first_name, last_name=last_name, mail=mail)
     db = get_db()
 
     try :
         db.session.add(new_intervention)
         db.session.commit()
-    except db.IntegrityError:
+    except Exception as e:
+        print(e)
         return make_response('DB Integrity Error', 505)
     else:
         return make_response("Fine", 200)

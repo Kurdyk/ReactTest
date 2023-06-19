@@ -1,6 +1,8 @@
 from flask import g
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import func
+from sqlalchemy import func, sql
+import datetime
+import uuid
 
 db = SQLAlchemy()
 
@@ -18,18 +20,22 @@ def get_db():
 
 class Intervention(db.Model):
     __tablename__ = "intervention"
-    id = db.Column(db.Integer, primary_key = True)
+
+    def default_id():
+        return str(uuid.uuid4())
+
+    id = db.Column(db.String(36), primary_key = True, default=default_id)
     road_name = db.Column(db.String(64), nullable=False)
     description = db.Column(db.String(2048), nullable=False)
     first_name = db.Column(db.String(64), nullable=False)
     last_name = db.Column(db.String(128), nullable=False)
     mail = db.Column(db.String(128), nullable=False)
-    date_ask = db.Column(db.DateTime(timezone=True), server_default=func.now(), nullable=False)
+    date_ask = db.Column(db.Date(), default=datetime.date.today, nullable=False)
     state = db.Column(db.String(32), nullable=False, default="Asked")
-    date_solved = db.Column(db.DateTime(timezone=True), nullable=True)
-    gain = db.Column(db.Integer, nullable=True)
-    last_modification = db.Column(db.DateTime(timezone=True), nullable=True)
-    report = db.Column(db.String(2048), nullable=True)
+    date_solved = db.Column(db.DateTime(timezone=True), nullable=True, default=sql.null())
+    gain = db.Column(db.Integer, nullable=True, default=sql.null())
+    last_modification = db.Column(db.String(64), nullable=True, default=sql.null())
+    report = db.Column(db.String(2048), nullable=True, default=sql.null())
 
     @property
     def serialize(self):

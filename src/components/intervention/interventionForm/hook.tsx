@@ -93,7 +93,7 @@ export const useData = () => {
         const rawResponse = await fetch(postUrl, {
             method: 'POST',
             headers:{
-            'Content-type':'application/json', 
+                'Content-type':'application/json', 
             },
             body: JSON.stringify({
             "firstName" : firstName,

@@ -26,3 +26,4 @@ yarn-error.log*
 /fakeBackend/.venv
 /fakeBackend/shared/users.txt
 /fakeBackend/shared/secret.txt
+/instance

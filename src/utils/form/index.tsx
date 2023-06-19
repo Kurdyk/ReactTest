@@ -1,6 +1,5 @@
 import React from 'react'
 import { GenericFormComponentProps } from './type';
-import { Box } from '@mui/material';
 import ActionButtonGroupComponent from 'utils/atoms/buttonGroup/actionButtonGroup';
 import ToggleButtonGroupComponent from 'utils/atoms/buttonGroup/toggleButtonGroup';
 import InputGroupComponent from 'utils/atoms/inputGroup';

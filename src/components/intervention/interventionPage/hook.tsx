@@ -5,12 +5,10 @@ import { ActionButtonProps } from "utils/atoms/buttonGroup/actionButtonGroup/typ
 
 const url = `http://localhost:5000/intervention/all`;
 
-const castAll = (rawList : string[]): Intervention[] => {
-    console.log(rawList)
-    return rawList.map((rawIntervention) => {
-        const parsed = JSON.parse(rawIntervention) as Intervention;
+const castAll = (rawList : Intervention[]): Intervention[] => {
+    return rawList.map((rawIntervention, index) => {
         let actions = undefined;
-        switch (parsed["state"]) {
+        switch (rawIntervention["state"]) {
             case "Asked":
                 actions = [
                     {
@@ -24,7 +22,7 @@ const castAll = (rawList : string[]): Intervention[] => {
                         clickHandler: () => {}
                     }
                 ] as ActionButtonProps[];
-                parsed["actions"] = actions;
+                rawIntervention["actions"] = actions;
                 break;
             case "Outgoing":
                 actions = [
@@ -34,16 +32,20 @@ const castAll = (rawList : string[]): Intervention[] => {
                         clickHandler: () => {},
                     },
                 ]
-                parsed["actions"] = actions;
+                rawIntervention["actions"] = actions;
                 break;
             default:    
                 break;
         }
-        return parsed;
+        return {...rawIntervention, actions:actions, id:index};
     })
 }
 
 export const useData = () => {
+
+    // Loading
+    const [isLoading, setIsLoading] = useState<Boolean>(true);
+
     // Columns
     const columns = [
         {
@@ -73,14 +75,6 @@ export const useData = () => {
         {
             field:"description",
             headerName:"Description",
-            width: 150,
-            align: "center",
-            flex:1,
-            headerAlign: "center",
-        },
-        {
-            field:"state",
-            headerName:"Etat",
             width: 150,
             align: "center",
             flex:1,
@@ -153,6 +147,7 @@ export const useData = () => {
         requestRoads().then((response) => {
             const castInterventions = castAll(response);
             setInterventions(castInterventions);
+            setIsLoading(false);
         });
     
     }, []);
@@ -160,5 +155,6 @@ export const useData = () => {
     return {
         interventions,
         columns,
+        isLoading,
     }
 }

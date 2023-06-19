@@ -15,8 +15,8 @@ const AuthentificationComponent: React.FC = () => {
     return (
         <Box id="AuthentificationPageWrapper">
             <Box id="AuthentificationForm">
-                <LoginComponent loginDisplay={loginDisplay} toggleButtonsGroupProps={toggleButtonsGroupProps}/>
-                <RegisterComponent registerDisplay={registerDisplay} toggleButtonsGroupProps={toggleButtonsGroupProps} />
+                <LoginComponent loginDisplay={loginDisplay} toggleButtonsGroupProps={toggleButtonsGroupProps!}/>
+                <RegisterComponent registerDisplay={registerDisplay} toggleButtonsGroupProps={toggleButtonsGroupProps!} />
             </Box>
         </Box>
   )

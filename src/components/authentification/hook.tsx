@@ -29,14 +29,10 @@ export const useData = () => {
                 setLoginDisplay("none");
                 setRegisterDisplay("flex");
                 setSelectedValue("register");
-                document.getElementById("AuthentificationForm")!.style.height = "36%";
-                document.getElementById("AuthentificationForm")!.style.minHeight = "301px";
             } else {
                 setLoginDisplay("flex");
                 setRegisterDisplay("none");
                 setSelectedValue("login");
-                document.getElementById("AuthentificationForm")!.style.height = "25%";
-                document.getElementById("AuthentificationForm")!.style.minHeight = "205px";
             }
         },
         selectedValue:selectedValue,

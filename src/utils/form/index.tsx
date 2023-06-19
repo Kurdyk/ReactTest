@@ -6,7 +6,7 @@ import InputGroupComponent from 'utils/atoms/inputGroup';
 
 const GenericFormComponent: React.FC<GenericFormComponentProps> = ({toggleButtonsGroupProps, actionButtonGroupProps, inputGroupProps}) => {
   
-    const {toggleButtonPropsList, changeHandler, selectedValue} = toggleButtonsGroupProps;
+    const {toggleButtonPropsList, changeHandler, selectedValue} = toggleButtonsGroupProps!;
     const {actionButtonPropsList} = actionButtonGroupProps!;
     const {inputsPropsList, inputLabel} = inputGroupProps!;
 

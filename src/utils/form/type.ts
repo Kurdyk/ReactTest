@@ -4,7 +4,7 @@ import { InputGroupProps } from "utils/atoms/inputGroup/type";
 
 
 export type GenericFormComponentProps = {
-    toggleButtonsGroupProps: ToggleButtonGroupProps;
+    toggleButtonsGroupProps?: ToggleButtonGroupProps;
     actionButtonGroupProps?: ActionButtonGroupProps;
     inputGroupProps?: InputGroupProps;
 }

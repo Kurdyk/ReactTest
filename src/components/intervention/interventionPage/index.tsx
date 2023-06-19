@@ -6,12 +6,15 @@ import { useNavigate } from 'react-router-dom';
 
 const InterventionListComposant: React.FC = () => {
 
-    const {columns, interventions} = useData()
+    const {columns, interventions, isLoading} = useData()
     const navigate = useNavigate();
 
+    if(isLoading || interventions.length === 0) return <div>Is loading...</div>
+
+    console.log(interventions)
     return (
         <Box id="InterventionList">
-            {/* <SearchableDataGridComponent rows={interventions} columns={columns} /> */}
+            <SearchableDataGridComponent rows={interventions} columns={columns} />
             <Button onClick={() => {navigate("/newIntervention")}}>Demander une intervention</Button>
         </Box>
   )

@@ -6,7 +6,7 @@ import { autocompleteOrInput } from './hook'
 const InputGroupComponent: React.FC<InputGroupProps> = ({inputsPropsList, inputLabel}) => {
 
   return (
-    <form className="FormGroup">
+    <Box className="FormGroup">
         <InputLabel className="InputLabel">{inputLabel}</InputLabel>
         <Box className="InputsRows">
             {
@@ -17,7 +17,7 @@ const InputGroupComponent: React.FC<InputGroupProps> = ({inputsPropsList, inputL
                 })
             }
         </Box>
-    </form>
+    </Box>
   )
 }
 

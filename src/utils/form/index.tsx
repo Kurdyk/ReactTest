@@ -12,11 +12,11 @@ const GenericFormComponent: React.FC<GenericFormComponentProps> = ({toggleButton
     const {inputsPropsList, inputLabel} = inputGroupProps!;
 
     return (
-        <Box className="GenericForm">
+        <form className="GenericForm">
             <ToggleButtonGroupComponent toggleButtonPropsList={toggleButtonPropsList} changeHandler={changeHandler} selectedValue={selectedValue}/>
             <InputGroupComponent inputsPropsList={inputsPropsList} inputLabel={inputLabel} />
             <ActionButtonGroupComponent actionButtonPropsList={actionButtonPropsList} />
-        </Box>
+        </form>
   )
 }
 

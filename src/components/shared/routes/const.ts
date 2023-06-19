@@ -15,7 +15,7 @@ export const usersPath = "/users";
 export const roadsPath = "/roads";
 export const sensorPath = "/sensor/:sensorId";
 export const interventionPath = "/interventions";
-
+export const newInterventionPath = "/newIntervention";
 
 export const allRoutes = [
     {linkName: "Welcome page", path: rootPath}, 

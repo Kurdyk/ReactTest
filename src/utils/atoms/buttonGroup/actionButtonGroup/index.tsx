@@ -7,8 +7,9 @@ const ActionButtonGroupComponent: React.FC<ActionButtonGroupProps> = ({actionBut
     return (
     <Box className="ActionButtonGroup">
         {
-            actionButtonPropsList.map(({id, buttonText, value, clickHandler}, ) => {
-                return <Button variant="outlined" className="ActionButton" color='primary' key={id} value={value} onClick={clickHandler}>
+            actionButtonPropsList.map(({id, buttonText, value, clickHandler, type}, ) => {
+                return <Button variant="outlined" className="ActionButton" color='primary' 
+                        key={id} value={value} onClick={clickHandler} type={type}>
                     {buttonText}
                 </Button>
             })

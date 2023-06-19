@@ -21,6 +21,7 @@ export const useData = () => {
     const confirmAction = {
         id:1,
         buttonText:"LogIn",
+        type:"submit",
         clickHandler: () => {
             setMailError(false);
             setPasswordError(false);

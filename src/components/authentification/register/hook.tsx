@@ -22,6 +22,7 @@ export const useData = () => {
     const confirmAction = {
         id:1,
         buttonText:"Confirm",
+        type:"submit",
         clickHandler: () => {
 
             setMailError(false);

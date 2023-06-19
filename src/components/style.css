@@ -9,6 +9,7 @@
 @import "./shared/style.css";
 @import "./roads/style.css";
 @import "./sensor/style.css";
+@import "./intervention/style.css";
 
 .leaflet-container {
     width: 100%;

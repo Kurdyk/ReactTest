@@ -14,6 +14,7 @@ export const logoutPath = "/logout";
 export const usersPath = "/users";
 export const roadsPath = "/roads";
 export const sensorPath = "/sensor/:sensorId";
+export const interventionPath = "/interventions";
 
 
 export const allRoutes = [
@@ -30,4 +31,5 @@ export const allRoutes = [
     {linkName: "Logout", path:logoutPath, requiredLogin:true,},
     {linkName: "Users", path:usersPath, requiredLogin:true,},
     {linkName: "Roads", path:roadsPath},
+    {linkName: "Interventions", path:interventionPath},
 ] as RouteInfo[];

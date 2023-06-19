@@ -15,9 +15,10 @@ import UsersComponent from 'components/users'
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import LoginProtectionComponent from 'utils/loginProtection'
-import { mapRoute, accueilPath, authentificationPath, logoutPath, usersPath, roadsPath, sensorPath } from './const'
+import { mapRoute, accueilPath, authentificationPath, logoutPath, usersPath, roadsPath, sensorPath, interventionPath } from './const'
 import RoadComponent from 'components/roads'
 import SensorComponent from 'components/sensor'
+import InterventionListComposant from 'components/intervention/interventionPage'
 
 const AllRoutes: React.FC = () => {
   return (
@@ -37,6 +38,7 @@ const AllRoutes: React.FC = () => {
             <Route path={usersPath} element={<LoginProtectionComponent children={<UsersComponent />} />} />
             <Route path={roadsPath} element={<RoadComponent />} /> 
             <Route path={sensorPath} element={<SensorComponent/>} />
+            <Route path={interventionPath} element={<InterventionListComposant/>} />
             {/* {
                 allRoutes.map(({path, requiredLogin, elememt}) => {
                     console.log(path, requiredLogin)

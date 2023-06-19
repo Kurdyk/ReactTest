@@ -1,8 +1,8 @@
 from flask import Blueprint, request, make_response, jsonify
 from uuid import uuid4
-from interventionServer.db import get_db, Intervention
+from .db import get_db, Intervention
 
-bp = Blueprint('intervertion', __name__)
+bp = Blueprint('intervertion', __name__, url_prefix='/intervention')
 
 @bp.route("/new_intervention", methods=["POST"])
 def add_new_intervention():
@@ -27,5 +27,9 @@ def add_new_intervention():
 @bp.route("/all", methods=["GET"])
 def get_interventions():
     db = get_db()
-    interventions = db.session.query(Intervention).order_by(Intervention.date_ask)
-    return make_response(jsonify(json_list=[intervention.serialize for intervention in interventions]), 200)
+    try :
+        interventions = db.session.query(Intervention).order_by(Intervention.date_ask)
+        return make_response(jsonify({"content":[intervention.serialize for intervention in interventions]}), 200)
+    except Exception as e:
+        print(e)
+        return make_response(jsonify({"message":"Error while recovering data"}), 400)

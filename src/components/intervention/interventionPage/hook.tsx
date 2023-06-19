@@ -2,6 +2,7 @@ import { GridColDef } from "@mui/x-data-grid";
 import { Intervention } from "./type";
 import { useEffect, useState } from "react";
 import { ActionButtonProps } from "utils/atoms/buttonGroup/actionButtonGroup/type";
+import ActionButtonGroupComponent from "utils/atoms/buttonGroup/actionButtonGroup";
 
 const url = `http://localhost:5000/intervention/all`;
 
@@ -115,8 +116,12 @@ export const useData = () => {
         {
             field:"actions",
             headerName:"Actions",
-            width: 150,
+            minWidth: 280,
             align: "center",
+            renderCell: (param) => {
+                const props = param.value as ActionButtonProps[];
+                return <ActionButtonGroupComponent actionButtonPropsList={props} />
+            },
             flex:1,
             headerAlign: "center",
         },

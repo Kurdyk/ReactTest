@@ -43,7 +43,7 @@ export const useData = (rows:Object[]) => {
                         } 
                         break;
                     default:
-                        continue mainLoop;
+                        break;
                 }
             }
         }

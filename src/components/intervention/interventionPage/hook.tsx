@@ -52,7 +52,7 @@ export const useData = () => {
         {
             field:"interventionId",
             headerName:"ID",
-            width: 150,
+            minWidth: 150,
             align: "center",
             headerAlign: "center",
             flex:1,
@@ -60,7 +60,7 @@ export const useData = () => {
         {
             field:"roadLocalisation",
             headerName:"Route",
-            width: 150,
+            minWidth: 150,
             align: "center",
             headerAlign: "center",
             flex:1,
@@ -68,7 +68,7 @@ export const useData = () => {
         {
             field:"askDate",
             headerName:"Date de demande",
-            width: 150,
+            minWidth: 150,
             align: "center",
             flex:1,
             headerAlign: "center",
@@ -76,7 +76,7 @@ export const useData = () => {
         {
             field:"description",
             headerName:"Description",
-            width: 150,
+            minWidth: 150,
             align: "center",
             flex:1,
             headerAlign: "center",
@@ -84,31 +84,7 @@ export const useData = () => {
         {
             field:"state",
             headerName:"Etat",
-            width: 150,
-            align: "center",
-            flex:1,
-            headerAlign: "center",
-        },
-        {
-            field:"lastStateModification",
-            headerName:"Dernière modification",
-            width: 150,
-            align: "center",
-            flex:1,
-            headerAlign: "center",
-        },
-        {
-            field:"report",
-            headerName:"Compte rendu",
-            width: 150,
-            align: "center",
-            flex:1,
-            headerAlign: "center",
-        },
-        {
-            field:"gain",
-            headerName:"Gain score",
-            width: 150,
+            minWidth: 150,
             align: "center",
             flex:1,
             headerAlign: "center",
@@ -125,6 +101,31 @@ export const useData = () => {
             flex:1,
             headerAlign: "center",
         },
+        {
+            field:"lastStateModification",
+            headerName:"Dernière modification",
+            minWidth: 150,
+            align: "center",
+            flex:1,
+            headerAlign: "center",
+        },
+        {
+            field:"report",
+            headerName:"Compte rendu",
+            minWidth: 150,
+            align: "center",
+            flex:1,
+            headerAlign: "center",
+        },
+        {
+            field:"gain",
+            headerName:"Gain score",
+            minWidth: 150,
+            align: "center",
+            flex:1,
+            headerAlign: "center",
+        },
+        
     ] as GridColDef[];
     
     // Rows

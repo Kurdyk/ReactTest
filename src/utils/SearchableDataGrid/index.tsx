@@ -17,7 +17,6 @@ const SearchableDataGridComponent: React.FC<DataGridComponentProps> = ({rows, co
                 pagination: {paginationModel:{pageSize:5}}
             }}
             pageSizeOptions={[5]}
-            // autoPageSize = {true}
             disableRowSelectionOnClick
             className="DataGrid"
         />

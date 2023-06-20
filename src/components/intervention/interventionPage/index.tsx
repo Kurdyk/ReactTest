@@ -9,9 +9,8 @@ const InterventionListComposant: React.FC = () => {
     const {columns, interventions, isLoading} = useData()
     const navigate = useNavigate();
 
-    if(isLoading || interventions.length === 0) return <div>Is loading...</div>
+    if(isLoading) return <div>Is loading...</div>
 
-    console.log(interventions)
     return (
         <Box id="InterventionList">
             <SearchableDataGridComponent rows={interventions} columns={columns} />

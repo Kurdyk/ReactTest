@@ -62,23 +62,23 @@ export const useData = () => {
         },
         {
             required: true,
-            placeholder: "Description*",
+            placeholder: "Description *",
             onChange: (event) => {setDescription(event.target.value)}
         },
         {
             required: true,
-            placeholder: "Prénom*",
+            placeholder: "Prénom *",
             onChange: (event) => {setFirstName(event.target.value)}
         },
         {
             required: true,
-            placeholder: "Nom*",
+            placeholder: "Nom *",
             onChange: (event) => {setLastName(event.target.value)}
         },
         {
             error : mailError,
             required: true,
-            placeholder: "Mail*",
+            placeholder: "Mail *",
             onChange : (event) => {
                 setMail(event.target.value)
                 setMailError(false);}

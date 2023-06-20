@@ -23,6 +23,10 @@ class Intervention(db.Model):
 
     def default_id():
         return str(uuid.uuid4())
+    
+    def default_date():
+        current_date = datetime.date.today()
+        return f"{current_date.day}/{current_date.month}/{current_date.year}"
 
     id = db.Column(db.String(36), primary_key = True, default=default_id)
     road_name = db.Column(db.String(64), nullable=False)
@@ -30,9 +34,9 @@ class Intervention(db.Model):
     first_name = db.Column(db.String(64), nullable=False)
     last_name = db.Column(db.String(128), nullable=False)
     mail = db.Column(db.String(128), nullable=False)
-    date_ask = db.Column(db.Date(), default=datetime.date.today, nullable=False)
+    date_ask = db.Column(db.String(10), default=default_date, nullable=False)
     state = db.Column(db.String(32), nullable=False, default="Asked")
-    date_solved = db.Column(db.DateTime(timezone=True), nullable=True, default=sql.null())
+    date_solved = db.Column(db.String(10), nullable=True, default=sql.null())
     gain = db.Column(db.Integer, nullable=True, default=sql.null())
     last_modification = db.Column(db.String(64), nullable=True, default=sql.null())
     report = db.Column(db.String(2048), nullable=True, default=sql.null())

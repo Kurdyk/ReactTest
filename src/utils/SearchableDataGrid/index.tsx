@@ -6,7 +6,7 @@ import { datesRangeContext } from "./const";
 
 const SearchableDataGridComponent: React.FC<DataGridComponentProps> = ({rows, columns}) => {
 
-    const {filter, allRows, value, research, setResearch} = useData(rows);
+    const {filter, allRows, value, research, setResearch} = useData(rows, columns);
 
     return (
       <Box className="SearchableDataGrid">
@@ -26,7 +26,10 @@ const SearchableDataGridComponent: React.FC<DataGridComponentProps> = ({rows, co
                 disableRowSelectionOnClick
                 className="DataGrid"
             />
-            {useRenderDateRange(columns, () => {filter(research, value.dates)})}
+            {useRenderDateRange(columns, () => {
+                console.log("trigger")
+                filter(research, value.dates)
+            })}
         </datesRangeContext.Provider>
       </Box>
     );

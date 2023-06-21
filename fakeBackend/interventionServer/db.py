@@ -26,7 +26,7 @@ class Intervention(db.Model):
     
     def default_date():
         current_date = datetime.date.today()
-        return f"{current_date.day}/{current_date.month}/{current_date.year}"
+        return str(current_date).replace("-", "/")
 
     id = db.Column(db.String(36), primary_key = True, default=default_id)
     road_name = db.Column(db.String(64), nullable=False)

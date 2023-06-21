@@ -19,10 +19,10 @@ const muiTheme = createTheme({
       },
     text: {
         primary: "#000",
-        secondary: "#FFF"
+        secondary: "#777"
     },
     info:{
-        main:"#FFF",
+        main:"#000",
     },
   },
 });

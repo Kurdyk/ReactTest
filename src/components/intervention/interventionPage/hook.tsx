@@ -3,6 +3,7 @@ import { Intervention } from "./type";
 import { useEffect, useState } from "react";
 import { ActionButtonProps } from "utils/atoms/buttonGroup/actionButtonGroup/type";
 import ActionButtonGroupComponent from "utils/atoms/buttonGroup/actionButtonGroup";
+import dayjs from "dayjs";
 
 const url = `http://localhost:5000/intervention/all`;
 
@@ -67,6 +68,7 @@ export const useData = () => {
         },
         {
             field:"askDate",
+            type: "date",
             headerName:"Date de demande",
             minWidth: 150,
             align: "center",
@@ -147,7 +149,10 @@ export const useData = () => {
             
             const content = await rawResponse.json();
             const intervertionData = content["content"]
-            return intervertionData;
+            return intervertionData.map((rawIntervention:any) => {
+                rawIntervention.askDate = dayjs(rawIntervention.askDate).toDate();
+                return rawIntervention;
+            }) ;
         });
     
         requestRoads().then((response) => {

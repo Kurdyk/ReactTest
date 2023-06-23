@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { ActionButtonProps } from "utils/atoms/buttonGroup/actionButtonGroup/type";
 import ActionButtonGroupComponent from "utils/atoms/buttonGroup/actionButtonGroup";
 import dayjs from "dayjs";
+import { ExtendedGridColDef } from "utils/SearchableDataGrid/type";
 
 const url = `http://localhost:5000/intervention/all`;
 
@@ -90,6 +91,7 @@ export const useData = () => {
             align: "center",
             flex:1,
             headerAlign: "center",
+            checkboxeFilter : ["Asked", "Accepted", "Outgoing", "Finished"]
         },
         {
             field:"actions",
@@ -128,7 +130,7 @@ export const useData = () => {
             headerAlign: "center",
         },
         
-    ] as GridColDef[];
+    ] as ExtendedGridColDef[];
     
     // Rows
     const [interventions, setInterventions] = useState<Intervention[]>([]);

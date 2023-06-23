@@ -1,7 +1,8 @@
 import { GridColDef } from "@mui/x-data-grid";
 import { useState, useEffect } from "react";
 import DateRangePicker from "utils/atoms/dateRangePicker";
-import { DateRange } from "./type";
+import { DateRange, ExtendedGridColDef } from "./type";
+import CheckboxFilter from "utils/checkboxFilter";
 
 
 export const useData = (rows:Object[], columns:GridColDef[]) => {
@@ -37,79 +38,102 @@ export const useData = (rows:Object[], columns:GridColDef[]) => {
     }, [allRows])
 
     // Filter for the search bar
-    const filter = (input:string, dateRanges:Map<number, DateRange>) => {
+    const filter = (input:string, dateRanges:Map<number, DateRange>, selections:Map<number, Set<any>>) => {
 
-        console.log("FILTER")
-        console.log(dateRanges);
+        var result = [...rows] as Object[];
 
-        // Should we not date check 
-        let noDateRange = true;
-        dateRanges.forEach((range) => {
-            if (range.startDate !== null && range.endDate !== null) {
-                noDateRange = false;
+        // Checkbox checking
+        result = result.filter((row) => {
+            for (let i = 0 ; i < Object.entries(row).length ; i++) {
+
+                const [key, value] = Object.entries(row)[i];
+                const mapIndex = map.get(key)!;
+
+                // Is it linked to a check box selector that is not empty ?
+                if (selections.get(mapIndex) !== undefined && selections.get(mapIndex)!.size > 0) {
+                    console.log(selections.get((mapIndex)), value)
+                    console.log(selections.get(mapIndex)!.has(value))
+                    return selections.get(mapIndex)!.has(value)
+                }
             }
+            return true;
         })
 
-        if (input.length === 0 && noDateRange) {
-            setAllRows(rows);
+        // Date checking
+        result = result.filter((row) => {
+
+            for (let i = 0 ; i < Object.entries(row).length ; i++) {
+
+                const [key, value] = Object.entries(row)[i];
+                const mapIndex = map.get(key)!;
+                // Is it linked to a check box selector ?
+                const currentRange = dateRanges.get(mapIndex)!;
+                if (currentRange.endDate === null || currentRange.startDate === null) { // Date range not fully define
+                    return true;
+                } else {
+                    if (currentRange.startDate > value || currentRange.endDate < value) {
+                        return false
+                    } else {
+                        return true
+                    }
+                }
+            }
+            return true;
+        })
+
+        // Don't use the main research bar
+        if (input.length === 0) {
+            setAllRows(result);
             return;
         }
 
-        const result = [] as Object[];
-        mainLoop: for (const row of rows) {
-            console.log(`row : ${row}, col : ${Object.values(row)}`)
-            for (const [key, value] of Object.entries(row)) {
-                console.log(`value : ${value}, type : ${typeof value}, key : ${key}`)
+        // Main research bar filter
+        result = result.filter((row) => {
+            for (let i = 0 ; i < Object.entries(row).length ; i++) {
+
+                const [, value] = Object.entries(row)[i];
+
                 switch (typeof value) {
-                    case "object":
-                        console.log("object")
-                        if (value instanceof Date) {
-                            console.log("date")
-                            console.log(map.get(key))
-                            const currentRange = dateRanges.get(map.get(key)!)!;
-                            if (currentRange.endDate === null || currentRange.startDate === null) { // Date range not fully define
-                                console.log("breaking")
-                                break;
-                            } else {
-                                if (currentRange.startDate > value || currentRange.endDate < value) {
-                                    console.log(`${value} NOT in range ${currentRange.startDate}, ${currentRange.endDate}`)
-                                    continue mainLoop;
-                                } else {
-                                    console.log(`${value} in range ${currentRange.startDate}, ${currentRange.endDate}`)
-                                }
-                            }
-                        }
-                        break; 
+
                     case "number":
                         if (value === parseInt(input)) { // only for int since float comparision
-                            result.push(row);
-                            continue mainLoop;
+                            return true;
                         }
                         break;
+
                     case "string": 
                         if (value.toLowerCase().includes(input.toLowerCase())) {
-                            result.push(row);
-                            continue mainLoop;
+                            return true;
                         }
                         break;
+
                     case "boolean":
                         if (String(value) === input) {
-                            result.push(row);
-                            continue mainLoop;
-                        } 
-                        break;                       
+                            return true
+                        }
+                        break; 
+
                     default:
                         break;
                 }
             }
-        }
+            return false;
+        })
+
         setAllRows(result);
     }
 
     // Set context value
     const [dates, setDates] = useState(new Map<number, DateRange>());
-    const value = {dates:dates, setDates: (index:number, newValue:DateRange) => {
+    const dateContextValue = {dates:dates, setDates: (index:number, newValue:DateRange) => {
         setDates(dates.set(index, newValue))
+    }};
+
+    const [selections, setSelections] = useState(new Map<number, Set<any>>());
+    const selectionContextValue = {selections:selections, setSelections: (index:number, newValue:Set<any>) => {
+        console.log("setting selections to", index, newValue);
+        setSelections(selections.set(index, newValue))
+        console.log("set", selections.get(index))
     }};
 
     // Text field content
@@ -118,7 +142,8 @@ export const useData = (rows:Object[], columns:GridColDef[]) => {
     return ({
         filter,
         allRows,
-        value,
+        dateContextValue,
+        selectionContextValue,
         research, 
         setResearch,
     })
@@ -140,6 +165,20 @@ export const useRenderDateRange = (columns: GridColDef[], onChange: () => void) 
                 />
                 :
                 <></>
+        })
+    )
+}
+
+// Check box filtering
+
+export const renderCheckBoxFiltering = (columns: ExtendedGridColDef[], onChange: () => void) => {
+    return (
+        columns.map((column, index) => {
+            if (column.checkboxeFilter) {
+                return <CheckboxFilter index={index} labels={column.checkboxeFilter} onChange={onChange}/>
+            } else {
+                return <></>
+            }
         })
     )
 }

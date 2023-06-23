@@ -5,9 +5,8 @@ import { useData } from './hook'
 
 const NewInterventionForm: React.FC = () => {
 
-    const {formContent, publishButton, isLoading, roads} = useData();
+    const {formContent, publishButton, isLoading, } = useData();
 
-    console.log(isLoading, roads);
     if (isLoading) {
         return <div>Is loading...</div>
     }
@@ -15,15 +14,8 @@ const NewInterventionForm: React.FC = () => {
     return (
         
         <Box id="NewInterventionFormWrapper">
-            <GenericFormComponent 
-                inputGroupProps={formContent} toggleButtonsGroupProps={{
-                    id: undefined,
-                    toggleButtonPropsList: [],
-                    changeHandler: function (): void {
-                        throw new Error('Function not implemented.')
-                    },
-                    selectedValue: ''
-                }} 
+            <GenericFormComponent id="InterventionForm"
+                inputGroupProps={formContent}
                 actionButtonGroupProps={{actionButtonPropsList:[publishButton]}} />
         </Box>
   )

@@ -52,8 +52,6 @@ export const useData = (rows:Object[], columns:GridColDef[]) => {
 
                 // Is it linked to a check box selector that is not empty ?
                 if (selections.get(mapIndex) !== undefined && selections.get(mapIndex)!.size > 0) {
-                    console.log(selections.get((mapIndex)), value)
-                    console.log(selections.get(mapIndex)!.has(value))
                     return selections.get(mapIndex)!.has(value)
                 }
             }

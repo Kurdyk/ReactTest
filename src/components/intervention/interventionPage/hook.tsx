@@ -1,4 +1,3 @@
-import { GridColDef } from "@mui/x-data-grid";
 import { Intervention } from "./type";
 import { useEffect, useState } from "react";
 import { ActionButtonProps } from "utils/atoms/buttonGroup/actionButtonGroup/type";

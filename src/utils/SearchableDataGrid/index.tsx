@@ -4,12 +4,12 @@ import { DataGridComponentProps } from "./type";
 import { useRenderDateRange, useData, renderCheckBoxFiltering } from "./hook";
 import { checkboxSelectionContext, datesRangeContext } from "./const";
 
-const SearchableDataGridComponent: React.FC<DataGridComponentProps> = ({rows, columns}) => {
+const SearchableDataGridComponent: React.FC<DataGridComponentProps> = ({rows, columns, id}) => {
 
     const {filter, allRows, dateContextValue, selectionContextValue, research, setResearch} = useData(rows, columns);
 
     return (
-      <Box className="SearchableDataGrid">
+      <Box className="SearchableDataGrid" id={id}>
         <datesRangeContext.Provider value={dateContextValue}>
             <checkboxSelectionContext.Provider value={selectionContextValue}>
                 <TextField variant="outlined" className="TableSearchBar" placeholder="Recherche..."
@@ -17,6 +17,11 @@ const SearchableDataGridComponent: React.FC<DataGridComponentProps> = ({rows, co
                                 setResearch(event.target.value);
                                 filter(event.target.value, dateContextValue.dates, selectionContextValue.selections);
                             }}/>
+
+                {useRenderDateRange(columns, () => {
+                    filter(research, dateContextValue.dates, selectionContextValue.selections)
+                })}
+                  
                 <DataGrid
                     rows={allRows}
                     columns={columns}
@@ -27,13 +32,11 @@ const SearchableDataGridComponent: React.FC<DataGridComponentProps> = ({rows, co
                     disableRowSelectionOnClick
                     className="DataGrid"
                 />
-                {useRenderDateRange(columns, () => {
-                    console.log("trigger")
-                    filter(research, dateContextValue.dates, selectionContextValue.selections)
-                })}
+
                 {renderCheckBoxFiltering(columns, () => {
                     filter(research, dateContextValue.dates, selectionContextValue.selections)
-                })}
+                })}  
+                
             </checkboxSelectionContext.Provider>
         </datesRangeContext.Provider>
       </Box>

@@ -1,10 +1,11 @@
-import { Box } from '@mui/material'
+/* eslint-disable react-hooks/exhaustive-deps */
+import { Box, Typography } from '@mui/material'
 import React, { useContext, useEffect } from 'react'
 import { CheckboxFilterProps } from './type'
 import { checkboxSelectionContext } from 'utils/SearchableDataGrid/const';
 import CheckboxGroup from 'utils/atoms/checkboxGroup';
 
-const CheckboxFilter: React.FC<CheckboxFilterProps> = ({id, labels, index, onChange}) => {
+const CheckboxFilter: React.FC<CheckboxFilterProps> = ({id, labels, index, onChange, title}) => {
 
     const {selections, setSelections} = useContext(checkboxSelectionContext);
 
@@ -14,6 +15,7 @@ const CheckboxFilter: React.FC<CheckboxFilterProps> = ({id, labels, index, onCha
 
     return (
         <Box className="CheckboxFilter" id={id}>
+            <Typography variant='h6' className="CheckboxFilterTitle">{title}</Typography>
             <CheckboxGroup labels={labels} onChange={(event, labelIndex) => {
                 const current = selections.get(index)!;
                 if (event.target.checked) {

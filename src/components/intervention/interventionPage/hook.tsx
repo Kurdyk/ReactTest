@@ -75,6 +75,8 @@ export const useData = () => {
             align: "center",
             flex:1,
             headerAlign: "center",
+            title: "Selection de la date de demande:",
+            id : "DatePicker"
         },
         {
             field:"description",
@@ -91,7 +93,9 @@ export const useData = () => {
             align: "center",
             flex:1,
             headerAlign: "center",
-            checkboxeFilter : ["Asked", "Accepted", "Outgoing", "Finished"]
+            checkboxeFilter : ["Asked", "Accepted", "Outgoing", "Finished"],
+            title : "Selection de l'état:",
+            id : "StatePicker"
         },
         {
             field:"actions",

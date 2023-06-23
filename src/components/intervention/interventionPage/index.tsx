@@ -13,8 +13,8 @@ const InterventionListComposant: React.FC = () => {
 
     return (
         <Box id="InterventionList">
-            <SearchableDataGridComponent rows={interventions} columns={columns} />
-            <Button onClick={() => {navigate("/newIntervention")}}>Demander une intervention</Button>
+            <Button variant={"outlined"} onClick={() => {navigate("/newIntervention")}}>Demander une intervention</Button>
+            <SearchableDataGridComponent rows={interventions} columns={columns} id="InterventionGrid"/>
         </Box>
   )
 }

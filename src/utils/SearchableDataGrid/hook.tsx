@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import DateRangePicker from "utils/atoms/dateRangePicker";
 import { DateRange, ExtendedGridColDef } from "./type";
 import CheckboxFilter from "utils/checkboxFilter";
+import { Box } from "@mui/material";
 
 
 export const useData = (rows:Object[], columns:GridColDef[]) => {
@@ -131,9 +132,7 @@ export const useData = (rows:Object[], columns:GridColDef[]) => {
 
     const [selections, setSelections] = useState(new Map<number, Set<any>>());
     const selectionContextValue = {selections:selections, setSelections: (index:number, newValue:Set<any>) => {
-        console.log("setting selections to", index, newValue);
         setSelections(selections.set(index, newValue))
-        console.log("set", selections.get(index))
     }};
 
     // Text field content
@@ -151,21 +150,24 @@ export const useData = (rows:Object[], columns:GridColDef[]) => {
 
 // Date searching
 
-export const useRenderDateRange = (columns: GridColDef[], onChange: () => void) => {
+export const useRenderDateRange = (columns: ExtendedGridColDef[], onChange: () => void) => {
     
     return (
-        columns.map((column, index) => {
+        <Box className="DatePickers">
+        {columns.map((column, index) => {
             return (column.type === "date")?
                 <DateRangePicker
                     index={index}
-                    id={`Picker${index}`} 
+                    id={column.id} 
                     startDateLabel={`Start ${column.headerName?.toLocaleLowerCase()}`}
                     endDateLabel={`End ${column.headerName?.toLocaleLowerCase()}`}
                     onChange={onChange}
+                    title={column.title}
                 />
                 :
                 <></>
-        })
+        })}
+        </Box>
     )
 }
 
@@ -173,12 +175,21 @@ export const useRenderDateRange = (columns: GridColDef[], onChange: () => void) 
 
 export const renderCheckBoxFiltering = (columns: ExtendedGridColDef[], onChange: () => void) => {
     return (
-        columns.map((column, index) => {
+        <Box className="CheckboxFilters">
+        {
+            columns.map((column, index) => {
             if (column.checkboxeFilter) {
-                return <CheckboxFilter index={index} labels={column.checkboxeFilter} onChange={onChange}/>
+                return <CheckboxFilter 
+                index={index}
+                labels={column.checkboxeFilter} 
+                onChange={onChange}
+                title={column.title}
+                id={column.id}/>
             } else {
                 return <></>
             }
-        })
+            })
+        }
+        </Box>
     )
 }

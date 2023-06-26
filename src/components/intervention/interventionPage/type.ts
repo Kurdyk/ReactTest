@@ -1,4 +1,4 @@
-import { ActionButtonProps } from "utils/atoms/buttonGroup/actionButtonGroup/type";
+import { DialogComponentProps } from "utils/dialog/type";
 
 export type Intervention = {
     interventionId : string,
@@ -9,7 +9,7 @@ export type Intervention = {
     lastModification? : Date,
     report? : string,
     gain? : number,
-    actions? : ActionButtonProps[],
+    actions? : DialogComponentProps[],
     dateRefusal? : Date,
     dateSolved? : Date,
     dateValidation? : Date,

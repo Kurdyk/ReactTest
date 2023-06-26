@@ -67,6 +67,7 @@ def refuse_intervention(id):
         return make_response(jsonify({"message":"Not in asked state"}), 403)
     intervention.state = 1
     intervention.date_refusal = default_date()
+    intervention.refusal_description = request.get_json()["content"]
     db.session.commit()
     return make_response(jsonify({"message":"Update accepted"}), 200)
 
@@ -83,6 +84,7 @@ def end_intervention(id):
         return make_response(jsonify({"message":"Not in asked state"}), 403)
     intervention.state = 3
     intervention.date_solved = default_date()
+    intervention.intervention_report = request.get_json()["content"]
     db.session.commit()
     return make_response(jsonify({"message":"Update accepted"}), 200)
 

@@ -1,14 +1,16 @@
 import { Intervention } from "./type";
-import { useEffect, useState } from "react";
-import { ActionButtonProps } from "utils/atoms/buttonGroup/actionButtonGroup/type";
-import ActionButtonGroupComponent from "utils/atoms/buttonGroup/actionButtonGroup";
+import { MutableRefObject, useEffect, useRef, useState } from "react";
 import dayjs from "dayjs";
 import { ExtendedGridColDef } from "utils/SearchableDataGrid/type";
+import { DialogComponentProps } from "utils/dialog/type";
+import { TextField } from "@mui/material";
+import DialogComponent from "utils/dialog";
 
 const url = `http://localhost:5000/intervention/all`;
 
+
 // Updating methods
-const postModify = ( async (id:string, action:string) => {
+const postModify = ( async (id:string, action:string, commentary:string) => {
     const postUrl = `http://localhost:5000/intervention/${action}/${id}`;
     
     const rawResponse = await fetch(postUrl, {
@@ -16,6 +18,9 @@ const postModify = ( async (id:string, action:string) => {
         headers:{
             'Content-type':'application/json', 
         },
+        body: JSON.stringify({
+            "content": commentary,
+        })
     });
 
     if (rawResponse.status !== 200) {
@@ -26,32 +31,58 @@ const postModify = ( async (id:string, action:string) => {
     }
 )
 
-const castAll = (rawList : Intervention[]): Intervention[] => {
+const castAll = (rawList : Intervention[], 
+                commentary:MutableRefObject<string>): Intervention[] => {
     return rawList.map((rawIntervention, index) => {
         // Actions
-        let actions = [] as ActionButtonProps[];
+        let actions = [] as DialogComponentProps[];
         switch (rawIntervention["state"]) {
             case "Demandée":
                 actions = [
                     {
-                        id:1, 
-                        buttonText:"Accepter",
-                        clickHandler: () => {
-                            postModify.call(undefined, rawIntervention.interventionId, "accept")},
+                        title: `Vous allez valider la demande ${rawIntervention.interventionId}`,
+                        dialogOpener : "Valider",
+                        dialogButtons: [
+                            {
+                                id: 1,
+                                text: "Valider la demande",
+                                onClick: () => {postModify.call(undefined, rawIntervention.interventionId, "accept", commentary.current)},
+                            }
+                        ]
                     },
                     {
-                        id:2, 
-                        buttonText:"Refuser",
-                        clickHandler: () => {postModify.call(undefined, rawIntervention.interventionId, "refuse")}
-                    }
+                        children: <TextField 
+                                    placeholder="Refusal text"
+                                    onChange={(event) => {commentary.current = event.target.value;}} />,
+                        title: `Vous allez refuser la demande ${rawIntervention.interventionId}`,
+                        text: "Ajouter un commentaire",
+                        dialogOpener : "Refuser",
+                        dialogButtons: [
+                            {
+                                id: 1,
+                                text: "Refuser la demande",
+                                onClick: () => {postModify.call(undefined, rawIntervention.interventionId, "refuse", commentary.current)},
+                            }
+                        ]
+                    },
                 ];
                 break;
             case "En cours":
                 actions = [
                     {
-                        id:1, 
-                        buttonText:"Terminer",
-                        clickHandler: () => {postModify.call(undefined, rawIntervention.interventionId, "end")},
+                        children: <TextField 
+                                    placeholder="Solved text" 
+                                    onChange={(event) => {commentary.current = event.target.value;}}/>,
+                        title: `Vous allez marquer la demande ${rawIntervention.interventionId} comme terminée`,
+                        text: "Ajouter un commentaire",
+                        dialogOpener : "Terminer",
+                        dialogButtons: [
+                            {
+                                id: 1,
+                                text: "Terminée la demande",
+                                onClick: () => {postModify.call(undefined, rawIntervention.interventionId, "end", commentary.current)},
+                            }
+                        ]
                     },
                 ]
                 break;
@@ -140,8 +171,12 @@ export const useData = () => {
             minWidth: 280,
             align: "center",
             renderCell: (param) => {
-                const props = param.value as ActionButtonProps[];
-                return <ActionButtonGroupComponent actionButtonPropsList={props} />
+                const props = param.value as DialogComponentProps[];
+                return props.map(({children, title, text, dialogButtons,dialogOpener}) => {
+                    return <DialogComponent children={children} title={title} text={text} 
+                        dialogButtons={dialogButtons} dialogOpener={dialogOpener}
+                        />
+                })
             },
             flex:1,
             headerAlign: "center",
@@ -161,6 +196,10 @@ export const useData = () => {
             align: "center",
             flex:1,
             headerAlign: "center",
+            renderCell : (param) => {
+                const content = param.value;
+                return <DialogComponent title={"Rapport"} text={content} dialogOpener={"Rapport"} />
+            }
         },
         {
             field:"gain",
@@ -175,6 +214,9 @@ export const useData = () => {
     
     // Rows
     const [interventions, setInterventions] = useState<Intervention[]>([]);
+
+    // Commentaries
+    const commentary = useRef<string>("");
     
     useEffect(() => {
 
@@ -208,7 +250,7 @@ export const useData = () => {
         });
     
         requestRoads().then((response) => {
-            const castInterventions = castAll(response);
+            const castInterventions = castAll(response, commentary);
             setInterventions(castInterventions);
             setIsLoading(false);
         });

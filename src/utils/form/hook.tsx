@@ -2,6 +2,7 @@ import ToggleButtonGroupComponent from "utils/atoms/buttonGroup/toggleButtonGrou
 import { ToggleButtonGroupProps } from "utils/atoms/buttonGroup/toggleButtonGroup/type";
 
 export const renderToogleButtons = (toggleButtonsGroupProps:ToggleButtonGroupProps | undefined) => {
+
     if (toggleButtonsGroupProps === undefined) {
         return <></>
     } else {
@@ -13,4 +14,5 @@ export const renderToogleButtons = (toggleButtonsGroupProps:ToggleButtonGroupPro
                 selectedValue={selectedValue}/>
         )
     }
+    
 }

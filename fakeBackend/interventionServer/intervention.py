@@ -13,6 +13,8 @@ def add_new_intervention():
     last_name = json["lastName"]
     mail = json["mail"]
 
+    print(f"ROAD NAME : {road_name}")
+
     new_intervention = Intervention(road_name=road_name, description=description, 
                                     first_name=first_name, last_name=last_name, mail=mail)
     db = get_db()
@@ -35,3 +37,49 @@ def get_interventions():
     except Exception as e:
         print(e)
         return make_response(jsonify({"message":"Error while recovering data"}), 400)
+    
+@bp.route("/accept/<id>", methods=["POST"])
+def accept_intervention(id):
+    db = get_db()
+    try:
+        intervention = db.session.query(Intervention).where(Intervention.id == id).first()
+        print(intervention)
+    except Exception as e:
+        print(e)
+        return make_response(jsonify({"message":"Intervention not found"}), 404)
+    if (intervention.state != 0):
+        return make_response(jsonify({"message":"Not in asked state"}), 403)
+    intervention.state = 2
+    db.session.commit()
+    return make_response(jsonify({"message":"Update accepted"}), 200)
+
+@bp.route("/refuse/<id>", methods=["POST"])
+def refuse_intervention(id):
+    db = get_db()
+    try:
+        intervention = db.session.query(Intervention).where(Intervention.id == id).first()
+        print(intervention)
+    except Exception as e:
+        print(e)
+        return make_response(jsonify({"message":"Intervention not found"}), 404)
+    if (intervention.state != 0):
+        return make_response(jsonify({"message":"Not in asked state"}), 403)
+    intervention.state = 1
+    db.session.commit()
+    return make_response(jsonify({"message":"Update accepted"}), 200)
+
+@bp.route("/end/<id>", methods=["POST"])
+def end_intervention(id):
+    db = get_db()
+    try:
+        intervention = db.session.query(Intervention).where(Intervention.id == id).first()
+        print(intervention)
+    except Exception as e:
+        print(e)
+        return make_response(jsonify({"message":"Intervention not found"}), 404)
+    if (intervention.state != 2):
+        return make_response(jsonify({"message":"Not in asked state"}), 403)
+    intervention.state = 3
+    db.session.commit()
+    return make_response(jsonify({"message":"Update accepted"}), 200)
+

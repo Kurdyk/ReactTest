@@ -1,11 +1,11 @@
 import { ActionButtonProps } from "utils/atoms/buttonGroup/actionButtonGroup/type";
 
 export type Intervention = {
-    interventionId : number,
+    interventionId : string,
     roadLocalisation  : string,
     askDate : Date,
     description : string,
-    state : "Asked" | "Accepted" | "Outgoing" | "Finished",
+    state : "Demandée" | "Refusée" | "En cours" | "Terminée",
     lastModification? : Date,
     report? : string,
     gain? : number,

@@ -31,13 +31,20 @@ const fetchRoadsOption = (async (dispatcher:React.Dispatch<React.SetStateAction<
 export const useData = () => {
 
     const [roads, setRoads] = useState<Road[]>([]);
-    const [firstName, setFirstName] = useState<String>("");
-    const [lastName, setLastName] = useState<String>("");
-    const [mail, setMail] = useState<String>("");
+
+    const [firstName, setFirstName] = useState<string>("");
+    const [lastName, setLastName] = useState<string>("");
+    const [mail, setMail] = useState<string>("");
     const [description, setDescription] = useState<string>("");
     const [roadName, setRoadName] = useState<string>("")
-    const [mailError, setMailError] = useState<Boolean>(false);
-    const [isLoading, setIsLoading] = useState<Boolean>(true);
+
+    const [mailError, setMailError] = useState<boolean>(false);
+    const [roadError, setRoadError] = useState<boolean>(false);
+    const [firstNameError, setFirstNameError] = useState<boolean>(false);
+    const [lastNameError, setLastNameError] = useState<boolean>(false);
+    const [descriptionError, setDescriptionError] = useState<boolean>(false);
+
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     // Form content
     useEffect(() => {
@@ -45,9 +52,16 @@ export const useData = () => {
         setIsLoading(false);
     }, [])
 
+    const verifyMail = (input : string) => {
+        return  /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(input)
+    }
+
     const formContent = {
-        inputsPropsList: [ {
+        inputsPropsList: [ 
+        {
             required: true,
+            error: roadError,
+            helperText : "Required",
             placeholder: "Route",
             autocompeInfo: {
                 options: roads.sort((a, b) => a.city.localeCompare(b.city)),
@@ -58,30 +72,51 @@ export const useData = () => {
                     <ListItem>{params.children}</ListItem>
                 </List>)
             },
-            onChange: (event) => {setRoadName(event.target.value)}
+            onChange: (event) => {
+                console.log(event.target.value)
+                setRoadError(false);
+                setRoadName(event.target.value);
+            }
         },
         {
             required: true,
+            error: descriptionError,
+            helperText : "Required",
             placeholder: "Description *",
-            onChange: (event) => {setDescription(event.target.value)}
+            onChange: (event) => {
+                setDescriptionError(false);
+                setDescription(event.target.value);
+            }
         },
         {
             required: true,
+            error: firstNameError,
+            helperText : "Required",
             placeholder: "Prénom *",
-            onChange: (event) => {setFirstName(event.target.value)}
+            onChange: (event) => {
+                setFirstNameError(false);
+                setFirstName(event.target.value);
+            }
         },
         {
             required: true,
+            error: lastNameError,
+            helperText : "Required",
             placeholder: "Nom *",
-            onChange: (event) => {setLastName(event.target.value)}
+            onChange: (event) => {
+                setLastNameError(false);
+                setLastName(event.target.value);
+            }
         },
         {
             error : mailError,
             required: true,
             placeholder: "Mail *",
+            helperText: "Mail invalide",
             onChange : (event) => {
-                setMail(event.target.value)
-                setMailError(false);}
+                setMail(event.target.value);
+                setMailError(false);
+            }
         },
        ],
 
@@ -89,6 +124,31 @@ export const useData = () => {
     } as InputGroupProps
 
     const handleClick = (async () => {
+
+        console.log(roadName);
+        if (roadName === "") {
+            setRoadError(true);
+            return;
+        }
+
+        if (description === "") {
+            setRoadError(true);
+            return;
+        }
+        if (firstName === "") {
+            setRoadError(true);
+            return;
+        }
+
+        if (lastName === "") {
+            setRoadError(true);
+            return;
+        }
+
+        if (!verifyMail(mail)) {
+            setMailError(true);
+            return
+        }
 
         const rawResponse = await fetch(postUrl, {
             method: 'POST',

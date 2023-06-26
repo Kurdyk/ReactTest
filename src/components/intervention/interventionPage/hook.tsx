@@ -7,38 +7,57 @@ import { ExtendedGridColDef } from "utils/SearchableDataGrid/type";
 
 const url = `http://localhost:5000/intervention/all`;
 
+// Updating methods
+const postModify = ( async (id:string, action:string) => {
+    const postUrl = `http://localhost:5000/intervention/${action}/${id}`;
+    
+    const rawResponse = await fetch(postUrl, {
+        method: 'POST',
+        headers:{
+            'Content-type':'application/json', 
+        },
+    });
+
+    if (rawResponse.status !== 200) {
+        return
+    } else {
+        window.location.reload();
+    }
+    }
+)
+
 const castAll = (rawList : Intervention[]): Intervention[] => {
     return rawList.map((rawIntervention, index) => {
-        let actions = undefined;
+        let actions = [] as ActionButtonProps[];
         switch (rawIntervention["state"]) {
-            case "Asked":
+            case "Demandée":
                 actions = [
                     {
                         id:1, 
                         buttonText:"Accepter",
-                        clickHandler: () => {},
+                        clickHandler: () => {
+                            postModify.call(undefined, rawIntervention.interventionId, "accept")},
                     },
                     {
                         id:2, 
                         buttonText:"Refuser",
-                        clickHandler: () => {}
+                        clickHandler: () => {postModify.call(undefined, rawIntervention.interventionId, "refuse")}
                     }
-                ] as ActionButtonProps[];
-                rawIntervention["actions"] = actions;
+                ];
                 break;
-            case "Outgoing":
+            case "En cours":
                 actions = [
                     {
                         id:1, 
                         buttonText:"Terminer",
-                        clickHandler: () => {},
+                        clickHandler: () => {postModify.call(undefined, rawIntervention.interventionId, "end")},
                     },
                 ]
-                rawIntervention["actions"] = actions;
                 break;
-            default:    
+            default:
                 break;
         }
+        rawIntervention["actions"] = actions;
         return {...rawIntervention, actions:actions, id:index};
     })
 }
@@ -53,7 +72,7 @@ export const useData = () => {
         {
             field:"interventionId",
             headerName:"ID",
-            minWidth: 150,
+            minWidth: 330,
             align: "center",
             headerAlign: "center",
             flex:1,
@@ -92,7 +111,7 @@ export const useData = () => {
             align: "center",
             flex:1,
             headerAlign: "center",
-            checkboxeFilter : ["Asked", "Accepted", "Outgoing", "Finished"],
+            checkboxeFilter : ["Demandée", "Refusée", "En cours", "Terminée"],
             title : "Selection de l'état:",
             id : "StatePicker"
         },
@@ -139,6 +158,14 @@ export const useData = () => {
     const [interventions, setInterventions] = useState<Intervention[]>([]);
     
     useEffect(() => {
+
+        const stateConversion = new Map<number, string>([
+            [0, "Demandée"],
+            [1, "Refusée"],
+            [2, "En cours"],
+            [3, "Terminée"],
+        ]);
+
         const requestRoads = (async () => {
             const rawResponse = await fetch(url, {
                 method: 'GET',
@@ -155,7 +182,8 @@ export const useData = () => {
             const content = await rawResponse.json();
             const intervertionData = content["content"]
             return intervertionData.map((rawIntervention:any) => {
-                rawIntervention.askDate = dayjs(rawIntervention.askDate).toDate();
+                rawIntervention.askDate = dayjs(rawIntervention.askDate).toDate(); // Case to date type
+                rawIntervention.state = stateConversion.get(rawIntervention.state);
                 return rawIntervention;
             }) ;
         });

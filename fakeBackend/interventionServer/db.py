@@ -31,15 +31,18 @@ class Intervention(db.Model):
     id = db.Column(db.String(36), primary_key = True, default=default_id)
     road_name = db.Column(db.String(64), nullable=False)
     description = db.Column(db.String(2048), nullable=False)
+    refusal_description = db.Column(db.String(2048), nullable=True, default=sql.null())
     first_name = db.Column(db.String(64), nullable=False)
     last_name = db.Column(db.String(128), nullable=False)
     mail = db.Column(db.String(128), nullable=False)
     date_ask = db.Column(db.String(10), default=default_date, nullable=False)
-    state = db.Column(db.String(32), nullable=False, default="Asked")
+    state = db.Column(db.Integer, nullable=False, default=0)
     date_solved = db.Column(db.String(10), nullable=True, default=sql.null())
     gain = db.Column(db.Integer, nullable=True, default=sql.null())
-    last_modification = db.Column(db.String(64), nullable=True, default=sql.null())
-    report = db.Column(db.String(2048), nullable=True, default=sql.null())
+    date_validation = db.Column(db.String(64), nullable=True, default=sql.null())
+    date_refusal = db.Column(db.String(64), nullable=True, default=sql.null())
+    intervention_report = db.Column(db.String(4000), nullable=True, default=sql.null())
+
 
     @property
     def serialize(self):
@@ -47,14 +50,13 @@ class Intervention(db.Model):
             "interventionId": self.id,
             "roadLocalisation": self.road_name,
             "description" : self.description,
-            # "firstName" : self.first_name,
-            # "lastName" : self.last_name,
-            # "mail": self.mail,
+            "refusalDescription": self.refusal_description,
             "askDate" : self.date_ask,
-            "lastModification" : self.last_modification,
+            "dateRefusal" : self.date_refusal,
+            "dateValidation" : self.date_validation,
             "state" : self.state,
             "dateSolved": self.date_solved,
             "gain" : self.gain,
-            "report" : self.report,
+            "report" : self.intervention_report,
         }
 

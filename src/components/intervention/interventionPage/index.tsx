@@ -9,6 +9,8 @@ const InterventionListComposant: React.FC = () => {
     const {columns, interventions, isLoading} = useData()
     const navigate = useNavigate();
 
+    console.log(interventions)
+
     if(isLoading) return <div>Is loading...</div>
 
     return (

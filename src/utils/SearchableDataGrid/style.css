@@ -12,3 +12,7 @@
     height: 100%;
     overflow-x: scroll;
 }
+
+.MuiDataGrid-cell:focus {
+    outline: none !important;
+}

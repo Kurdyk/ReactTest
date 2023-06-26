@@ -9,5 +9,9 @@ export type Intervention = {
     lastModification? : Date,
     report? : string,
     gain? : number,
-    actions? : ActionButtonProps[]
+    actions? : ActionButtonProps[],
+    dateRefusal? : Date,
+    dateSolved? : Date,
+    dateValidation? : Date,
+    refusalDescription?: string,
 };

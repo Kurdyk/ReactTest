@@ -28,6 +28,7 @@ const postModify = ( async (id:string, action:string) => {
 
 const castAll = (rawList : Intervention[]): Intervention[] => {
     return rawList.map((rawIntervention, index) => {
+        // Actions
         let actions = [] as ActionButtonProps[];
         switch (rawIntervention["state"]) {
             case "Demandée":
@@ -58,7 +59,25 @@ const castAll = (rawList : Intervention[]): Intervention[] => {
                 break;
         }
         rawIntervention["actions"] = actions;
-        return {...rawIntervention, actions:actions, id:index};
+        // Last mododification and related
+        let lastStateModification = "";
+        let gain = 0;
+        let report = "";
+        switch (rawIntervention.state) {
+            case "En cours":
+                lastStateModification = `${rawIntervention.state} le ${rawIntervention.dateValidation}`
+                break;
+            case "Refusée":
+                lastStateModification = `${rawIntervention.state} le ${rawIntervention.dateRefusal}`
+                report = rawIntervention.refusalDescription!;
+                break;
+            case "Terminée":
+                lastStateModification = `${rawIntervention.state} le ${rawIntervention.dateSolved}`
+                report = rawIntervention.report!;
+                gain = rawIntervention.gain!;
+                break;
+        }
+        return {...rawIntervention, actions:actions, id:index, lastStateModification:lastStateModification, report:report, gain:gain};
     })
 }
 

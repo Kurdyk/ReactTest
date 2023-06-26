@@ -1,6 +1,6 @@
 from flask import Blueprint, request, make_response, jsonify
 from uuid import uuid4
-from .db import get_db, Intervention
+from .db import get_db, Intervention, default_date
 
 bp = Blueprint('intervertion', __name__, url_prefix='/intervention')
 
@@ -50,6 +50,7 @@ def accept_intervention(id):
     if (intervention.state != 0):
         return make_response(jsonify({"message":"Not in asked state"}), 403)
     intervention.state = 2
+    intervention.date_validation = default_date()
     db.session.commit()
     return make_response(jsonify({"message":"Update accepted"}), 200)
 
@@ -65,6 +66,7 @@ def refuse_intervention(id):
     if (intervention.state != 0):
         return make_response(jsonify({"message":"Not in asked state"}), 403)
     intervention.state = 1
+    intervention.date_refusal = default_date()
     db.session.commit()
     return make_response(jsonify({"message":"Update accepted"}), 200)
 
@@ -80,6 +82,7 @@ def end_intervention(id):
     if (intervention.state != 2):
         return make_response(jsonify({"message":"Not in asked state"}), 403)
     intervention.state = 3
+    intervention.date_solved = default_date()
     db.session.commit()
     return make_response(jsonify({"message":"Update accepted"}), 200)
 

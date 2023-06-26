@@ -6,7 +6,7 @@ import { checkboxSelectionContext, datesRangeContext } from "./const";
 
 const SearchableDataGridComponent: React.FC<DataGridComponentProps> = ({rows, columns, id}) => {
 
-    const {filter, allRows, dateContextValue, selectionContextValue, research, setResearch} = useData(rows, columns);
+    const {filter, allRows, dateContextValue, selectionContextValue, research, setResearch, height, setHeight} = useData(rows, columns);
 
     return (
       <Box className="SearchableDataGrid" id={id}>
@@ -31,8 +31,11 @@ const SearchableDataGridComponent: React.FC<DataGridComponentProps> = ({rows, co
                     pageSizeOptions={[5]}
                     disableRowSelectionOnClick
                     className="DataGrid"
-                    getRowHeight={({densityFactor}) => {
-                        return 85 * densityFactor;
+                    onResize={(dimension) => {
+                        setHeight(dimension.height - 73)
+                    }}
+                    getRowHeight={() => {
+                        return height / 5;
                     }}
                 />
 

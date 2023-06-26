@@ -8,6 +8,9 @@ import { Box } from "@mui/material";
 
 export const useData = (rows:Object[], columns:GridColDef[]) => {
 
+    // used for row height computation
+    const [height, setHeight] = useState<number>(400);
+
     // Recover object keys
     const keys = [] as Array<string>;
     for (let i = 0 ; i < rows.length ; ) {
@@ -143,6 +146,8 @@ export const useData = (rows:Object[], columns:GridColDef[]) => {
         selectionContextValue,
         research, 
         setResearch,
+        height,
+        setHeight,
     })
 }
 

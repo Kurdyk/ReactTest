@@ -64,14 +64,14 @@ def delete_user(user:User):
     return
 
 ### LOGIN RELATED     
-def verify_login(user:User) -> None:
+def verify_login(user:User) -> User:
     user_file = open(user_file_path, 'r')
     for line in user_file:
         current_user = parse_user(line)
         if current_user.mail == user.mail:
             if current_user.password == user.password:
                 user_file.close()
-                return
+                return current_user
             user_file.close()
             raise ValueError("Invalid password")
     user_file.close()
@@ -93,8 +93,7 @@ def generate_token(user:User) -> str:
     
     current_time = time()
     validity = 60 * 60 * 24 # 1 day
-    token = jwt.encode({"exp":current_time + validity, "mail":user.mail}, read_secret(), algorithm="HS256")
-    # registerToken(token, user.mail)
+    token = jwt.encode({"exp":current_time + validity, "mail":user.mail, "role":user.role}, read_secret(), algorithm="HS256")
     return token
 
 ### TESTING

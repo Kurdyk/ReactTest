@@ -13,7 +13,7 @@ def login():
     except ValueError:
         return jsonify("Bad request"), 400
     try:
-        utils.verify_login(user)
+        user = utils.verify_login(user)
         token = utils.generate_token(user)
     except ValueError:
         return jsonify("Invalid password"), 401

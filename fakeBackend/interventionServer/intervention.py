@@ -1,6 +1,7 @@
 from flask import Blueprint, request, make_response, jsonify
 from uuid import uuid4
 from .db import get_db, Intervention, default_date
+from .utils import collectivity_token_required
 
 bp = Blueprint('intervertion', __name__, url_prefix='/intervention')
 
@@ -39,6 +40,7 @@ def get_interventions():
         return make_response(jsonify({"message":"Error while recovering data"}), 400)
     
 @bp.route("/accept/<id>", methods=["POST"])
+@collectivity_token_required
 def accept_intervention(id):
     db = get_db()
     try:
@@ -55,6 +57,7 @@ def accept_intervention(id):
     return make_response(jsonify({"message":"Update accepted"}), 200)
 
 @bp.route("/refuse/<id>", methods=["POST"])
+@collectivity_token_required
 def refuse_intervention(id):
     db = get_db()
     try:
@@ -72,6 +75,7 @@ def refuse_intervention(id):
     return make_response(jsonify({"message":"Update accepted"}), 200)
 
 @bp.route("/end/<id>", methods=["POST"])
+@collectivity_token_required
 def end_intervention(id):
     db = get_db()
     try:

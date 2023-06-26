@@ -17,6 +17,7 @@ const postModify = ( async (id:string, action:string, commentary:string) => {
         method: 'POST',
         headers:{
             'Content-type':'application/json', 
+            "token":sessionStorage.getItem("token")!,
         },
         body: JSON.stringify({
             "content": commentary,

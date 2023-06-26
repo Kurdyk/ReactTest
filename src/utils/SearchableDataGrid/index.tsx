@@ -31,6 +31,9 @@ const SearchableDataGridComponent: React.FC<DataGridComponentProps> = ({rows, co
                     pageSizeOptions={[5]}
                     disableRowSelectionOnClick
                     className="DataGrid"
+                    getRowHeight={({densityFactor}) => {
+                        return 85 * densityFactor;
+                    }}
                 />
 
                 {renderCheckBoxFiltering(columns, () => {

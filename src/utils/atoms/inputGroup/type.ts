@@ -15,7 +15,7 @@ export type FormInputProps = {
     helperText?: string, // Helper in case of error
     required: boolean, // require the field or not
     placeholder: string,
-    onChange?: (input:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | any) => void, // function to execute on each change
+    onChange?: (input:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | any, value?: any) => void, // function to execute on each change
     autocompeInfo? : AutocompleteInfo,
 }
 

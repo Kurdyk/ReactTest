@@ -72,10 +72,9 @@ export const useData = () => {
                     <ListItem>{params.children}</ListItem>
                 </List>)
             },
-            onChange: (event) => {
-                console.log(event.target.value)
+            onChange: (event, value) => {
                 setRoadError(false);
-                setRoadName(event.target.value);
+                setRoadName(value.street);
             }
         },
         {

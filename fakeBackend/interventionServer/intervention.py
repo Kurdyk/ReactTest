@@ -1,7 +1,7 @@
 from flask import Blueprint, request, make_response, jsonify
 from uuid import uuid4
-from .db import get_db, Intervention, default_date
-from .utils import collectivity_token_required
+from db import get_db, Intervention, default_date
+from utils import collectivity_token_required
 
 bp = Blueprint('intervertion', __name__, url_prefix='/intervention')
 

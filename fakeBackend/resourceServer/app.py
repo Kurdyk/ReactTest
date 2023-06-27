@@ -34,3 +34,6 @@ def sensors_info(sensor_id, data_type, scale):
     except ValueError as e:
         print(e)
         return make_response(jsonify({"message":"Sensor not found"}), 404)
+    
+if __name__ == "__main__":
+    app.run(host="localhost", port=5555, debug=True)

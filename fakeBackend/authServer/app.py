@@ -33,3 +33,6 @@ def register():
     except ValueError as err:
         return jsonify("User already exists"), 409
     return make_response(jsonify({"token":token}), 201)
+
+if __name__ == "__main__":
+    app.run(host="localhost", port=4444, debug=True)

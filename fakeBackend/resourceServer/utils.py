@@ -1,19 +1,20 @@
 from functools import wraps
 from flask import request, jsonify
 import jwt
+from fakeBackend.authServer import utils
 import fill_data
 import json
 from statistics import mean
 
-import fakeBackend.authServer.utils as util
+
 
 # User related
 user_file_path = "../shared/users.txt"
 
-def find_user_from_mail(mail:str) -> util.User:
+def find_user_from_mail(mail:str) -> utils.User:
     user_file = open(user_file_path, "r")
     for line in user_file:
-        current_user = util.parse_user(line)
+        current_user = utils.parse_user(line)
         if current_user.mail == mail:
             return current_user
     return
@@ -22,7 +23,7 @@ def json_all_users() -> str:
     result = []
     user_file = open(user_file_path, "r")
     for line in user_file:
-        current_user = util.parse_user(line)
+        current_user = utils.parse_user(line)
         result.append(current_user.to_json())
     return result 
 

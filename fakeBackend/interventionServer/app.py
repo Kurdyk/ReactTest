@@ -29,11 +29,14 @@ def create_app(test_config=None):
     except OSError as e:
         pass
 
-    from . import db
+    import db
     db.init_app(app)
 
-    from . import intervention
+    import intervention
     app.register_blueprint(intervention.bp)
     
 
     return app
+
+if __name__ == "__main__":
+    create_app().run(host="localhost", port=5000, debug=True)

@@ -28,6 +28,10 @@
     align-items: center;
 }
 
+#WearInfo {
+    margin-left: 2px;
+}
+
 #SensorMap {
     width: 40%;
     min-width: 30%;
@@ -125,6 +129,10 @@
 
     .SubInfo {
         font-size: medium !important;
+    }
+
+    #WearInfo {
+        font-size: x-large !important;
     }
     
     .leaflet-bottom {

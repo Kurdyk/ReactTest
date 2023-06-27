@@ -6,7 +6,7 @@ import ToggleButtonGroupComponent from 'utils/atoms/buttonGroup/toggleButtonGrou
 import MarkedMapComponent from 'utils/markedMap';
 import { greenIcon } from 'components/accueil/accueilMap/const';
 import { useParams } from 'react-router-dom';
-import { Typography } from '@mui/material';
+import { CircularProgress } from '@mui/material';
 
 const SensorComponent: React.FC = () => {
 
@@ -23,9 +23,9 @@ const SensorComponent: React.FC = () => {
     } = useData(useParams());
 
     if (isLoading || presentationInfo === undefined) { // before first load
-        return <Typography>Is loading...</Typography>
+        return <CircularProgress />
     } 
-    
+
     else return (
         <Box id="SensorWrapper">
             <Box id="SensorPresentation">

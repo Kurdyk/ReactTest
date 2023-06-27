@@ -109,18 +109,24 @@ export const useData = (params:Readonly<Params<string>>) => {
     }
 
     const displayPresentation = () => {
+
+        const fillNumber = (n:number) => {
+            const asString = String(n);
+            return "0".repeat(3 - asString.length) + asString;
+        }
+
         return (
             <Box id="SensorInfo">
                 <Typography variant="h4" id="Adress">
                 {presentationInfo?.roadName}<br/>
                 {presentationInfo?.postalCode} {presentationInfo?.city}
                 </Typography>
-                <Typography variant="h6" className="SubInfo">{`CAP_${presentationInfo?.postalCode}_${sensorId}`}</Typography>
+                <Typography variant="h6" className="SubInfo">{`CAP_${presentationInfo?.postalCode}_${fillNumber(sensorId)}`}</Typography>
                 <Box className="WearPresentation">
                     <Typography variant="h6" className="SubInfo">
                         Taux d'usure actuel :
                     </Typography>
-                    <Typography variant="h4" className="SubInfo" color={colorWear(presentationInfo?.currentWear!)}>
+                    <Typography variant="h4" className="SubInfo" id={"WearInfo"} color={colorWear(presentationInfo?.currentWear!)}>
                         {`${presentationInfo?.currentWear}%`}
                     </Typography>
                 </Box>

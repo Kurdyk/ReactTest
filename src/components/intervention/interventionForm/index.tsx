@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import { Box, CircularProgress } from '@mui/material'
 import React from 'react'
 import GenericFormComponent from 'utils/form'
 import { useData } from './hook'
@@ -8,7 +8,7 @@ const NewInterventionForm: React.FC = () => {
     const {formContent, publishButton, isLoading, } = useData();
 
     if (isLoading) {
-        return <div>Is loading...</div>
+        return <CircularProgress />
     }
     
     return (

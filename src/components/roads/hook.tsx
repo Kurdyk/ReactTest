@@ -8,7 +8,6 @@ import { IconButton, Typography } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from "react-router-dom";
 import { colorWear } from "components/shared/const";
-import { cp } from "fs";
 
 const roadsUrl = "http://localhost:5555/roads";
 const sensorsUrl = "http://localhost:5555/sensors";

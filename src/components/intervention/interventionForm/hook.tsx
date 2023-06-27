@@ -1,6 +1,7 @@
 import { List, ListItem, Typography } from "@mui/material";
 import { Road } from "components/roads/type";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { ActionButtonProps } from "utils/atoms/buttonGroup/actionButtonGroup/type"
 import { InputGroupProps } from "utils/atoms/inputGroup/type";
 
@@ -45,6 +46,8 @@ export const useData = () => {
     const [descriptionError, setDescriptionError] = useState<boolean>(false);
 
     const [isLoading, setIsLoading] = useState<boolean>(true);
+
+    const navigate = useNavigate();
 
     // Form content
     useEffect(() => {
@@ -169,6 +172,7 @@ export const useData = () => {
         
         // success
         alert("Request accepted")
+        navigate("/interventions")
     })
 
     const publishButton = {

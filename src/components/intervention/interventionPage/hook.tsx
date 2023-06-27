@@ -131,7 +131,7 @@ export const useData = () => {
         {
             field:"roadLocalisation",
             headerName:"Route",
-            minWidth: 150,
+            minWidth: 200,
             align: "center",
             headerAlign: "center",
             flex:1,
@@ -167,25 +167,9 @@ export const useData = () => {
             id : "StatePicker"
         },
         {
-            field:"actions",
-            headerName:"Actions",
-            minWidth: 280,
-            align: "center",
-            renderCell: (param) => {
-                const props = param.value as DialogComponentProps[];
-                return props.map(({children, title, text, dialogButtons,dialogOpener}) => {
-                    return <DialogComponent children={children} title={title} text={text} 
-                        dialogButtons={dialogButtons} dialogOpener={dialogOpener}
-                        />
-                })
-            },
-            flex:1,
-            headerAlign: "center",
-        },
-        {
             field:"lastStateModification",
             headerName:"Dernière modification",
-            minWidth: 150,
+            minWidth: 200,
             align: "center",
             flex:1,
             headerAlign: "center",
@@ -212,6 +196,25 @@ export const useData = () => {
         },
         
     ] as ExtendedGridColDef[];
+
+    if (sessionStorage.getItem("role") === "collectivite") {
+        columns.push({
+            field:"actions",
+            headerName:"Actions",
+            minWidth: 200,
+            align: "center",
+            renderCell: (param) => {
+                const props = param.value as DialogComponentProps[];
+                return props.map(({children, title, text, dialogButtons,dialogOpener}) => {
+                    return <DialogComponent children={children} title={title} text={text} 
+                        dialogButtons={dialogButtons} dialogOpener={dialogOpener}
+                        />
+                })
+            },
+            flex:1,
+            headerAlign: "center",
+        },)
+    }
     
     // Rows
     const [interventions, setInterventions] = useState<Intervention[]>([]);

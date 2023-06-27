@@ -1,8 +1,10 @@
 import { accueilPath } from "components/shared/routes/const";
+import jwtDecode from "jwt-decode";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ActionButtonProps } from "utils/atoms/buttonGroup/actionButtonGroup/type";
 import { FormInputProps, InputGroupProps } from "utils/atoms/inputGroup/type";
+import { Token } from "../type";
 
 const url = "http://localhost:4444/login";  // Put url to login route of the authentification server
 
@@ -50,7 +52,9 @@ export const useData = () => {
                 
                 // success
                 const content = await rawResponse.json();
+                const decoded = jwtDecode<Token>(content["token"])
                 sessionStorage.setItem("token", content["token"]);
+                sessionStorage.setItem("role", decoded["role"]);
                 navigate(accueilPath);
 
               })();

@@ -1,8 +1,10 @@
 import { accueilPath } from "components/shared/routes/const";
+import jwtDecode from "jwt-decode";
 import { useState } from "react";
-import { redirect } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 import { ActionButtonProps } from "utils/atoms/buttonGroup/actionButtonGroup/type";
 import { FormInputProps, InputGroupProps } from "utils/atoms/inputGroup/type";
+import { Token } from "../type";
 
 const url = "http://localhost:4444/register";
 
@@ -15,7 +17,7 @@ export const useData = () => {
     const [password, setPassword] = useState<string>();
     const [passwordError, setPasswordError] = useState<boolean>(false);
 
-
+    const navigate = useNavigate();
     // Preparing data
     
     /// Action buttons
@@ -71,8 +73,11 @@ export const useData = () => {
                 }
 
                 const content = await rawResponse.json();
+                const decoded = jwtDecode<Token>(content["token"])
                 sessionStorage.setItem("token", content["token"]);
-                redirect(accueilPath);
+                sessionStorage.setItem("role", decoded["role"]);
+                navigate(accueilPath);
+
 
               })();
         },

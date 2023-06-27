@@ -29,7 +29,7 @@ export const allRoutes = [
     {linkName: "Accueil", path: accueilPath,},
     {linkName: "Authentification", path:authentificationPath, requiredLogin:false,},
     {linkName: "Logout", path:logoutPath, requiredLogin:true,},
-    {linkName: "Users", path:usersPath, requiredLogin:true,},
+    {linkName: "Users", path:usersPath, requiredRole:{key:"key", role:"collectivite"}},
     {linkName: "Roads", path:roadsPath},
     {linkName: "Interventions", path:interventionPath},
 ] as RouteInfo[];

@@ -7,7 +7,6 @@ import json
 from statistics import mean
 
 
-
 # User related
 user_file_path = "../shared/users.txt"
 

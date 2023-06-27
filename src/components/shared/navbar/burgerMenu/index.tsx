@@ -9,10 +9,10 @@ const BurgerMenuComponent: React.FC<NavBarProps> = ({listRoutes}) => {
     const navigate = useNavigate();
     return (
         <Menu right>
-            {listRoutes.map(({path, linkName, requiredLogin}) => {
+            {listRoutes.map(({path, linkName, requiredLogin, requiredRole}) => {
                     return <Button id={"button_" + path.substring(1)} variant="outlined" 
                         color="primary" key={path} onClick={() => { navigate(path);}}
-                        className="NavButton" sx={{display:computeDisplay(requiredLogin)}}>{linkName}</Button>
+                        className="NavButton" sx={{display:computeDisplay(requiredLogin, requiredRole)}}>{linkName}</Button>
                 })}
         </Menu>
     );

@@ -3,4 +3,11 @@
     width: 100%;
     position: absolute !important; 
     transform: translateZ(-10px);
-} 
+}
+
+#AccueilAttribution {
+    position: fixed ;
+    bottom: 0%;
+    right : 0%;
+    width: 15%;
+}

@@ -77,7 +77,7 @@ export const useData = () => {
             },
             onChange: (event, value) => {
                 setRoadError(false);
-                setRoadName(value.street);
+                setRoadName(`${value.street} ${value.city} ${value.postalCode}`);
             }
         },
         {

@@ -12,6 +12,10 @@
     width: 100%;
 }
 
+.CommentaryField {
+    width: 80%;
+}
+
 @media all and (max-width:400px) {
     #DatePicker > *  {
         font-size: medium;

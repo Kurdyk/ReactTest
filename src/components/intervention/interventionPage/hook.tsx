@@ -54,7 +54,9 @@ const castAll = (rawList : Intervention[],
                     {
                         children: <TextField 
                                     placeholder="Refusal text"
-                                    onChange={(event) => {commentary.current = event.target.value;}} />,
+                                    onChange={(event) => {commentary.current = event.target.value;}} 
+                                    multiline
+                                    className="CommentaryField"/>,
                         title: `Vous allez refuser la demande ${rawIntervention.interventionId}`,
                         text: "Ajouter un commentaire",
                         dialogOpener : "Refuser",
@@ -73,7 +75,9 @@ const castAll = (rawList : Intervention[],
                     {
                         children: <TextField 
                                     placeholder="Solved text" 
-                                    onChange={(event) => {commentary.current = event.target.value;}}/>,
+                                    onChange={(event) => {commentary.current = event.target.value;}}
+                                    multiline
+                                    className="CommentaryField"/>,
                         title: `Vous allez marquer la demande ${rawIntervention.interventionId} comme terminée`,
                         text: "Ajouter un commentaire",
                         dialogOpener : "Terminer",

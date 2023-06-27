@@ -7,7 +7,7 @@ const AccueilMapComponent: React.FC = () => {
         <MapContainer id="mapAccueil" center={[48.866667, 2.333333]} zoom={15} scrollWheelZoom={false} zoomControl={false} 
         attributionControl = {true}>
             <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             {/* Set markers */}
             {accueilMarkers?.map((position, index) => {
                 if (position === undefined) {

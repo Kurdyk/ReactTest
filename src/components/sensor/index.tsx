@@ -25,6 +25,7 @@ const SensorComponent: React.FC = () => {
     if (isLoading || presentationInfo === undefined) { // before first load
         return <Typography>Is loading...</Typography>
     } 
+    
     else return (
         <Box id="SensorWrapper">
             <Box id="SensorPresentation">

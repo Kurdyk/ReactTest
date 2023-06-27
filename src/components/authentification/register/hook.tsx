@@ -1,7 +1,7 @@
 import { accueilPath } from "components/shared/routes/const";
 import jwtDecode from "jwt-decode";
 import { useState } from "react";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ActionButtonProps } from "utils/atoms/buttonGroup/actionButtonGroup/type";
 import { FormInputProps, InputGroupProps } from "utils/atoms/inputGroup/type";
 import { Token } from "../type";

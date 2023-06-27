@@ -3,9 +3,8 @@ import { ResponsiveContainer, BarChart, CartesianGrid, XAxis, YAxis, Legend, Ref
 import { BarGraphComponenentProps } from './type';
 
 const BarGraphComponent: React.FC<BarGraphComponenentProps> = ({bars, id, referenceLines}) => {
-    console.log(bars[0].data)
-  return (
-    <ResponsiveContainer id={id} className="BarGraphWrapper">
+    return (
+        <ResponsiveContainer id={id} className="BarGraphWrapper">
             <BarChart
                 data={bars[0].data}
             >

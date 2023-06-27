@@ -4,6 +4,11 @@ import { DispayableRoad, Road } from "./type";
 import { Sensor } from "components/sensor/type";
 import { LinesInfo, MarkerInfo } from "utils/markedMap/type";
 import { greenIcon } from "components/accueil/accueilMap/const";
+import { IconButton, Typography } from "@mui/material";
+import SearchIcon from '@mui/icons-material/Search';
+import { useNavigate } from "react-router-dom";
+import { colorWear } from "components/shared/const";
+import { cp } from "fs";
 
 const roadsUrl = "http://localhost:5555/roads";
 const sensorsUrl = "http://localhost:5555/sensors";
@@ -17,8 +22,8 @@ const castToRowData = (roadString:string) => {
 }
 
 const castAll = (rawData:string[]) => {
-    return rawData.map((userString, index) => {
-        const asObject = castToRowData(userString);
+    return rawData.map((objectString, index) => {
+        const asObject = castToRowData(objectString);
         asObject["id"] = index;
         return asObject;
     })
@@ -26,21 +31,29 @@ const castAll = (rawData:string[]) => {
 
 // utils for table
 const join = (sensors:Sensor[], roads:Road[]):DispayableRoad[] => {
+
+    const fillNumber = (n:number) => {
+        const asString = String(n);
+        return "0".repeat(3 - asString.length) + asString;
+    }
+
     const result = Array<DispayableRoad>();
-    var cmpt = 0;
+    var id = 0;
     roads.forEach(({street, postalCode, city, sensorsIdList, roadId}) => {
+        var cmpt = 0;
         sensors.forEach(({currentWear, sensorId}) => {
-            if (sensorId in sensorsIdList) {
+            if (sensorsIdList.includes(parseInt(sensorId))) {
                 result.push({
                     road: `${street}\n${postalCode} ${city}`,
-                    id:cmpt++,
-                    sensor: `sensor${sensorId}`,
+                    id:id++,
+                    sensor: `CAP_${postalCode}_${fillNumber(++cmpt)}`,
                     wear:currentWear,
-                    usage:0
+                    usage:0,
                 } as DispayableRoad) 
             }      
         })
     })
+    console.log(result)
     return result;
 }
 
@@ -68,12 +81,26 @@ const toDisplayableRoads = (roads:Road[]):LinesInfo[] => {
 // UseData
 export const useData = () => {
 
+    const navigate = useNavigate();
+
     // Columns
     const columns = [
         {
+            field:"link",
+            headerAlign: "center",
+            headerName:"",
+            maxWidth: 75,
+            align:"center",
+            flex:1,
+            renderCell: (param) => {
+                const id = param.row.id
+                return <IconButton children={<SearchIcon/>} onClick={() => navigate(`/sensor/${id}`)}/>
+            }
+        },
+        {
             field:"road",
             headerName:"Route",
-            width: 150,
+            minWidth: 300,
             align: "center",
             headerAlign: "center",
             flex:1,
@@ -85,14 +112,22 @@ export const useData = () => {
             align: "center",
             flex:1,
             headerAlign: "center",
+            renderCell: (param) => {
+                console.log(param)
+
+            }
         },
         {
-            field:"wear",
+            field:"currentWear",
             headerName:"Usure",
             width: 150,
             align: "center",
             flex:1,
             headerAlign: "center",
+            renderCell : (param) => {
+                const wear = param.row.wear;
+                return <Typography color={colorWear(wear)}>{`${wear}%`}</Typography>
+            }
         },
         {
             field:"usage",
@@ -150,8 +185,8 @@ export const useData = () => {
             }
             
             const content = await rawResponse.json();
-            const userData = content["content"]
-            return userData;
+            const sensorData = content["content"];
+            return sensorData;
         });
     
         

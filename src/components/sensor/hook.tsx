@@ -4,6 +4,7 @@ import LineGraphComponent from "utils/LineGraph";
 import BarGraphComponent from "utils/barGraph";
 import { Box, Typography } from "@mui/material";
 import { Params } from "react-router-dom";
+import { colorWear } from "components/shared/const";
 
 export const fetchData = (timeScale:TimeScale, sensorId:number,
                          dataType:SensorChartDataType, 
@@ -115,7 +116,14 @@ export const useData = (params:Readonly<Params<string>>) => {
                 {presentationInfo?.postalCode} {presentationInfo?.city}
                 </Typography>
                 <Typography variant="h6" className="SubInfo">{`CAP_${presentationInfo?.postalCode}_${sensorId}`}</Typography>
-                <Typography variant="h6" className="SubInfo">{`Taux d'usure actuel : ${presentationInfo?.currentWear}%`}</Typography>
+                <Box className="WearPresentation">
+                    <Typography variant="h6" className="SubInfo">
+                        Taux d'usure actuel :
+                    </Typography>
+                    <Typography variant="h4" className="SubInfo" color={colorWear(presentationInfo?.currentWear!)}>
+                        {`${presentationInfo?.currentWear}%`}
+                    </Typography>
+                </Box>
             </Box>
         )
     }

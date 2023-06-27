@@ -14,6 +14,7 @@ export type FormInputProps = {
     error?: boolean, // set the error display if true
     helperText?: string, // Helper in case of error
     required: boolean, // require the field or not
+    multiline? : boolean,
     placeholder: string,
     onChange?: (input:React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | any, value?: any) => void, // function to execute on each change
     autocompeInfo? : AutocompleteInfo,

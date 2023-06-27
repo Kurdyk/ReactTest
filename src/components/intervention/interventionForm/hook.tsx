@@ -77,7 +77,7 @@ export const useData = () => {
             },
             onChange: (event, value) => {
                 setRoadError(false);
-                setRoadName(`${value.street} ${value.city} ${value.postalCode}`);
+                setRoadName(`${value.street}_${value.city}_${value.postalCode}`);
             }
         },
         {
@@ -85,6 +85,7 @@ export const useData = () => {
             error: descriptionError,
             helperText : "Required",
             placeholder: "Description *",
+            multiline : true,
             onChange: (event) => {
                 setDescriptionError(false);
                 setDescription(event.target.value);

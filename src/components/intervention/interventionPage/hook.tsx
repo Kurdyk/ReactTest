@@ -3,7 +3,7 @@ import { MutableRefObject, useEffect, useRef, useState } from "react";
 import dayjs from "dayjs";
 import { ExtendedGridColDef } from "utils/SearchableDataGrid/type";
 import { DialogComponentProps } from "utils/dialog/type";
-import { TextField } from "@mui/material";
+import { Box, TextField, Typography } from "@mui/material";
 import DialogComponent from "utils/dialog";
 
 const url = `http://localhost:5000/intervention/all`;
@@ -135,10 +135,20 @@ export const useData = () => {
         {
             field:"roadLocalisation",
             headerName:"Route",
-            minWidth: 200,
+            minWidth: 250,
             align: "center",
             headerAlign: "center",
             flex:1,
+            renderCell: (param) => {
+                const localisation = param.row.roadLocalisation as string;
+                const toDisplay = localisation.split("_")
+                console.log(toDisplay);
+                return (
+                    <Box className="RoadNameWrapper">
+                        {toDisplay.map((text) => {return <Typography>{text}</Typography>})}
+                    </Box>
+                )
+            }
         },
         {
             field:"askDate",
@@ -158,6 +168,10 @@ export const useData = () => {
             align: "center",
             flex:1,
             headerAlign: "center",
+            renderCell : (param) => {
+                const content = param.value;
+                return <DialogComponent title={"Description"} text={content} dialogOpener={"Description"} />
+            }
         },
         {
             field:"state",

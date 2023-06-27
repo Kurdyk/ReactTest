@@ -8,10 +8,10 @@ const displayError = (error:boolean|undefined, helperText:string|undefined) => {
     }
 }
 
-export const autocompleteOrInput = ({value, required, placeholder, onChange, type, error, helperText, autocompeInfo} : FormInputProps) => {
+export const autocompleteOrInput = ({value, required, placeholder, onChange, type, error, helperText, autocompeInfo, multiline} : FormInputProps) => {
     if (autocompeInfo === undefined) return (
         <Box key={placeholder}>
-            <Input className="Input" required={required} error={error}
+            <Input className="Input" required={required} error={error} multiline={multiline}
             placeholder={placeholder} type={type} value={value} onChange={onChange} key={placeholder} />
             {
                 displayError(error, helperText)
